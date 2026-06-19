@@ -1356,6 +1356,9 @@ Payment options are confirmed during the WhatsApp order confirmation step. We'll
 </footer>
 
 <script>
+// Hard reset — clear overlay immediately no matter how the page loaded
+document.getElementById('page-loading-overlay').classList.remove('show');
+
 var STORAGE_KEY = 'yomyom-active-section';
 
 function show(id, skipHistory) {
@@ -1368,12 +1371,8 @@ var mt = document.getElementById('mob-tab-' + id);
 if (mt) mt.classList.add('active');
 window.scrollTo({ top: 0, behavior: 'smooth' });
 
-// Persist which section is active so a "back" navigation (or refresh)
-// can restore it instead of defaulting to "how-it-works".
 try { sessionStorage.setItem(STORAGE_KEY, id); } catch (e) {}
 
-// Keep the URL hash in sync too, and push a history entry so the
-// browser's native back button steps between sections correctly.
 if (!skipHistory) {
 var newHash = '#' + id;
 if (window.location.hash !== newHash) {
@@ -1396,32 +1395,23 @@ function filterTemplates(category, btn) {
 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
 btn.classList.add('active');
 
-// Show/hide individual cards
 document.querySelectorAll('.template-card').forEach(card => {
 card.style.display = (category === 'all' || card.dataset.category === category) ? '': 'none';
 });
 
-// Show/hide group labels — only show if at least one card in that group is visible
 document.querySelectorAll('.group-label').forEach(label => {
 const group = label.dataset.group;
-if (category === 'all' || category === group) {
-label.style.display = '';
-} else {
-label.style.display = 'none';
-}
+label.style.display = (category === 'all' || category === group) ? '': 'none';
 });
 }
 
 /* ──────────────────────────────────────────────────────────
    RESTORE THE CORRECT SECTION ON LOAD / BACK NAVIGATION
-   ──────────────────────────────────────────────────────────
-   Whenever the user leaves this page (Preview / Customize /
-   WhatsApp link) and then comes back via the browser's back
-   button, this restores whichever section ("templates",
-   "one-time", etc.) they were actually on — instead of
-   resetting to "how-it-works".
-*/
+────────────────────────────────────────────────────────── */
 function restoreSection() {
+// Always clear the overlay when restoring a section
+document.getElementById('page-loading-overlay').classList.remove('show');
+
 var fromHash = window.location.hash ? window.location.hash.replace('#', ''): null;
 var fromStorage = null;
 try { fromStorage = sessionStorage.getItem(STORAGE_KEY); } catch (e) {}
@@ -1434,10 +1424,9 @@ show(target, true);
 
 window.addEventListener('DOMContentLoaded', restoreSection);
 
-// Handle native back/forward button presses while still on this page
-// (e.g. moving between sections via pushState) and also covers the
-// case of returning to this page from a template page.
 window.addEventListener('popstate', function (e) {
+// Clear overlay on any back/forward navigation within the page
+document.getElementById('page-loading-overlay').classList.remove('show');
 var section = (e.state && e.state.section) || (window.location.hash ? window.location.hash.replace('#', ''): null);
 var validIds = ['how-it-works', 'templates', 'one-time', 'terms', 'support'];
 if (section && validIds.indexOf(section) !== -1) {
@@ -1445,9 +1434,9 @@ show(section, true);
 }
 });
 
-// Some browsers restore the page from cache (bfcache) when you hit
-// back from an external page — re-check the saved section then too.
+// bfcache restore (back button from external page) — always clear overlay
 window.addEventListener('pageshow', function (e) {
+document.getElementById('page-loading-overlay').classList.remove('show');
 if (e.persisted) {
 restoreSection();
 }
@@ -1455,13 +1444,10 @@ restoreSection();
 
 /* ──────────────────────────────────────────────────────────
    LOADING TRANSITION BEFORE NAVIGATING TO A TEMPLATE PAGE
-   ──────────────────────────────────────────────────────────
-   Shows a brief full-screen loading overlay the moment someone
-   clicks "Preview", "Customize Template", or a WhatsApp link,
-   so the next page feels like it's loading in smoothly.
-*/
+────────────────────────────────────────────────────────── */
 (function () {
 var overlay = document.getElementById('page-loading-overlay');
+
 document.querySelectorAll('.nav-out-link').forEach(function (link) {
 link.addEventListener('click', function (e) {
 var href = link.getAttribute('href');
@@ -1476,8 +1462,7 @@ setTimeout(function () {
 window.location.href = href;
 }, 450);
 } else {
-// For links that open in a new tab (e.g. WhatsApp), still show
-// a quick loading flash on this page without blocking navigation.
+// New tab (WhatsApp etc.) — flash briefly then hide
 overlay.classList.add('show');
 setTimeout(function () {
 overlay.classList.remove('show');
@@ -1487,5 +1472,6 @@ overlay.classList.remove('show');
 });
 })();
 </script>
+
 </body>
-</html>
+  </html>
