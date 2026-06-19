@@ -1,0 +1,2161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title id="site-title">Yomyom Fast Foods</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ==========================
+RESET
+========================== */
+
+
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+    html{
+    scroll-behavior: smooth;
+    }
+
+    body{
+    font-family: 'Roboto',sans-serif;
+    background: #fff;
+    color: #222;
+    overflow-x: hidden;
+    line-height: 1.7;
+    }
+
+    img{
+    width: 100%;
+    display: block;
+    }
+
+    a{
+    text-decoration: none;
+    }
+
+    ul{
+    list-style: none;
+    }
+
+    /* ==========================
+ROOT COLORS
+========================== */
+
+:root{
+
+    --primary: #ff7a00;
+    --secondary: #ffb703;
+
+    --dark: #111;
+    --dark2: #1a1a1a;
+
+    --light: #ffffff;
+
+    --gray: #777;
+
+    --shadow:
+    0 10px 30px rgba(0,0,0,.08);
+
+    --radius: 18px;
+
+    }
+
+    /* ==========================
+SECTION SPACING
+========================== */
+
+    section{
+    padding: 100px 8%;
+    }
+
+    .section-header{
+    text-align: center;
+    margin-bottom: 60px;
+    }
+
+    .section-header h2{
+    font-family: 'Montserrat',sans-serif;
+    font-size: 2.7rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    }
+
+    .section-header p{
+    color: var(--gray);
+    max-width: 600px;
+    margin: auto;
+    }
+
+    /* ==========================
+HEADER
+========================== */
+
+    .header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8%;
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur-(2px);
+    z-index: 9999;
+    box-shadow: var(--shadow);
+    }
+
+    .logo-area{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    }
+
+    .logo-area img{
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+    }
+
+    .logo-area h2{
+    font-family: 'Montserrat',sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--dark);
+    }
+
+    .nav{
+    display: flex;
+    gap: 30px;
+    }
+
+    .nav a{
+    font-weight: 500;
+    color: var(--dark);
+    position: relative;
+    transition: .3s;
+    }
+
+    .nav a:hover{
+    color: var(--primary);
+    }
+
+    .nav a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+
+    width: 0%;
+    height: 2px;
+    background: var(--nav-hover-color);
+    transition: .3s;
+    }
+
+    .nav a:hover::after{
+    background: var(--nav-hover-color);
+    width: 100%;
+    }
+
+    .menu-btn{
+    display: none;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    }
+
+    /* ==========================
+HERO
+========================== */
+
+    .hero{
+    padding: 0;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    }
+
+    .hero-slider{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    }
+
+    .slide{
+    position: absolute;
+    inset: 0;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: 1s;
+    }
+
+    .slide.active{
+    opacity: 1;
+    visibility: visible;
+    }
+
+    .slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+
+    .overlay{
+    position: absolute;
+    inset: 0;
+
+    background:
+    linear-gradient(
+    to right,
+    rgba(0,0,0,.75),
+    rgba(0,0,0,.35)
+    );
+    }
+
+    .hero-content{
+    position: absolute;
+
+    top: 50%;
+    left: 8%;
+
+    transform: translateY(-50%);
+
+    max-width: 650px;
+
+    color: #fff;
+
+    z-index: 5;
+    }
+
+    .hero-content h1{
+    font-family: 'Montserrat',sans-serif;
+
+    font-size: 4rem;
+    line-height: 1.1;
+
+    margin-bottom: 20px;
+    }
+
+    .hero-content p{
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    max-width: 500px;
+    }
+
+    .hero-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 15px 35px;
+
+    background: var(--primary);
+
+    color: #fff;
+
+    border-radius: 50px;
+
+    font-weight: 700;
+
+    transition: .3s;
+    }
+
+    .hero-btn:hover{
+    transform: translateY(-4px);
+    background: #e76f00;
+    }
+
+    /* HERO ANIMATION */
+
+    .hero-content h1,
+    .hero-content p,
+    .hero-content a{
+
+    animation: fadeUp 1s ease forwards;
+    }
+
+    @keyframes fadeUp{
+
+    from{
+    opacity: 0;
+    transform: translateY(40px);
+    }
+
+    to{
+    opacity: 1;
+    transform: translateY(0);
+    }
+
+    }
+    /* ==========================
+ABOUT SECTION
+========================== */
+
+    .about-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    }
+
+    .about-gallery{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    }
+
+    .about-gallery img{
+    height: 220px;
+    width: 100%;
+    object-fit: cover;
+
+    border-radius: 20px;
+
+    transition: .4s;
+
+    box-shadow: var(--shadow);
+    }
+
+    .about-gallery img:hover{
+    transform: scale(1.05);
+    }
+
+    .about-content h3{
+    font-family: 'Montserrat',sans-serif;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    }
+
+    .about-content p{
+    color: var(--gray);
+    margin-bottom: 25px;
+    }
+
+    .about-content ul{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    }
+
+    .about-content li{
+    padding: 15px 20px;
+    background: #fff;
+
+    border-left: 5px solid var(--primary);
+
+    border-radius: 12px;
+
+    box-shadow: var(--shadow);
+
+    font-weight: 500;
+    }
+
+    /* ==========================
+STATS SECTION
+========================== */
+
+    #stats{
+
+    background:
+    linear-gradient(
+    135deg,
+    #fff8f0,
+    #fff
+    );
+
+    padding: 70px 8%;
+    }
+
+    .stats-container{
+    display: grid;
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap: 25px;
+    }
+
+    .stat-card{
+
+    background: #fff;
+
+    padding: 40px 25px;
+
+    text-align: center;
+
+    border-radius: 20px;
+
+    box-shadow: var(--shadow);
+
+    transition: .4s;
+    }
+
+    .stat-card:hover{
+
+    transform:
+    translateY(-10px);
+
+    }
+
+    .stat-card i{
+
+    font-size: 2.3rem;
+
+    color: var(--primary);
+
+    margin-bottom: 20px;
+
+    }
+
+    .stat-card h3{
+
+    font-size: 2rem;
+
+    font-family: 'Montserrat',sans-serif;
+
+    font-weight: 800;
+
+    margin-bottom: 10px;
+
+    }
+
+    .stat-card p{
+
+    color: var(--gray);
+
+    font-weight: 500;
+
+    }
+
+    /* PREMIUM GLOW EFFECT */
+
+    .stat-card::before{
+
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    background:
+    rgba(255,122,0,.08);
+
+    border-radius: 50%;
+
+    filter: blur(40px);
+
+    opacity: 0;
+
+    transition: .4s;
+
+    }
+
+    .stat-card{
+    position: relative;
+    overflow: hidden;
+    }
+
+    .stat-card:hover::before{
+    opacity: 1;
+    }
+
+    /* ==========================
+SECTION TITLES
+========================== */
+
+    #about-title,
+    #dishes-title,
+    #order-title,
+    #contact-title{
+
+    position: relative;
+    display: inline-block;
+
+    }
+
+    #about-title::after,
+    #dishes-title::after,
+    #order-title::after,
+    #contact-title::after{
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -12px;
+
+    transform: translateX(-50%);
+
+    width: 70px;
+    height: 4px;
+
+    background: var(--primary);
+
+    border-radius: 50px;
+
+    }
+    /* ==========================
+DISHES SECTION
+========================== */
+
+    #dishes{
+    background: #fafafa;
+    }
+
+    .dish-grid{
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap: 30px;
+
+    }
+
+    /* ==========================
+DISH CARD
+========================== */
+
+    .dish-card{
+
+    position: relative;
+
+    background: #fff;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    box-shadow: var(--shadow);
+
+    transition: .4s;
+
+    isolation: isolate;
+
+    }
+
+    /* Animated Border */
+
+    .dish-card::before{
+
+    content: "";
+
+    position: absolute;
+
+    inset: -2px;
+
+    background:
+    linear-gradient(
+    90deg,
+    #ff7a00,
+    #ffb703,
+    #ff7a00,
+    #ffb703
+    );
+
+    background-size: 300% 300%;
+
+    border-radius: 25px;
+
+    animation: borderMove 6s linear infinite;
+
+    z-index: -2;
+
+    }
+
+    .dish-card::after{
+
+    content: "";
+
+    position: absolute;
+
+    inset: 2px;
+
+    background: #fff;
+
+    border-radius: 23px;
+
+    z-index: -1;
+
+    }
+
+    @keyframes borderMove{
+
+    0%{
+    background-position: 0% 50%;
+    }
+
+    50%{
+    background-position: 100% 50%;
+    }
+
+    100%{
+    background-position: 0% 50%;
+    }
+
+    }
+
+    /* ==========================
+HOVER
+========================== */
+
+    .dish-card:hover{
+
+    transform:
+    translateY(-12px);
+
+    }
+
+    /* ==========================
+IMAGE
+========================== */
+
+    .dish-image{
+    overflow: hidden;
+    height: 220px;
+    }
+
+    .dish-image img{
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: .5s;
+
+    }
+
+    .dish-card:hover img{
+
+    transform: scale(1.12);
+
+    }
+
+    /* ==========================
+CONTENT
+========================== */
+
+    .dish-content{
+
+    padding: 25px;
+
+    }
+
+    .dish-content h3{
+
+    font-family: 'Montserrat',sans-serif;
+
+    font-size: 1.3rem;
+
+    font-weight: 700;
+
+    margin-bottom: 12px;
+
+    color: var(--dark);
+
+    }
+
+    .dish-content p{
+
+    color: var(--gray);
+
+    font-size: .95rem;
+
+    margin-bottom: 20px;
+
+    min-height: 50px;
+
+    }
+
+    .dish-content span{
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 18px;
+
+    background:
+    linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary)
+    );
+
+    color: #fff;
+
+    border-radius: 50px;
+
+    font-weight: 700;
+
+    font-size: .95rem;
+
+    }
+
+    /* ==========================
+DISH IMAGE OVERLAY
+========================== */
+
+    .dish-image{
+    position: relative;
+    }
+
+    .dish-image::after{
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 60%;
+
+    background:
+    linear-gradient(
+    to top,
+    rgba(0,0,0,.35),
+    transparent
+    );
+
+    }
+
+    /* ==========================
+PREMIUM SHADOW
+========================== */
+
+    .dish-card:hover{
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,.15);
+
+    }
+
+    /* ==========================
+STAGGER ANIMATION
+========================== */
+
+    .dish-card{
+
+    animation:
+    dishFade .8s ease both;
+
+    }
+
+    @keyframes dishFade{
+
+    from{
+
+    opacity: 0;
+
+    transform:
+    translateY(40px);
+
+    }
+
+    to{
+
+    opacity: 1;
+
+    transform:
+    translateY(0);
+
+    }
+
+    }
+
+    /* ==========================
+SECTION BG DECORATION
+========================== */
+
+    #dishes{
+    position: relative;
+    overflow: hidden;
+    }
+
+    #dishes::before{
+
+    content: "";
+
+    position: absolute;
+
+    top: -150px;
+    right: -150px;
+
+    width: 350px;
+    height: 350px;
+
+    background:
+    rgba(255,122,0,.06);
+
+    border-radius: 50%;
+
+    filter: blur(40px);
+
+    }
+
+    #dishes::after{
+
+    content: "";
+
+    position: absolute;
+
+    bottom: -150px;
+    left: -150px;
+
+    width: 350px;
+    height: 350px;
+
+    background:
+    rgba(255,183,3,.06);
+
+    border-radius: 50%;
+
+    filter: blur(40px);
+
+    }
+    /* ==========================
+ORDER SECTION
+========================== */
+
+    #order{
+    background:
+    linear-gradient(
+    135deg,
+    #fff,
+    #fff8f0
+    );
+    }
+
+    .order-box{
+    max-width: 700px;
+    margin: auto;
+    }
+
+    .order-form{
+    background: #fff;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: var(--shadow);
+    }
+
+    .order-form label{
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    }
+
+    .order-form select,
+    .order-form input{
+
+    width: 100%;
+    height: 44px;
+
+    padding: 11px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    font-size: 1rem;
+    }
+
+    .order-buttons{
+
+    display: flex;
+    gap: 20px;
+    margin-top: 25px;
+
+    }
+
+    .order-btn{
+
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 15px;
+
+    border-radius: 50px;
+
+    font-weight: 700;
+
+    transition: .3s;
+
+    color: #fff;
+
+    }
+
+    .whatsapp-btn{
+    background: #25D366;
+    }
+
+    .call-btn{
+    background: var(--primary);
+    }
+
+    .order-btn:hover{
+    transform: translateY(-4px);
+    }
+
+    /* ==========================
+CONTACT SECTION
+========================== */
+
+    .contact-container{
+
+    display: grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap: 40px;
+
+    align-items: center;
+
+    }
+
+    .contact-info{
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    }
+
+    .contact-item{
+
+    display: flex;
+    gap: 20px;
+
+    padding: 25px;
+
+    background: #fff;
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow);
+
+    }
+
+    .contact-item i{
+
+    font-size: 1.5rem;
+
+    color: var(--primary);
+
+    margin-top: 5px;
+
+    }
+
+    .contact-item h4{
+
+    font-family: 'Montserrat',sans-serif;
+
+    margin-bottom: 6px;
+
+    }
+
+    .contact-item p{
+    color: var(--gray);
+    }
+
+    .map-box{
+
+    height: 450px;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    box-shadow: var(--shadow);
+
+    }
+
+    .map-box iframe,img{
+    width: 100%;
+    height: 100%;
+    border: none;
+
+    }
+
+    /* ==========================
+FOOTER
+========================== */
+
+    footer{
+
+    background:
+    linear-gradient(
+    135deg,
+    #fef3e8,
+    #fff5ef
+    );
+
+    padding-top: 80px;
+
+    }
+
+    .footer-content{
+
+    display: grid;
+
+    grid-template-columns:
+    2fr 1fr 1fr;
+
+    gap: 40px;
+
+    padding: 0 8% 40px;
+
+    }
+
+    .footer-brand h2{
+
+    font-family: 'Montserrat',sans-serif;
+
+    margin-bottom: 15px;
+
+    }
+
+    .footer-brand p{
+
+    color: var(--gray);
+
+    max-width: 350px;
+
+    }
+
+    .footer-links{
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    }
+
+    .footer-links h3,
+    .footer-social h3{
+
+    margin-bottom: 15px;
+
+    font-family: 'Montserrat',sans-serif;
+
+    }
+
+    .footer-links a{
+
+    color: var(--gray);
+
+    transition: .3s;
+
+    }
+
+    .footer-links a:hover{
+
+    color: var(--primary);
+
+    padding-left: 5px;
+
+    }
+
+    .social-icons{
+
+    display: flex;
+    gap: 15px;
+
+    }
+
+    .social-icons a{
+
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #fff;
+
+    border-radius: 50%;
+
+    color: var(--primary);
+
+    box-shadow: var(--shadow);
+
+    transition: .3s;
+
+    }
+
+    .social-icons a:hover{
+
+    background: var(--primary);
+
+    color: #fff;
+
+    transform: translateY(-5px);
+
+    }
+
+    .footer-bottom{
+
+    border-top: 1px solid #eee;
+
+    padding: 25px;
+
+    text-align: center;
+
+    color: var(--gray);
+
+    }
+
+    /* ==========================
+FLOATING BUTTONS
+========================== */
+
+    .floating-btn{
+
+    position: fixed;
+
+    right: 25px;
+
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 1.4rem;
+
+    color: #fff;
+
+    z-index: 999;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.2);
+
+    transition: .3s;
+
+    }
+
+    .floating-btn:hover{
+
+    transform: scale(1.1);
+
+    }
+
+    .whatsapp-float{
+
+    bottom: 100px;
+
+    background: #25D366;
+
+    }
+
+    .call-float{
+
+    bottom: 175px;
+
+    background: var(--primary);
+
+    }
+
+    /* ==========================
+BACK TO TOP
+========================== */
+
+    #backToTop{
+
+    position: fixed;
+
+    left: 25px;
+    bottom: 25px;
+
+    width: 55px;
+    height: 55px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: var(--dark);
+
+    color: #fff;
+
+    font-size: 1.2rem;
+
+    cursor: pointer;
+
+    box-shadow: var(--shadow);
+
+    transition: .3s;
+
+    z-index: 999;
+
+    }
+
+    #backToTop:hover{
+
+    transform: translateY(-5px);
+
+    background: var(--primary);
+
+    }
+
+    /* ==========================
+MOBILE MENU
+========================== */
+
+    @media(max-width:900px){
+
+    .menu-btn{
+    display: block;
+    }
+
+    .nav{
+
+    position: fixed;
+
+    top: 80px;
+    right: -100%;
+
+    width: 280px;
+    height: calc(100vh - 80px);
+
+    background: #fff;
+
+    flex-direction: column;
+
+    padding: 30px;
+
+    gap: 25px;
+
+    box-shadow: var(--shadow);
+
+    transition: .4s;
+
+    }
+
+    .nav.active{
+    right: 0;
+    }
+
+    .hero-content h1{
+    font-size: 2.8rem;
+    }
+
+    .about-container,
+    .contact-container,
+    .footer-content{
+
+    grid-template-columns: 1fr;
+
+    }
+
+    .stats-container{
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    }
+
+    .order-buttons{
+    flex-direction: column;
+    }
+
+    }
+
+    @media(max-width:600px){
+
+    section{
+    padding: 80px 5%;
+    }
+
+    .hero-content{
+    left: 5%;
+    right: 5%;
+    }
+
+    .hero-content h1{
+    font-size: 2.2rem;
+    }
+
+    .section-header h2{
+    font-size: 2rem;
+    }
+
+    .stats-container{
+    grid-template-columns: 1fr;
+    }
+
+    .about-gallery img{
+    height: 160px;
+    }
+
+    .footer-content{
+    padding: 0 5% 40px;
+    }
+
+    .floating-btn{
+    width: 55px;
+    height: 55px;
+    }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header class="header">
+
+    <div class="logo-area">
+
+      <img
+      id="logo-img"
+      src="Yomyom.jpg"
+      alt="Logo">
+
+      <h2 id="logo-text">
+        Yomyom Fast Foods
+      </h2>
+
+    </div>
+
+    <nav class="nav">
+
+      <a href="#home" id="nav-home">Home</a>
+
+      <a href="#about" id="nav-about">About</a>
+
+      <a href="#dishes" id="nav-dishes">Dishes</a>
+
+      <a href="#order" id="nav-order">Order</a>
+
+      <a href="#contact" id="nav-contact">Contact</a>
+
+    </nav>
+
+    <button class="menu-btn">
+
+      <i class="fas fa-bars"></i>
+
+    </button>
+
+  </header>
+
+  <!-- HERO SECTION -->
+
+  <section id="home" class="hero">
+
+    <div class="hero-slider">
+
+      <div class="slide active">
+
+        <img
+        id="hero-img-1"
+        src="Banku.jpg"
+        alt="Food">
+
+        <div class="overlay"></div>
+
+        <div class="hero-content">
+
+          <h1 id="hero-title-1">
+            Taste Ghana's Finest Meals
+          </h1>
+
+          <p id="hero-desc-1">
+            Fresh ingredients, rich flavors and unforgettable experiences.
+          </p>
+
+          <a href="#order"
+            id="hero-btn-1"
+            class="hero-btn">
+            Order Now
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="slide">
+
+        <img
+        id="hero-img-2"
+        src="riceballs.jpg"
+        alt="Food">
+
+        <div class="overlay"></div>
+
+        <div class="hero-content">
+
+          <h1 id="hero-title-2">
+            Authentic Local Dishes
+          </h1>
+
+          <p id="hero-desc-2">
+            Prepared with passion and served with love.
+          </p>
+
+          <a href="#dishes"
+            id="hero-btn-2"
+            class="hero-btn">
+            View Menu
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="slide">
+
+        <img
+        id="hero-img-3"
+        src="waakye.jpg"
+        alt="Food">
+
+        <div class="overlay"></div>
+
+        <div class="hero-content">
+
+          <h1 id="hero-title-3">
+            Fast Delivery, Great Taste
+          </h1>
+
+          <p id="hero-desc-3">
+            Your favorite meals delivered quickly.
+          </p>
+
+          <a href="#contact"
+            id="hero-btn-3"
+            class="hero-btn">
+            Find Us
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <div class="section-header">
+
+      <h2 id="about-title">
+        About Yomyom Fast Foods
+      </h2>
+
+      <p id="about-subtitle">
+        Serving delicious meals with quality and care.
+      </p>
+
+    </div>
+
+    <div class="about-container">
+
+      <div class="about-gallery">
+
+        <img id="about-img-1" src="waakye.jpg">
+
+        <img id="about-img-2" src="friedrice.jpg">
+
+        <img id="about-img-3" src="Banku.jpg">
+
+        <img id="about-img-4" src="riceballs.jpg">
+
+      </div>
+
+      <div class="about-content">
+
+        <h3 id="about-heading">
+          Our Story
+        </h3>
+
+        <p id="about-text">
+          Yomyom Fast Foods is dedicated to bringing authentic Ghanaian flavors to every customer. We believe good food creates lasting memories.
+        </p>
+
+        <ul>
+
+          <li id="about-point-1">
+            Fresh Daily Ingredients
+          </li>
+
+          <li id="about-point-2">
+            Fast Delivery
+          </li>
+
+          <li id="about-point-3">
+            Affordable Prices
+          </li>
+
+          <li id="about-point-4">
+            Friendly Service
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </section>
+  <!-- STATS SECTION -->
+
+  <section id="stats">
+
+    <div class="stats-container">
+
+      <div class="stat-card">
+
+        <i class="fas fa-utensils"></i>
+
+        <h3 id="stat-number-1">
+          50+
+        </h3>
+
+        <p id="stat-text-1">
+          Delicious Meals
+        </p>
+
+      </div>
+
+      <div class="stat-card">
+
+        <i class="fas fa-users"></i>
+
+        <h3 id="stat-number-2">
+          500+
+        </h3>
+
+        <p id="stat-text-2">
+          Happy Customers
+        </p>
+
+      </div>
+
+      <div class="stat-card">
+
+        <i class="fas fa-motorcycle"></i>
+
+        <h3 id="stat-number-3">
+          24/7
+        </h3>
+
+        <p id="stat-text-3">
+          Fast Delivery
+        </p>
+
+      </div>
+
+      <div class="stat-card">
+
+        <i class="fas fa-star"></i>
+
+        <h3 id="stat-number-4">
+          4.9
+        </h3>
+
+        <p id="stat-text-4">
+          Customer Rating
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- DISHES SECTION -->
+
+  <section id="dishes">
+
+    <div class="section-header">
+
+      <h2 id="dishes-title">
+        Our Popular Dishes
+      </h2>
+
+      <p id="dishes-subtitle">
+        Taste the best of Ghanaian cuisine
+      </p>
+
+    </div>
+
+    <div class="dish-grid">
+
+      <!-- CARD 1 -->
+
+      <div class="dish-card">
+
+        <div class="dish-image">
+
+          <img
+          id="dish-img-1"
+          src="jellof.jpg"
+          alt="Jollof Rice">
+
+        </div>
+
+        <div class="dish-content">
+
+          <h3 id="dish-title-1">
+            Jollof Rice & Chicken
+          </h3>
+
+          <p id="dish-desc-1">
+            Rich tomato rice served with grilled chicken.
+          </p>
+
+          <span id="dish-price-1">
+            GH₵ 60
+          </span>
+
+        </div>
+
+      </div>
+
+      <!-- CARD 2 -->
+
+      <div class="dish-card">
+
+        <div class="dish-image">
+
+          <img
+          id="dish-img-2"
+          src="waakye.jpg"
+          alt="Waakye">
+
+        </div>
+
+        <div class="dish-content">
+
+          <h3 id="dish-title-2">
+            Waakye Special
+          </h3>
+
+          <p id="dish-desc-2">
+            Served with spaghetti, egg, fish and shito.
+          </p>
+
+          <span id="dish-price-2">
+            GH₵ 50
+          </span>
+
+        </div>
+
+      </div>
+
+      <!-- CARD 3 -->
+
+      <div class="dish-card">
+
+        <div class="dish-image">
+
+          <img
+          id="dish-img-3"
+          src="Banku.jpg"
+          alt="Tilapia">
+
+        </div>
+
+        <div class="dish-content">
+
+          <h3 id="dish-title-3">
+            Banku & Tilapia
+          </h3>
+
+          <p id="dish-desc-3">
+            Fresh grilled tilapia with spicy pepper.
+          </p>
+
+          <span id="dish-price-3">
+            GH₵ 80
+          </span>
+
+        </div>
+
+      </div>
+
+      <!-- CARD 4 -->
+
+      <div class="dish-card">
+
+        <div class="dish-image">
+
+          <img
+          id="dish-img-4"
+          src="fufu.jpg"
+          alt="Fufu">
+
+        </div>
+
+        <div class="dish-content">
+
+          <h3 id="dish-title-4">
+            Fufu & Light Soup
+          </h3>
+
+          <p id="dish-desc-4">
+            Traditional fufu with rich flavorful soup.
+          </p>
+
+          <span id="dish-price-4">
+            GH₵ 70
+          </span>
+
+        </div>
+
+      </div>
+
+      <!-- CARD 5 -->
+
+      <div class="dish-card">
+
+        <div class="dish-image">
+
+          <img
+          id="dish-img-5"
+          src="Redred.png"
+          alt="Red Red">
+
+        </div>
+
+        <div class="dish-content">
+
+          <h3 id="dish-title-5">
+            Red Red
+          </h3>
+
+          <p id="dish-desc-5">
+            Beans stew served with fried plantain.
+          </p>
+
+          <span id="dish-price-5">
+            GH₵ 40
+          </span>
+
+        </div>
+
+      </div>
+
+      <!-- CARD 6 -->
+
+      <div class="dish-card">
+
+        <div class="dish-image">
+
+          <img
+          id="dish-img-6"
+          src="Kelewele.png"
+          alt="Kelewele">
+
+        </div>
+
+        <div class="dish-content">
+
+          <h3 id="dish-title-6">
+            Kelewele
+          </h3>
+
+          <p id="dish-desc-6">
+            Spicy fried plantain cubes with peanuts.
+          </p>
+
+          <span id="dish-price-6">
+            GH₵ 25
+          </span>
+
+        </div>
+
+      </div>
+
+      <!-- CARD 7 -->
+
+      <div class="dish-card">
+
+        <div class="dish-image">
+
+          <img
+          id="dish-img-7"
+          src="Multi.png"
+          alt="Okra Soup">
+
+        </div>
+
+        <div class="dish-content">
+
+          <h3 id="dish-title-7">
+          Banku &amp; Okra Soup 
+          </h3>
+
+          <p id="dish-desc-7">
+            Rich okra soup loaded with meat and fish.
+          </p>
+
+          <span id="dish-price-7">
+            GH₵ 75
+          </span>
+
+        </div>
+
+      </div>
+
+      <!-- CARD 8 -->
+
+      <div class="dish-card">
+
+        <div class="dish-image">
+
+          <img
+          id="dish-img-8"
+          src="Gichanke.png"
+          alt="Kyinkyinga">
+
+        </div>
+
+        <div class="dish-content">
+
+          <h3 id="dish-title-8">
+            Kyinkyinga
+          </h3>
+
+          <p id="dish-desc-8">
+            Grilled beef skewers with local spices.
+          </p>
+
+          <span id="dish-price-8">
+            GH₵ 35
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+  <!-- ORDER SECTION -->
+
+  <section id="order">
+
+    <div class="section-header">
+
+      <h2 id="order-title">
+        Order Your Favorite Meal
+      </h2>
+
+      <p id="order-subtitle">
+        Choose a dish and place your order instantly.
+      </p>
+
+    </div>
+
+    <div class="order-box">
+
+      <div class="order-form">
+
+        <label id="dish-label" for="dish-select">
+          Select Dish
+        </label>
+
+        <select id="dish-select">
+
+          <option>Jollof Rice & Chicken</option>
+
+          <option>Waakye Special</option>
+
+          <option>Banku & Tilapia</option>
+
+          <option>Fufu & Light Soup</option>
+
+          <option>Red Red</option>
+
+          <option>Kelewele</option>
+
+          <option>Okra Soup & Fufu</option>
+
+          <option>Kyinkyinga</option>
+
+        </select>
+
+        <label id="qty-label" for="dish-qty">
+          Quantity
+        </label>
+
+        <input
+        type="number"
+        id="dish-qty"
+        value="1"
+        min="1">
+
+        <div class="order-buttons">
+
+          <a
+            id="whatsapp-btn"
+            href="#"
+            class="order-btn whatsapp-btn">
+
+            <i class="fab fa-whatsapp"></i>
+            Order via WhatsApp
+
+          </a>
+
+          <a
+            id="call-btn"
+            href="tel:+233000000000"
+            class="order-btn call-btn">
+
+            <i class="fas fa-phone"></i>
+            Call to Order
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT SECTION -->
+
+  <section id="contact">
+
+    <div class="section-header">
+
+      <h2 id="contact-title">
+        Contact Us
+      </h2>
+
+      <p id="contact-subtitle">
+        Visit us, call us, or find us on the map.
+      </p>
+
+    </div>
+
+    <div class="contact-container">
+
+      <div class="contact-info">
+
+        <div class="contact-item">
+
+          <i class="fas fa-location-dot"></i>
+
+          <div>
+
+            <h4 id="address-title">
+              Address
+            </h4>
+
+            <p id="address-text">
+              Tamale, Northern Region, Ghana
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="contact-item">
+
+          <i class="fas fa-phone"></i>
+
+          <div>
+
+            <h4 id="phone-title">
+              Phone
+            </h4>
+
+            <p id="phone-text">
+              +233 000 000 000
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="contact-item">
+
+          <i class="fas fa-clock"></i>
+
+          <div>
+
+            <h4 id="hours-title">
+              Working Hours
+            </h4>
+
+            <p id="hours-text">
+              Mon - Sun : 8:00 AM - 10:00 PM
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="map-box">
+        <img src="map-placeholder.png"
+        alt="live map- placeholder">
+
+        <iframe
+          id="google-map"
+          src=""
+          style="display:none;"
+          allowfullscreen=""
+          loading="lazy">
+        </iframe>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer id="footer">
+
+    <div class="footer-content">
+
+      <div class="footer-brand">
+
+        <h2 id="footer-logo">
+          Yomyom Fast Foods
+        </h2>
+
+        <p id="footer-text">
+          Serving delicious meals with quality, speed and care.
+        </p>
+
+      </div>
+
+      <div class="footer-links">
+
+        <h3 id="footer-links-title">
+          Quick Links
+        </h3>
+
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#dishes">Dishes</a>
+        <a href="#order">Order</a>
+        <a href="#contact">Contact</a>
+
+      </div>
+
+      <div class="footer-social">
+
+        <h3 id="social-title">
+          Follow Us
+        </h3>
+
+        <div class="social-icons">
+
+          <a id="facebook-link" href="#">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+
+          <a id="tiktok-link" href="#">
+            <i class="fab fa-tiktok"></i>
+          </a>
+
+          <a id="youtube-link" href="#">
+            <i class="fab fa-youtube"></i>
+          </a>
+
+          <a id="snapchat-link" href="#">
+            <i class="fab fa-snapchat"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+      <p id="copyright">
+        © 2026 Yomyom Fast Foods. All Rights Reserved.
+      </p>
+
+    </div>
+
+  </footer>
+
+  <!-- FLOATING BUTTONS -->
+
+  <a
+    id="floating-whatsapp"
+    href="#"
+    class="floating-btn whatsapp-float">
+
+    <i class="fab fa-whatsapp"></i>
+
+  </a>
+
+  <a
+    id="floating-call"
+    href="tel:+233000000000"
+    class="floating-btn call-float">
+
+    <i class="fas fa-phone"></i>
+
+  </a>
+
+  <button id="backToTop">
+
+    <i class="fas fa-arrow-up"></i>
+
+  </button>
+
+  <script src="Food.js"></script>
+
+</body>
+</html>

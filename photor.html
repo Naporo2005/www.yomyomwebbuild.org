@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Yomyom Frames — Event Photography</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+*, *::before, *::after { box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+:root {
+--black: #111111;
+--black-deep: #0f0f0f;
+--gold: #d4af37;
+--gold-light: #e8c84a;
+--orange: #ff7a00;
+--white: #ffffff;
+--gray-soft: #f5f5f5;
+--beige: #f8f5f0;
+--text-dark: #222222;
+--text-muted: #cccccc;
+--whatsapp: #25D366;
+}
+
+html { scroll-behavior: smooth;
+}
+
+body {
+font-family: 'Inter', sans-serif;
+color: var(--text-dark);
+background: var(--white);
+overflow-x: hidden;
+}
+
+/* ─── NAV ─────────────────────────────────────── */
+nav {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+z-index: 1000;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 1.2rem 6%;
+background: transparent;
+transition: background 0.4s, backdrop-filter 0.4s;
+}
+nav.scrolled {
+background: rgba(17,17,17,0.97);
+backdrop-filter: blur(10px);
+}
+.nav-logo {
+font-family: 'Playfair Display', serif;
+font-size: 1.4rem;
+color: var(--white);
+letter-spacing: 0.04em;
+z-index: 1001;
+position: relative;
+text-decoration: none;
+}
+.nav-logo span { color: var(--gold);
+}
+
+/* Desktop links */
+.nav-links { display: flex;
+gap: 2rem;
+list-style: none;
+align-items: center;
+}
+.nav-links a {
+color: rgba(255,255,255,0.85);
+text-decoration: none;
+font-size: 0.85rem;
+font-weight: 500;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold);
+}
+.nav-cta {
+background: var(--gold);
+color: var(--black) !important;
+padding: 0.5rem 1.2rem;
+border-radius: 2px;
+font-weight: 600 !important;
+}
+.nav-cta:hover { background: var(--gold-light);
+color: var(--black) !important;
+}
+
+/* ── Camera toggle button (mobile only) ── */
+.nav-toggle {
+display: none;
+background: none;
+border: none;
+cursor: pointer;
+z-index: 1001;
+position: relative;
+padding: 4px;
+color: var(--white);
+transition: color 0.2s;
+}
+.nav-toggle:hover { color: var(--gold);
+}
+.nav-toggle svg { display: block;
+width: 28px;
+height: 28px;
+}
+
+/* Shutter animation on toggle */
+.nav-toggle .shutter {
+transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s;
+transform-origin: center;
+}
+.nav-toggle.open .shutter { transform: rotate(45deg) scale(0.85);
+opacity: 0.7;
+}
+/* X lines shown when open */
+.nav-toggle .x-line {
+opacity: 0;
+transition: opacity 0.2s;
+}
+.nav-toggle.open .x-line { opacity: 1;
+}
+.nav-toggle.open .cam-body { opacity: 0.3;
+}
+
+/* ── Mobile dropdown overlay ── */
+.mobile-menu {
+display: none;
+position: fixed;
+inset: 0;
+z-index: 999;
+background: rgba(15,15,15,0.98);
+backdrop-filter: blur(12px);
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 0;
+opacity: 0;
+pointer-events: none;
+transition: opacity 0.35s ease;
+}
+.mobile-menu.open {
+opacity: 1;
+pointer-events: auto;
+}
+
+/* Gold horizontal rule above links */
+.mobile-menu::before {
+content: '';
+width: 48px;
+height: 2px;
+background: var(--gold);
+margin-bottom: 2.5rem;
+}
+
+.mobile-menu a {
+display: block;
+font-family: 'Playfair Display', serif;
+font-size: clamp(1.8rem, 8vw, 2.8rem);
+font-weight: 700;
+color: rgba(255,255,255,0.75);
+text-decoration: none;
+letter-spacing: 0.02em;
+padding: 0.55rem 0;
+transition: color 0.2s, transform 0.2s;
+text-align: center;
+}
+.mobile-menu a:hover { color: var(--gold);
+transform: translateX(6px);
+}
+
+.mobile-menu .mobile-cta {
+margin-top: 2rem;
+background: var(--gold);
+color: var(--black) !important;
+font-family: 'Inter', sans-serif;
+font-size: 0.88rem !important;
+font-weight: 700 !important;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+padding: 1rem 2.5rem !important;
+border-radius: 2px;
+transform: none !important;
+}
+.mobile-menu .mobile-cta:hover { background: var(--gold-light);
+}
+
+/* Staggered link entrance */
+.mobile-menu a {
+opacity: 0;
+transform: translateY(18px);
+transition: opacity 0.32s ease, transform 0.32s ease, color 0.2s;
+}
+.mobile-menu.open a:nth-child(1) { opacity: 1;
+transform: translateY(0);
+transition-delay: 0.08s;
+}
+.mobile-menu.open a:nth-child(2) { opacity: 1;
+transform: translateY(0);
+transition-delay: 0.13s;
+}
+.mobile-menu.open a:nth-child(3) { opacity: 1;
+transform: translateY(0);
+transition-delay: 0.18s;
+}
+.mobile-menu.open a:nth-child(4) { opacity: 1;
+transform: translateY(0);
+transition-delay: 0.23s;
+}
+.mobile-menu.open a:nth-child(5) { opacity: 1;
+transform: translateY(0);
+transition-delay: 0.28s;
+}
+.mobile-menu.open a:nth-child(6) { opacity: 1;
+transform: translateY(0);
+transition-delay: 0.34s;
+}
+
+/* ─── HERO ────────────────────────────────────── */
+#hero {
+position: relative;
+height: 100vh;
+min-height: 600px;
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+}
+.hero-bg {
+position: absolute;
+inset: 0;
+background:
+linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.65) 100%),
+url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80') center/cover no-repeat;
+}
+/* Cinematic letterbox bars — the signature element */
+.hero-bg::before,
+.hero-bg::after {
+content: '';
+position: absolute;
+left: 0;
+right: 0;
+height: 10vh;
+background: var(--black);
+z-index: 1;
+}
+.hero-bg::before { top: 0;
+}
+.hero-bg::after { bottom: 0;
+}
+
+/* Gold film-frame rule */
+.hero-rule {
+position: absolute;
+left: 6%;
+right: 6%;
+height: 1px;
+background: var(--gold);
+opacity: 0.7;
+z-index: 3;
+}
+.hero-rule.top { top: 10vh;
+}
+.hero-rule.bottom { bottom: 10vh;
+}
+
+.hero-content {
+position: relative;
+z-index: 4;
+text-align: center;
+color: var(--white);
+padding: 0 1rem;
+}
+.hero-eyebrow {
+font-size: 0.75rem;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: var(--gold);
+margin-bottom: 1.2rem;
+font-weight: 500;
+}
+.hero-name {
+font-family: 'Playfair Display', serif;
+font-size: clamp(3rem, 8vw, 6.5rem);
+font-weight: 900;
+line-height: 1;
+letter-spacing: -0.01em;
+margin-bottom: 0.6rem;
+}
+.hero-title {
+font-family: 'Playfair Display', serif;
+font-style: italic;
+font-size: clamp(1.1rem, 3vw, 1.8rem);
+font-weight: 400;
+color: rgba(255,255,255,0.8);
+margin-bottom: 2.5rem;
+}
+.hero-btns { display: flex;
+gap: 1rem;
+justify-content: center;
+flex-wrap: wrap;
+}
+.btn {
+display: inline-block;
+padding: 0.9rem 2.2rem;
+font-size: 0.85rem;
+font-weight: 600;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+text-decoration: none;
+border-radius: 2px;
+transition: all 0.25s;
+cursor: pointer;
+border: none;
+}
+.btn-gold {
+background: var(--gold);
+color: var(--black);
+}
+.btn-gold:hover { background: var(--gold-light);
+transform: translateY(-2px);
+}
+.btn-outline {
+border: 1.5px solid rgba(255,255,255,0.6);
+color: var(--white);
+background: transparent;
+}
+.btn-outline:hover {
+border-color: var(--gold);
+color: var(--gold);
+transform: translateY(-2px);
+}
+
+.hero-scroll {
+position: absolute;
+bottom: 12vh;
+left: 50%;
+transform: translateX(-50%);
+z-index: 4;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.4rem;
+color: rgba(255,255,255,0.5);
+font-size: 0.7rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+}
+.scroll-line {
+width: 1px;
+height: 40px;
+background: linear-gradient(to bottom, var(--gold), transparent);
+animation: scrollPulse 1.8s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+0%,100% { opacity: 0.4;
+transform: scaleY(1);
+}
+50% { opacity: 1;
+transform: scaleY(1.15);
+}
+}
+
+/* ─── ABOUT ───────────────────────────────────── */
+#about {
+padding: 8rem 6%;
+background: var(--white);
+}
+.about-inner {
+max-width: 1100px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 6rem;
+align-items: center;
+}
+.about-img-wrap {
+position: relative;
+}
+.about-img-wrap img {
+width: 100%;
+aspect-ratio: 4/5;
+object-fit: cover;
+display: block;
+}
+/* Gold accent frame */
+.about-img-wrap::after {
+content: '';
+position: absolute;
+top: 1.5rem;
+left: 1.5rem;
+right: -1.5rem;
+bottom: -1.5rem;
+border: 2px solid var(--gold);
+z-index: -1;
+}
+.section-eyebrow {
+font-size: 0.72rem;
+letter-spacing: 0.28em;
+text-transform: uppercase;
+color: var(--gold);
+font-weight: 600;
+margin-bottom: 1rem;
+}
+.section-title {
+font-family: 'Playfair Display', serif;
+font-size: clamp(2rem, 4vw, 3rem);
+font-weight: 700;
+color: var(--black);
+line-height: 1.15;
+margin-bottom: 1.5rem;
+}
+.section-title em { font-style: italic;
+color: var(--gold);
+}
+.about-bio {
+font-size: 1rem;
+line-height: 1.8;
+color: #555;
+margin-bottom: 2rem;
+}
+.about-stats {
+display: flex;
+gap: 2.5rem;
+padding: 1.8rem 0;
+border-top: 1px solid #eee;
+border-bottom: 1px solid #eee;
+margin-bottom: 2rem;
+}
+.stat-num {
+font-family: 'Playfair Display', serif;
+font-size: 2.2rem;
+font-weight: 900;
+color: var(--black);
+line-height: 1;
+}
+.stat-num span { color: var(--gold);
+}
+.stat-label {
+font-size: 0.75rem;
+text-transform: uppercase;
+letter-spacing: 0.12em;
+color: #888;
+margin-top: 0.25rem;
+}
+
+/* ─── GALLERY ─────────────────────────────────── */
+#gallery {
+padding: 8rem 6%;
+background: #1a1a1a;
+}
+.gallery-header {
+max-width: 1100px;
+margin: 0 auto 3rem;
+display: flex;
+align-items: flex-end;
+justify-content: space-between;
+flex-wrap: wrap;
+gap: 1.5rem;
+}
+.gallery-header .section-title { color: var(--white);
+margin-bottom: 0;
+}
+.filter-tabs { display: flex;
+gap: 0.5rem;
+flex-wrap: wrap;
+}
+.filter-btn {
+padding: 0.5rem 1.2rem;
+font-size: 0.78rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+font-weight: 600;
+background: transparent;
+border: 1px solid rgba(255,255,255,0.2);
+color: rgba(255,255,255,0.6);
+border-radius: 2px;
+cursor: pointer;
+transition: all 0.2s;
+}
+.filter-btn:hover,
+.filter-btn.active {
+border-color: var(--gold);
+color: var(--gold);
+background: rgba(212,175,55,0.08);
+}
+.gallery-grid {
+max-width: 1100px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1rem;
+}
+.gallery-item {
+position: relative;
+overflow: hidden;
+aspect-ratio: 4/3;
+cursor: pointer;
+}
+.gallery-item:nth-child(4) { grid-column: span 2;
+aspect-ratio: 16/7;
+}
+.gallery-item img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.gallery-item:hover img { transform: scale(1.07);
+}
+.gallery-overlay {
+position: absolute;
+inset: 0;
+background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%);
+opacity: 0;
+transition: opacity 0.35s;
+display: flex;
+align-items: flex-end;
+padding: 1.2rem;
+}
+.gallery-item:hover .gallery-overlay { opacity: 1;
+}
+/* Gold glow on hover */
+.gallery-item::after {
+content: '';
+position: absolute;
+inset: 0;
+box-shadow: inset 0 0 0 2px var(--gold);
+opacity: 0;
+transition: opacity 0.3s;
+}
+.gallery-item:hover::after { opacity: 1;
+}
+.gallery-tag {
+font-size: 0.72rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(--gold);
+font-weight: 600;
+}
+
+/* ─── SERVICES ────────────────────────────────── */
+#services {
+padding: 8rem 6%;
+background: var(--gray-soft);
+}
+.services-header {
+text-align: center;
+max-width: 600px;
+margin: 0 auto 4rem;
+}
+.services-grid {
+max-width: 1100px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1.5rem;
+}
+.service-card {
+background: var(--white);
+padding: 2.5rem 2rem;
+position: relative;
+transition: transform 0.3s, box-shadow 0.3s;
+}
+.service-card:hover {
+transform: translateY(-6px);
+box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+.service-card.featured {
+background: var(--black);
+color: var(--white);
+}
+.service-icon {
+font-size: 2rem;
+margin-bottom: 1.2rem;
+color: var(--gold);
+}
+.service-card.featured .service-icon { color: var(--gold);
+}
+.service-name {
+font-family: 'Playfair Display', serif;
+font-size: 1.35rem;
+font-weight: 700;
+margin-bottom: 0.5rem;
+color: inherit;
+}
+.service-card.featured .service-name { color: var(--white);
+}
+.service-price {
+font-size: 0.8rem;
+letter-spacing: 0.1em;
+color: var(--gold);
+text-transform: uppercase;
+font-weight: 600;
+margin-bottom: 1.2rem;
+}
+.service-desc {
+font-size: 0.9rem;
+line-height: 1.7;
+color: #666;
+margin-bottom: 1.5rem;
+}
+.service-card.featured .service-desc { color: rgba(255,255,255,0.65);
+}
+.service-list {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
+}
+.service-list li {
+font-size: 0.85rem;
+color: #555;
+display: flex;
+align-items: center;
+gap: 0.6rem;
+}
+.service-card.featured .service-list li { color: rgba(255,255,255,0.7);
+}
+.service-list li::before {
+content: '';
+width: 6px;
+height: 6px;
+background: var(--gold);
+border-radius: 50%;
+flex-shrink: 0;
+}
+.featured-badge {
+position: absolute;
+top: -12px;
+right: 1.5rem;
+background: var(--gold);
+color: var(--black);
+font-size: 0.68rem;
+font-weight: 700;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+padding: 0.3rem 0.8rem;
+}
+
+/* ─── TESTIMONIALS ────────────────────────────── */
+#testimonials {
+padding: 8rem 6%;
+background: var(--beige);
+}
+.testimonials-header {
+text-align: center;
+max-width: 500px;
+margin: 0 auto 4rem;
+}
+.testimonials-grid {
+max-width: 1100px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1.5rem;
+}
+.testimonial-card {
+background: var(--white);
+padding: 2rem;
+position: relative;
+}
+.testimonial-card::before {
+content: '"';
+font-family: 'Playfair Display', serif;
+font-size: 5rem;
+color: var(--gold);
+opacity: 0.25;
+position: absolute;
+top: 0.5rem;
+left: 1.2rem;
+line-height: 1;
+}
+.stars { color: #ffc107;
+font-size: 0.9rem;
+margin-bottom: 1rem;
+letter-spacing: 2px;
+}
+.testimonial-text {
+font-size: 0.92rem;
+line-height: 1.75;
+color: #444;
+font-style: italic;
+margin-bottom: 1.5rem;
+}
+.testimonial-author {
+display: flex;
+align-items: center;
+gap: 0.75rem;
+}
+.author-avatar {
+width: 42px;
+height: 42px;
+border-radius: 50%;
+object-fit: cover;
+border: 2px solid var(--gold);
+}
+.author-name {
+font-weight: 600;
+font-size: 0.88rem;
+color: var(--black);
+}
+.author-event {
+font-size: 0.75rem;
+color: #999;
+}
+
+/* ─── BOOKING / CONTACT ───────────────────────── */
+#contact {
+padding: 8rem 6%;
+background: var(--white);
+}
+.contact-inner {
+max-width: 1100px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: 1fr 1.2fr;
+gap: 6rem;
+align-items: start;
+}
+.contact-info { padding-top: 1rem;
+}
+.contact-info .section-title { margin-bottom: 1rem;
+}
+.contact-sub {
+font-size: 0.95rem;
+line-height: 1.8;
+color: #666;
+margin-bottom: 2.5rem;
+}
+.contact-item {
+display: flex;
+align-items: center;
+gap: 0.9rem;
+margin-bottom: 1.2rem;
+font-size: 0.9rem;
+color: #444;
+}
+.contact-icon {
+width: 38px;
+height: 38px;
+background: var(--gray-soft);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1rem;
+flex-shrink: 0;
+color: var(--black);
+}
+.btn-whatsapp {
+display: inline-flex;
+align-items: center;
+gap: 0.6rem;
+background: var(--whatsapp);
+color: var(--white);
+padding: 0.9rem 1.8rem;
+font-weight: 600;
+font-size: 0.88rem;
+letter-spacing: 0.05em;
+border-radius: 2px;
+text-decoration: none;
+margin-top: 1rem;
+transition: opacity 0.2s;
+}
+.btn-whatsapp:hover { opacity: 0.9;
+}
+.map-placeholder {
+margin-top: 2rem;
+height: 160px;
+background: var(--gray-soft);
+display: flex;
+align-items: center;
+justify-content: center;
+color: #aaa;
+font-size: 0.85rem;
+border: 1px solid #eee;
+gap: 0.5rem;
+}
+
+/* Form */
+.contact-form { display: flex;
+flex-direction: column;
+gap: 1rem;
+}
+.form-row { display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1rem;
+}
+.form-group { display: flex;
+flex-direction: column;
+gap: 0.4rem;
+}
+.form-label {
+font-size: 0.75rem;
+font-weight: 600;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: #888;
+}
+.form-input,
+.form-select,
+.form-textarea {
+padding: 0.85rem 1rem;
+border: 1.5px solid #e0e0e0;
+background: var(--white);
+font-family: 'Inter', sans-serif;
+font-size: 0.9rem;
+color: var(--text-dark);
+outline: none;
+border-radius: 2px;
+transition: border-color 0.2s;
+width: 100%;
+}
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus { border-color: var(--gold);
+}
+.form-textarea { resize: vertical;
+min-height: 120px;
+}
+.btn-submit {
+background: var(--black);
+color: var(--white);
+padding: 1rem 2rem;
+font-size: 0.88rem;
+font-weight: 600;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+border: none;
+cursor: pointer;
+border-radius: 2px;
+transition: background 0.25s, transform 0.2s;
+align-self: flex-start;
+}
+.btn-submit:hover { background: var(--gold);
+color: var(--black);
+transform: translateY(-2px);
+}
+
+/* ─── FOOTER ──────────────────────────────────── */
+footer {
+background: var(--black-deep);
+padding: 4rem 6% 2rem;
+}
+.footer-inner {
+max-width: 1100px;
+margin: 0 auto;
+}
+.footer-top {
+display: grid;
+grid-template-columns: 1.5fr 1fr 1fr;
+gap: 4rem;
+padding-bottom: 3rem;
+border-bottom: 1px solid rgba(255,255,255,0.08);
+margin-bottom: 2rem;
+}
+.footer-brand .nav-logo { font-size: 1.6rem;
+}
+.footer-tagline {
+font-size: 0.85rem;
+color: rgba(255,255,255,0.45);
+line-height: 1.7;
+margin-top: 0.75rem;
+}
+.footer-social {
+display: flex;
+gap: 0.75rem;
+margin-top: 1.5rem;
+}
+.social-link {
+width: 36px;
+height: 36px;
+border: 1px solid rgba(255,255,255,0.15);
+display: flex;
+align-items: center;
+justify-content: center;
+color: rgba(255,255,255,0.5);
+text-decoration: none;
+font-size: 0.9rem;
+transition: all 0.2s;
+border-radius: 2px;
+}
+.social-link:hover { border-color: var(--gold);
+color: var(--gold);
+}
+.footer-col h4 {
+font-size: 0.72rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(--gold);
+font-weight: 600;
+margin-bottom: 1.2rem;
+}
+.footer-col ul { list-style: none;
+display: flex;
+flex-direction: column;
+gap: 0.65rem;
+}
+.footer-col ul a {
+font-size: 0.88rem;
+color: rgba(255,255,255,0.5);
+text-decoration: none;
+transition: color 0.2s;
+}
+.footer-col ul a:hover { color: var(--gold);
+}
+.footer-bottom {
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 0.5rem;
+}
+.footer-copy {
+font-size: 0.78rem;
+color: rgba(255,255,255,0.3);
+}
+.footer-copy span { color: var(--gold);
+}
+
+/* ─── RESPONSIVE ──────────────────────────────── */
+
+/* Tablet — 768px to 1024px */
+@media (max-width: 1024px) {
+.services-grid { grid-template-columns: 1fr 1fr;
+}
+.services-grid .service-card:last-child { grid-column: span 2;
+max-width: 420px;
+margin: 0 auto;
+width: 100%;
+}
+.footer-top { grid-template-columns: 1fr 1fr;
+gap: 2.5rem;
+}
+.footer-brand { grid-column: span 2;
+}
+}
+
+@media (max-width: 900px) {
+.about-inner,
+.contact-inner { grid-template-columns: 1fr;
+gap: 3rem;
+}
+.about-img-wrap { max-width: 420px;
+}
+.testimonials-grid { grid-template-columns: 1fr 1fr;
+}
+.gallery-grid { grid-template-columns: 1fr 1fr;
+}
+.gallery-item:nth-child(4) { grid-column: span 1;
+aspect-ratio: 4/3;
+}
+}
+
+/* Mobile — show camera toggle, hide desktop links */
+@media (max-width: 768px) {
+.nav-links { display: none;
+}
+.nav-toggle { display: flex;
+align-items: center;
+justify-content: center;
+}
+.mobile-menu { display: flex;
+}
+
+nav { padding: 1rem 5%;
+}
+
+#hero { min-height: 100svh;
+}
+#about, #gallery, #services, #testimonials, #contact { padding: 5rem 5% 4rem;
+}
+footer { padding: 3.5rem 5% 2rem;
+}
+
+.hero-bg::before,
+.hero-bg::after { height: 7vh;
+}
+.hero-rule.top { top: 7vh;
+}
+.hero-rule.bottom { bottom: 7vh;
+}
+.hero-scroll { bottom: 9vh;
+}
+
+.about-inner { gap: 2.5rem;
+}
+.about-img-wrap { max-width: 100%;
+}
+.about-img-wrap::after { display: none;
+} /* hide frame offset on small screens */
+.about-stats { gap: 1.5rem;
+flex-wrap: wrap;
+}
+
+.gallery-header { flex-direction: column;
+align-items: flex-start;
+gap: 1rem;
+}
+.gallery-grid { grid-template-columns: 1fr 1fr;
+gap: 0.6rem;
+}
+.gallery-item:nth-child(4) { grid-column: span 1;
+aspect-ratio: 4/3;
+}
+.filter-tabs { flex-wrap: wrap;
+gap: 0.4rem;
+}
+
+.services-grid { grid-template-columns: 1fr;
+}
+.services-grid .service-card:last-child { grid-column: span 1;
+max-width: 100%;
+}
+.featured-badge { top: -10px;
+}
+
+.testimonials-grid { grid-template-columns: 1fr;
+}
+
+.contact-inner { grid-template-columns: 1fr;
+gap: 2.5rem;
+}
+.form-row { grid-template-columns: 1fr;
+}
+.map-placeholder { height: 120px;
+}
+
+.footer-top { grid-template-columns: 1fr;
+gap: 2rem;
+}
+.footer-brand { grid-column: span 1;
+}
+.footer-bottom { flex-direction: column;
+align-items: flex-start;
+gap: 0.4rem;
+}
+}
+
+/* Small phones — 375px and below */
+@media (max-width: 400px) {
+.hero-name { font-size: 2.6rem;
+}
+.hero-title { font-size: 1rem;
+}
+.hero-btns { flex-direction: column;
+align-items: center;
+}
+.btn { width: 100%;
+text-align: center;
+}
+.gallery-grid { grid-template-columns: 1fr;
+}
+.about-stats { flex-direction: column;
+gap: 1.2rem;
+}
+.section-title { font-size: 1.7rem;
+}
+}
+
+/* ─── SCROLL REVEAL ───────────────────────────── */
+.reveal {
+opacity: 0;
+transform: translateY(28px);
+transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+opacity: 1;
+transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE MENU OVERLAY -->
+<div class="mobile-menu" id="mobileMenu">
+<a href="#about" onclick="closeMenu()">About</a>
+<a href="#gallery" onclick="closeMenu()">Portfolio</a>
+<a href="#services" onclick="closeMenu()">Services</a>
+<a href="#testimonials" onclick="closeMenu()">Reviews</a>
+<a href="#contact" onclick="closeMenu()" class="mobile-cta">Book Now</a>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+<a href="#hero" class="nav-logo"><span id="logo1">Yomyom</span> <span
+id="logo2">Frames</span></a>
+<ul class="nav-links">
+<li><a href="#about">About</a></li>
+<li><a href="#gallery">Portfolio</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#testimonials">Reviews</a></li>
+<li><a href="#contact" class="nav-cta">Book Now</a></li>
+</ul>
+
+<!-- Camera icon toggle -->
+<button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+<!-- Camera SVG -->
+<svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Camera body -->
+<rect class="cam-body" x="2" y="9" width="24" height="16" rx="2.5" fill="currentColor" opacity="0.9" />
+<!-- Viewfinder bump -->
+<path class="cam-body" d="M10 9V7.5C10 6.67 10.67 6 11.5 6h5c.83 0 1.5.67 1.5 1.5V9" fill="currentColor" opacity="0.7" />
+<!-- Lens ring -->
+<circle class="shutter" cx="14" cy="17" r="5" stroke="currentColor" stroke-width="1.8" fill="none" opacity="0.5" />
+<!-- Lens inner -->
+<circle class="shutter" cx="14" cy="17" r="2.5" fill="currentColor" opacity="0.85" />
+<!-- Flash dot -->
+<circle class="cam-body" cx="22" cy="12" r="1.2" fill="currentColor" opacity="0.6" />
+<!-- X lines (shown when open) -->
+<line class="x-line" x1="7" y1="7" x2="21" y2="21" stroke="var(--gold)" stroke-width="2.2" stroke-linecap="round" />
+<line class="x-line" x1="21" y1="7" x2="7" y2="21" stroke="var(--gold)" stroke-width="2.2" stroke-linecap="round" />
+</svg>
+</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+<div class="hero-bg"></div>
+<div class="hero-rule top"></div>
+<div class="hero-rule bottom"></div>
+<div class="hero-content">
+<p class="hero-eyebrow">
+Event Photography
+</p>
+<h1 class="hero-name">WUMBEI ABDUL-GANIW</h1>
+<p class="hero-title">
+Capturing moments that last forever
+</p>
+<div class="hero-btns">
+<a href="#gallery" class="btn btn-gold">View Portfolio</a>
+<a href="#contact" class="btn btn-outline">Book a Session</a>
+</div>
+</div>
+<div class="hero-scroll">
+<div class="scroll-line"></div>
+scroll
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<div class="about-inner">
+<div class="about-img-wrap reveal">
+<img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?w=600&q=80" alt="Photographer portrait" />
+</div>
+<div class="about-text reveal">
+<p class="section-eyebrow">
+About Me
+</p>
+<h2 class="section-title">I tell stories through <em>light & shadow</em></h2>
+<p class="about-bio">
+With over 8 years behind the lens, I specialize in capturing the raw emotion of weddings, the electric energy of live concerts, and the polished professionalism of corporate events. My approach blends candid documentary storytelling with carefully crafted compositions — every frame is intentional.
+</p>
+<p class="about-bio">
+Based in Tamale, Ghana, I work across the country and internationally, bringing a distinctive editorial eye to every event I shoot.
+</p>
+<div class="about-stats">
+<div>
+<div class="stat-num">
+8<span>+</span>
+</div>
+<div class="stat-label">
+Years Experience
+</div>
+</div>
+<div>
+<div class="stat-num">
+400<span>+</span>
+</div>
+<div class="stat-label">
+Events Shot
+</div>
+</div>
+<div>
+<div class="stat-num">
+98<span>%</span>
+</div>
+<div class="stat-label">
+Happy Clients
+</div>
+</div>
+</div>
+<a href="#contact" class="btn btn-gold">Work With Me</a>
+</div>
+</div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+<div class="gallery-header reveal">
+<div>
+<p class="section-eyebrow" style="color:var(--gold)">
+Portfolio
+</p>
+<h2 class="section-title">Selected Work</h2>
+</div>
+<div class="filter-tabs">
+<button class="filter-btn active" data-filter="all">All</button>
+<button class="filter-btn" data-filter="wedding">Wedding</button>
+<button class="filter-btn" data-filter="concert">Concert</button>
+<button class="filter-btn" data-filter="corporate">Corporate</button>
+</div>
+</div>
+<div class="gallery-grid reveal">
+<div class="gallery-item" data-cat="wedding">
+<img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80" alt="Wedding" />
+<div class="gallery-overlay">
+<span class="gallery-tag">Wedding</span>
+</div>
+</div>
+<div class="gallery-item" data-cat="concert">
+<img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&q=80" alt="Concert" />
+<div class="gallery-overlay">
+<span class="gallery-tag">Concert</span>
+</div>
+</div>
+<div class="gallery-item" data-cat="corporate">
+<img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&q=80" alt="Corporate" />
+<div class="gallery-overlay">
+<span class="gallery-tag">Corporate</span>
+</div>
+</div>
+<div class="gallery-item" data-cat="wedding">
+<img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=900&q=80" alt="Wedding reception" />
+<div class="gallery-overlay">
+<span class="gallery-tag">Wedding</span>
+</div>
+</div>
+<div class="gallery-item" data-cat="concert">
+<img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80" alt="Live show" />
+<div class="gallery-overlay">
+<span class="gallery-tag">Concert</span>
+</div>
+</div>
+<div class="gallery-item" data-cat="corporate">
+<img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="Conference" />
+<div class="gallery-overlay">
+<span class="gallery-tag">Corporate</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+<div class="services-header reveal">
+<p class="section-eyebrow">
+Packages
+</p>
+<h2 class="section-title">What I Offer</h2>
+</div>
+<div class="services-grid reveal">
+<div class="service-card">
+<div class="service-icon">
+<i class="fa-solid fa-camera"></i>
+</div>
+<div class="service-name">
+Essential
+</div>
+<div class="service-price">
+Starting from GH₵ 800
+</div>
+<p class="service-desc">
+Perfect for small events, birthday parties, and intimate gatherings.
+</p>
+<ul class="service-list">
+<li>4 hours of coverage</li>
+<li>150+ edited photos</li>
+<li>Online gallery</li>
+<li>7-day delivery</li>
+</ul>
+</div>
+<div class="service-card featured">
+<div class="featured-badge">
+Most Popular
+</div>
+<div class="service-icon">
+<i class="fa-solid fa-magnifying-glass" style="color:#fff;"></i>
+</div>
+<div class="service-name">
+Professional
+</div>
+<div class="service-price">
+Starting from GH₵ 1,800
+</div>
+<p class="service-desc">
+Ideal for weddings and corporate events requiring full-day coverage.
+</p>
+<ul class="service-list">
+<li>8 hours of coverage</li>
+<li>400+ edited photos</li>
+<li>Online gallery + USB drive</li>
+<li>Printed album (20 pages)</li>
+<li>5-day delivery</li>
+</ul>
+</div>
+<div class="service-card">
+<div class="service-icon">
+<i class="fa-solid fa-video"></i>
+</div>
+<div class="service-name">
+Premium
+</div>
+<div class="service-price">
+Starting from GH₵ 3,500
+</div>
+<p class="service-desc">
+Full-scale coverage for high-end weddings, concerts, and brand events.
+</p>
+<ul class="service-list">
+<li>Full-day coverage</li>
+<li>600+ edited photos</li>
+<li>2 photographers</li>
+<li>Drone aerial shots</li>
+<li>Premium printed album</li>
+<li>3-day rush delivery</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+<div class="testimonials-header reveal">
+<p class="section-eyebrow">
+Reviews
+</p>
+<h2 class="section-title">What Clients Say</h2>
+</div>
+<div class="testimonials-grid reveal">
+<div class="testimonial-card">
+<div class="stars">
+★★★★★
+</div>
+<p class="testimonial-text">
+Kwame captured every single emotion of our wedding day so beautifully. We revisit the photos every anniversary and fall in love all over again.
+</p>
+<div class="testimonial-author">
+<img class="author-avatar" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&q=80" alt="Ama" />
+<div>
+<div class="author-name">
+Ama & Kofi Asante
+</div>
+<div class="author-event">
+Wedding · Accra, 2024
+</div>
+</div>
+</div>
+</div>
+<div class="testimonial-card">
+<div class="stars">
+★★★★★
+</div>
+<p class="testimonial-text">
+Our annual conference looked absolutely stunning in the photos. The team was professional, discreet, and delivered everything ahead of schedule.
+</p>
+<div class="testimonial-author">
+<img class="author-avatar" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&q=80" alt="David" />
+<div>
+<div class="author-name">
+David Owusu
+</div>
+<div class="author-event">
+Corporate Event · Kumasi, 2024
+</div>
+</div>
+</div>
+</div>
+<div class="testimonial-card">
+<div class="stars">
+★★★★★
+</div>
+<p class="testimonial-text">
+The concert shots were incredible — he caught the energy, the lights, the crowd. Our social media engagement tripled after we posted them.
+</p>
+<div class="testimonial-author">
+<img class="author-avatar" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&q=80" alt="Abena" />
+<div>
+<div class="author-name">
+Abena Mensah
+</div>
+<div class="author-event">
+Music Concert · Tamale, 2024
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="contact-inner">
+<div class="contact-info reveal">
+<p class="section-eyebrow">
+Book a Session
+</p>
+<h2 class="section-title">Let's Create Something <em>Unforgettable</em></h2>
+<p class="contact-sub">
+Ready to capture your next big event? Fill in the form or reach out directly. I respond within 24 hours and offer free consultations.
+</p>
+<div class="contact-item">
+<div class="contact-icon">
+<i class="fa-solid fa-location-dot"></i>
+</div>
+<span>Tamale, Northern Region, Ghana</span>
+</div>
+<div class="contact-item">
+<div class="contact-icon">
+<i class="fa-solid fa-envelope"></i>
+</div>
+<span>@yomyomframes.com</span>
+</div>
+<div class="contact-item">
+<div class="contact-icon">
+<i class="fa-solid fa-phone"></i>
+</div>
+<span>+233 555 358 325 </span>
+</div>
+<a href="https://wa.me/233240000000" class="btn-whatsapp" target="_blank">
+<i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+</a>
+<div class="map-placeholder">
+<i class="fa-solid fa-map-location-dot"></i> Google Map — Tamale, Ghana
+</div>
+</div>
+
+<div class="contact-form-wrap reveal">
+<form class="contact-form">
+<div class="form-row">
+<div class="form-group">
+<label class="form-label">Full Name</label>
+<input type="text" class="form-input" placeholder="Your name" />
+</div>
+<div class="form-group">
+<label class="form-label">Phone / WhatsApp</label>
+<input type="tel" class="form-input" placeholder="+233 ..." />
+</div>
+</div>
+<div class="form-group">
+<label class="form-label">Email Address</label>
+<input type="email" class="form-input" placeholder="you@email.com" />
+</div>
+<div class="form-row">
+<div class="form-group">
+<label class="form-label">Event Type</label>
+<select class="form-select">
+<option value="">Select type</option>
+<option>Wedding</option>
+<option>Concert / Show</option>
+<option>Corporate Event</option>
+<option>Birthday / Party</option>
+<option>Other</option>
+</select>
+</div>
+<div class="form-group">
+<label class="form-label">Event Date</label>
+<input type="date" class="form-input" />
+</div>
+</div>
+<div class="form-group">
+<label class="form-label">Tell Me About Your Event</label>
+<textarea class="form-textarea" placeholder="Location, number of guests, special requests..."></textarea>
+</div>
+<button type="submit" class="btn-submit">Send Booking Request →</button>
+</form>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="footer-inner">
+<div class="footer-top">
+<div class="footer-brand">
+<div class="nav-logo">
+Yomyom <span style="color:var(--gold)">Frames</span>
+</div>
+<p class="footer-tagline">
+Professional event photography in Ghana and beyond. Every moment is worth preserving.
+</p>
+<div class="footer-social">
+<a class="social-link" href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+<a class="social-link" href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+<a class="social-link" href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+</div>
+</div>
+<div class="footer-col">
+<h4>Quick Links</h4>
+<ul>
+<li><a href="#about">About Me</a></li>
+<li><a href="#gallery">Portfolio</a></li>
+<li><a href="#services">Packages</a></li>
+<li><a href="#testimonials">Reviews</a></li>
+<li><a href="#contact">Book Now</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Services</h4>
+<ul>
+<li><a href="#">Wedding Photography</a></li>
+<li><a href="#">Concert & Events</a></li>
+<li><a href="#">Corporate Events</a></li>
+<li><a href="#">Birthday Parties</a></li>
+<li><a href="#">Photo Editing</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p class="footer-copy">
+© 2025 <span>Yomyom Frames Photography</span>. All rights reserved.
+</p>
+<p class="footer-copy">
+Designed by <span>Yomyom WebBuild</span>
+</p>
+</div>
+</div>
+</footer>
+
+<script>
+// ── Nav scroll effect ──
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ── Camera toggle / mobile menu ──
+const toggle = document.getElementById('navToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+
+function openMenu() {
+mobileMenu.classList.add('open');
+toggle.classList.add('open');
+toggle.setAttribute('aria-expanded', 'true');
+document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+mobileMenu.classList.remove('open');
+toggle.classList.remove('open');
+toggle.setAttribute('aria-expanded', 'false');
+document.body.style.overflow = '';
+}
+toggle.addEventListener('click', () => {
+mobileMenu.classList.contains('open') ? closeMenu(): openMenu();
+});
+// Close on ESC
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+// ── Gallery filter ──
+const filterBtns = document.querySelectorAll('.filter-btn');
+const galleryItems = document.querySelectorAll('.gallery-item');
+filterBtns.forEach(btn => {
+btn.addEventListener('click', () => {
+filterBtns.forEach(b => b.classList.remove('active'));
+btn.classList.add('active');
+const filter = btn.dataset.filter;
+galleryItems.forEach(item => {
+const match = filter === 'all' || item.dataset.cat === filter;
+item.style.opacity = match ? '1': '0.2';
+item.style.transform = match ? 'scale(1)': 'scale(0.95)';
+item.style.transition = 'opacity 0.35s, transform 0.35s';
+item.style.pointerEvents = match ? 'auto': 'none';
+});
+});
+});
+
+// ── Scroll reveal ──
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('visible');
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+
+// ── Form submit feedback ──
+document.querySelector('.contact-form').addEventListener('submit', e => {
+e.preventDefault();
+const btn = e.target.querySelector('.btn-submit');
+btn.textContent = '✓ Request Sent!';
+btn.style.background = '#25D366';
+btn.style.color = '#fff';
+setTimeout(() => {
+btn.textContent = 'Send Booking Request →';
+btn.style.background = '';
+btn.style.color = '';
+}, 3000);
+});
+</script>
+</body>
+</html>

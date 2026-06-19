@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<meta name="keywords" content="Gym in tamale, Fitness Center in Tamale, You Go Feel Am Fitness, Best Gym in Tamale, Gym in Ghana" />
+<meta name="description" content="Locate us in Tamale, Ghana. You Go Feel Am Fitness is a gym where workouts are serious, results are real, and yes… you go feel am." />
+<title id="page-title">You Go Feel Am Fitness | Fitness &amp; Gym Center in Tamale, Ghana</title>
+<link rel="icon" href="icon.jpg" />
+<link rel="preload" as="image" href="hero.jpeg" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+/* ============================================================
+   CSS CUSTOM PROPERTIES (ROOT VARIABLES)
+   ============================================================ */
+:root {
+/* Nav */
+--nav-bg: #ffffff;
+--nav-text: #000000;
+--nav-hover-text: #000000;
+--nav-shadow: rgba(0,0,0,0.05);
+--menu-icon-color: #000000;
+
+/* Hero */
+--hero-overlay-color: rgba(0,0,0,0.7);
+--hero-overlay-color2: rgba(111,166,154,0.809);
+--hero-title-color: #ffffff;
+--hero-desc-color: #ffffff;
+--hero-btn-bg: #000000;
+--hero-btn-text: #ffffff;
+--hero-btn-hover-bg: #ffffff;
+--hero-btn-hover-text: #000000;
+
+/* About */
+--about-bg: #ffffff;
+--about-title-color: #000000;
+--about-text-color: rgba(0,0,0,0.79);
+
+/* Programs */
+--programs-bg: #ffffff;
+--programs-card-bg: #f8f8f8;
+--programs-title-color: #000000;
+--programs-subtitle-color: #555555;
+--programs-h3-color: #000000;
+--programs-text-color: #444444;
+--programs-list-color: #333333;
+
+/* Pricing */
+--pricing-bg: #ffffff;
+--pricing-title-color: #000000;
+--pricing-subtitle-color: #555555;
+
+/* Pricing Card 1 */
+--price-card1-bg: #f8f8f8;
+--price-card1-h3-color: #000000;
+--price-card1-amount-color: #000000;
+--price-card1-list-color: #444444;
+--price-card1-btn-bg: #000000;
+--price-card1-btn-text: #ffffff;
+--price-card1-btn-hover-bg: #333333;
+--price-card1-btn-hover-text: #ffffff;
+
+/* Pricing Card 2 */
+--price-card2-bg: #000000;
+--price-card2-h3-color: #ffffff;
+--price-card2-amount-color: #ffffff;
+--price-card2-list-color: #dddddd;
+--price-card2-btn-bg: #ffffff;
+--price-card2-btn-text: #000000;
+--price-card2-btn-hover-bg: #dddddd;
+--price-card2-btn-hover-text: #000000;
+
+/* Pricing Card 3 */
+--price-card3-bg: #f8f8f8;
+--price-card3-h3-color: #000000;
+--price-card3-amount-color: #000000;
+--price-card3-list-color: #444444;
+--price-card3-btn-bg: #000000;
+--price-card3-btn-text: #ffffff;
+--price-card3-btn-hover-bg: #333333;
+--price-card3-btn-hover-text: #ffffff;
+
+/* Trainers */
+--trainers-bg: #ffffff;
+--trainers-card-bg: #f8f8f8;
+--trainers-title-color: #000000;
+--trainers-subtitle-color: #555555;
+--trainers-h3-color: #000000;
+--trainers-role-color: #555555;
+--trainers-btn-bg: #000000;
+--trainers-btn-text: #ffffff;
+--trainers-btn-hover-bg: #333333;
+--trainers-btn-hover-text: #ffffff;
+
+/* Testimonials */
+--testimonials-bg: #f8f8f8;
+--testimonials-card-bg: #ffffff;
+--testimonials-title-color: #000000;
+--testimonials-subtitle-color: #555555;
+--testimonials-text-color: #444444;
+--testimonials-name-color: #000000;
+
+/* Gallery */
+--gallery-bg: #ffffff;
+--gallery-title-color: #000000;
+--gallery-subtitle-color: #555555;
+
+/* Contact */
+--contact-bg: #f8f8f8;
+--contact-title-color: #000000;
+--contact-subtitle-color: #555555;
+--contact-card-bg: #ffffff;
+--contact-h3-color: #000000;
+--contact-p-color: #555555;
+--contact-icon-color: #000000;
+
+/* Footer */
+--footer-bg: #000000;
+--footer-text: #ffffff;
+--footer-social-border: #333333;
+--footer-icon-color: #ffffff;
+
+/* Floating Buttons */
+--float-whatsapp-bg: #ffffff;
+--float-call-bg: #ffffff;
+--float-whatsapp-border: #25d366;
+--float-call-border: #000000;
+--float-whatsapp-color: #25d366;
+--float-call-color: #000000;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: sans-serif;
+scroll-behavior: smooth;
+}
+body { padding-top: 61px;
+background: #fff;
+color: #000;
+}
+
+/* ============================================================
+   HEADER / NAV
+   ============================================================ */
+.header {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 60px;
+background: var(--nav-bg);
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 15px;
+z-index: 1000;
+box-shadow: 2px 2px 10px var(--nav-shadow);
+transition: background .3s;
+}
+.left { display: flex;
+justify-content: space-between;
+align-items: center;
+width: 100%;
+gap: 250px;
+}
+#menuBtn i { color: var(--menu-icon-color);
+font-size: 28px;
+}
+.logo { font-size: 18px;
+font-weight: bold;
+}
+.logo img { margin-top: 8px;
+border-radius: 50px;
+width: 50px;
+height: 50px;
+object-fit: cover;
+}
+.overlay { position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: transparent;
+display: none;
+z-index: 999;
+}
+.nav-links {
+position: fixed;
+top: 60px;
+right: -100%;
+height: 100vh;
+width: 70%;
+background: var(--nav-bg);
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 20px;
+transition: 0.4s ease;
+z-index: 1000;
+}
+.nav-links a { padding: 4px;
+text-align: center;
+text-decoration: none;
+color: var(--nav-text);
+font-size: 18px;
+transition: color .2s;
+}
+.nav-links a:hover { font-weight: bolder;
+font-family: 'Times New Roman';
+color: var(--nav-hover-text);
+text-decoration: underline;
+font-size: 19px;
+}
+.nav-active { right: 0 !important;
+}
+.overlay-active { display: block !important;
+}
+.hamburger { width: 28px;
+height: 20px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+cursor: pointer;
+}
+.hamburger span { height: 3px;
+background: var(--menu-icon-color);
+border-radius: 5px;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+height: 100vh;
+position: relative;
+overflow: hidden;
+}
+#hero-bg-layer {
+position: absolute;
+inset: 0;
+z-index: 0;
+background-image: linear-gradient(var(--hero-overlay-color), var(--hero-overlay-color2));
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+transition: background-image .3s;
+}
+.hero-content { position: relative;
+z-index: 1;
+padding: 0 20px;
+}
+#hero-title {
+letter-spacing: 1.5px;
+color: var(--hero-title-color);
+text-shadow: 3px 2px 2px #000000fd;
+font-size: clamp(24px,5vw,42px);
+margin-bottom: 16px;
+}
+#hero-desc { font-family: Georgia;
+color: var(--hero-desc-color);
+text-shadow: 3px 3px 3px #1d1d1dfd;
+margin-bottom: 20px;
+}
+#hero-btn {
+margin-top: 12px;
+font-weight: bolder;
+border-radius: 12px 12px 40px 40px;
+display: inline-block;
+padding: 10px 20px;
+background: var(--hero-btn-bg);
+color: var(--hero-btn-text);
+text-decoration: none;
+box-shadow: 1px 1px 1px #abaaa9fd, 0 0 1.3px 1px #abaaa9fd;
+transition: .3s;
+cursor: pointer;
+border: none;
+font-size: 16px;
+}
+#hero-btn:hover {
+color: var(--hero-btn-hover-text);
+background: var(--hero-btn-hover-bg);
+}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+#about { padding: 70px 20px;
+background: var(--about-bg);
+transition: background .3s;
+}
+#about-title { text-align: center;
+font-size: 2rem;
+margin-bottom: 40px;
+color: var(--about-title-color);
+}
+.about-img { display: flex;
+flex-direction: column;
+align-items: center;
+gap: 30px;
+max-width: 900px;
+margin: auto;
+}
+.about-img img { width: 330px;
+height: 400px;
+object-fit: cover;
+border-radius: 10px;
+}
+#about-brand, #about-part1, #about-part2 { color: var(--about-text-color);
+}
+#about-part1, #about-part2 { line-height: 1.6;
+font-size: .97rem;
+max-width: 600px;
+margin: auto;
+display: block;
+}
+
+/* ============================================================
+   PROGRAMS
+   ============================================================ */
+#programs { padding: 60px 20px;
+background: var(--programs-bg);
+text-align: center;
+}
+#programs-title { font-size: 2rem;
+margin-bottom: 10px;
+color: var(--programs-title-color);
+}
+#programs-subtitle { color: var(--programs-subtitle-color);
+margin-bottom: 40px;
+}
+.program-grid { display: grid;
+grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+gap: 20px;
+}
+.program-card { background: var(--programs-card-bg);
+padding: 20px;
+border-radius: 10px;
+text-align: left;
+transition: .3s;
+}
+.program-card:hover { transform: translateY(-8px);
+}
+.program-card h3 { margin-bottom: 10px;
+color: var(--programs-h3-color);
+}
+.program-card p {
+margin-bottom: 10px;
+color: var(--programs-text-color);
+}
+.program-card ul { padding-left: 18px;
+}
+.program-card li { margin-bottom: 5px;
+color: var(--programs-list-color);
+}
+
+/* ============================================================
+   PRICING
+   ============================================================ */
+#pricing { padding: 60px 20px;
+background: var(--pricing-bg);
+text-align: center;
+}
+#pricing-title { font-size: 2rem;
+margin-bottom: 10px;
+color: var(--pricing-title-color);
+}
+#pricing-subtitle { color: var(--pricing-subtitle-color);
+margin-bottom: 40px;
+}
+.pricing-grid { display: grid;
+grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+gap: 20px;
+}
+.price-card { padding: 25px;
+border-radius: 10px;
+transition: .3s;
+}
+.price-card:hover { transform: translateY(-5px);
+}
+.price-card h3 { margin-bottom: 10px;
+}
+.price-amount { font-size: 1.3rem;
+font-weight: bold;
+margin-bottom: 15px;
+}
+.price-card ul { list-style: none;
+margin-bottom: 20px;
+}
+.price-card ul li { margin: 8px 0;
+}
+
+/* Card 1 */
+#price-card-1 { background: var(--price-card1-bg);
+}
+#price-card-1 h3 { color: var(--price-card1-h3-color);
+}
+#price-amount-1 { color: var(--price-card1-amount-color);
+}
+#price-card-1 ul li { color: var(--price-card1-list-color);
+}
+#price-btn-1 { display: inline-block;
+padding: 10px 20px;
+font-weight: bolder;
+text-decoration: none;
+border-radius: 6px;
+transition: .3s;
+background: var(--price-card1-btn-bg);
+color: var(--price-card1-btn-text);
+}
+#price-btn-1:hover { background: var(--price-card1-btn-hover-bg);
+color: var(--price-card1-btn-hover-text);
+}
+
+/* Card 2 */
+#price-card-2 { background: var(--price-card2-bg);
+}
+#price-card-2 h3 { color: var(--price-card2-h3-color);
+}
+#price-amount-2 { color: var(--price-card2-amount-color);
+}
+#price-card-2 ul li { color: var(--price-card2-list-color);
+}
+#price-btn-2 { display: inline-block;
+padding: 10px 20px;
+font-weight: bolder;
+text-decoration: none;
+border-radius: 6px;
+transition: .3s;
+background: var(--price-card2-btn-bg);
+color: var(--price-card2-btn-text);
+}
+#price-btn-2:hover { background: var(--price-card2-btn-hover-bg);
+color: var(--price-card2-btn-hover-text);
+}
+
+/* Card 3 */
+#price-card-3 { background: var(--price-card3-bg);
+}
+#price-card-3 h3 { color: var(--price-card3-h3-color);
+}
+#price-amount-3 { color: var(--price-card3-amount-color);
+}
+#price-card-3 ul li { color: var(--price-card3-list-color);
+}
+#price-btn-3 { display: inline-block;
+padding: 10px 20px;
+font-weight: bolder;
+text-decoration: none;
+border-radius: 6px;
+transition: .3s;
+background: var(--price-card3-btn-bg);
+color: var(--price-card3-btn-text);
+}
+#price-btn-3:hover { background: var(--price-card3-btn-hover-bg);
+color: var(--price-card3-btn-hover-text);
+}
+
+/* ============================================================
+   TRAINERS
+   ============================================================ */
+#trainers { padding: 70px 20px;
+background: var(--trainers-bg);
+text-align: center;
+}
+#trainers-title { font-size: 2rem;
+margin-bottom: 10px;
+color: var(--trainers-title-color);
+}
+#trainers-subtitle { color: var(--trainers-subtitle-color);
+margin-bottom: 40px;
+}
+.trainer-grid { display: grid;
+grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+gap: 25px;
+}
+.trainer-card { background: var(--trainers-card-bg);
+padding: 20px;
+border-radius: 12px;
+transition: .4s ease;
+animation: fadeUp .6s ease forwards;
+opacity: 0;
+}
+.trainer-card:hover { transform: translateY(-8px);
+}
+.trainer-card img { box-shadow: 3px 4px 4px #43382efd, 3px 3px 1px #8c8c8cfd;
+width: 90%;
+object-fit: cover;
+border-radius: 50px;
+margin-bottom: 10px;
+}
+.trainer-card h3 { margin-bottom: 5px;
+color: var(--trainers-h3-color);
+}
+.trainer-card p { color: var(--trainers-role-color);
+margin-bottom: 8px;
+}
+.stars { color: gold;
+font-size: 18px;
+margin-bottom: 12px;
+}
+.book-btn { display: inline-block;
+padding: 10px 15px;
+background: var(--trainers-btn-bg);
+color: var(--trainers-btn-text);
+font-weight: bolder;
+text-decoration: none;
+border-radius: 6px;
+transition: .3s;
+}
+.book-btn:hover { background: var(--trainers-btn-hover-bg);
+color: var(--trainers-btn-hover-text);
+}
+@keyframes fadeUp { from { transform: translateY(20px);
+opacity: 0;
+} to { transform: translateY(0);
+opacity: 1;
+} }
+.trainer-card:nth-child(1) { animation-delay: .1s;
+}
+.trainer-card:nth-child(2) { animation-delay: .2s;
+}
+.trainer-card:nth-child(3) { animation-delay: .3s;
+}
+.trainer-card:nth-child(4) { animation-delay: .4s;
+}
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+#testimonials { padding: 70px 20px;
+background: var(--testimonials-bg);
+text-align: center;
+}
+#testimonials-title { font-size: 2rem;
+margin-bottom: 10px;
+color: var(--testimonials-title-color);
+}
+#testimonials-subtitle { color: var(--testimonials-subtitle-color);
+margin-bottom: 40px;
+}
+.testimonial-grid { display: grid;
+grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+gap: 20px;
+}
+.testimonial-card { background: var(--testimonials-card-bg);
+padding: 25px;
+border-radius: 12px;
+transition: .3s;
+box-shadow: 0 5px 15px rgba(0,0,0,.05);
+}
+.testimonial-card:hover { transform: translateY(-6px);
+}
+.testimonial-card p { color: var(--testimonials-text-color);
+margin-bottom: 15px;
+font-style: italic;
+line-height: 1.5;
+}
+.testimonial-card h3 { color: var(--testimonials-name-color);
+font-size: 1rem;
+}
+
+/* ============================================================
+   GALLERY
+   ============================================================ */
+#gallery { padding: 70px 20px;
+background: var(--gallery-bg);
+text-align: center;
+}
+#gallery-title { font-size: 2rem;
+margin-bottom: 10px;
+color: var(--gallery-title-color);
+}
+#gallery-subtitle { color: var(--gallery-subtitle-color);
+margin-bottom: 40px;
+}
+.gallery-grid { display: grid;
+grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+gap: 15px;
+}
+.gallery-grid img { width: 100%;
+height: 180px;
+object-fit: cover;
+border-radius: 10px;
+transition: .3s ease;
+cursor: pointer;
+}
+.gallery-grid img:hover { transform: scale(1.08);
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+#contact { display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 70px 20px;
+background: var(--contact-bg);
+text-align: center;
+}
+#contact-title { font-size: 2rem;
+margin-bottom: 10px;
+color: var(--contact-title-color);
+}
+#contact-subtitle { color: var(--contact-subtitle-color);
+margin-bottom: 30px;
+}
+.cafe-container { display: grid;
+gap: 15px;
+max-width: 500px;
+font-family: sans-serif;
+}
+.cafe-container a { text-decoration: none;
+color: var(--color-text-main, #000);
+text-align: center;
+}
+.cafe-card { display: flex;
+align-items: center;
+gap: 15px;
+padding: 15px 18px;
+background: var(--contact-card-bg);
+border-radius: 14px;
+box-shadow: 0 6px 18px rgba(0,0,0,.08);
+transition: .3s ease;
+}
+
+.cafe-card:hover { transform: translateY(-3px);
+box-shadow: 0 10px 25px rgba(0,0,0,.12);
+}
+.icon {
+background: #f3f3f3;
+padding: 10px;
+border-radius: 12px;
+color: var(--contact-icon-color);
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.cafe-card h3 { text-align: left;
+margin: 0;
+font-size: 15px;
+color: var(--contact-h3-color);
+}
+.cafe-card p { margin: 2px 0 0;
+font-size: 13px;
+color: var(--contact-p-color);
+}
+
+/* ============================================================
+   FLOATING BUTTONS
+   ============================================================ */
+.floating-btn { position: fixed;
+right: 20px;
+width: 55px;
+height: 55px;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 50%;
+box-shadow: 0 5px 15px rgba(0,0,0,.15);
+z-index: 9999;
+transition: .3s ease;
+cursor: grab;
+user-select: none;
+}
+#float-whatsapp { bottom: 20px;
+border: 2px solid var(--float-whatsapp-border);
+background: var(--float-whatsapp-bg);
+}
+#float-call { bottom: 90px;
+border: 2px solid var(--float-call-border);
+background: var(--float-call-bg);
+}
+.floating-btn svg { width: 24px;
+height: 24px;
+fill: var(--float-call-color);
+}
+#float-whatsapp svg { fill: var(--float-whatsapp-color);
+}
+.floating-btn:hover { transform: scale(1.1);
+}
+.floating-btn.hide-float { opacity: 0;
+pointer-events: none;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+#footer-section { background: var(--footer-bg);
+color: var(--footer-text);
+padding: 60px 20px 20px;
+}
+.footer-container { display: grid;
+grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+gap: 30px;
+max-width: 1100px;
+margin: auto;
+}
+.footer-box h3 { margin-bottom: 12px;
+color: var(--footer-text);
+}
+.footer-box p, .footer-box a { color: var(--footer-text);
+font-size: 14px;
+text-decoration: none;
+display: block;
+margin: 6px 0;
+}
+.footer-box { display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.socials { display: flex;
+gap: 12px;
+margin-top: 10px;
+flex-wrap: wrap;
+justify-content: center;
+}
+.social-icon {
+width: 35px;
+height: 35px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+transition: .3s ease;
+}
+.social-icon svg { margin-top: 1px;
+border: 1px solid var(--footer-social-border);
+border-width: -3px;
+border-radius: 35%;
+width: 35px;
+height: 30px;
+fill: var(--footer-icon-color);
+}
+.footer-bottom { text-align: center;
+margin-top: 30px;
+padding-top: 15px;
+border-top: 1px solid #222;
+font-size: 13px;
+}
+#footer-copyright { color: var(--footer-text);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (min-width: 768px) {
+.hamburger { display: none;
+}
+.left { width: auto;
+gap: 20px;
+}
+.nav-links { position: static;
+height: auto;
+width: auto;
+flex-direction: row;
+justify-content: flex-end;
+align-items: center;
+gap: 30px;
+background: transparent;
+box-shadow: none;
+border-radius: 0;
+transition: none;
+right: 0;
+}
+.overlay { display: none !important;
+}
+.nav-links a { font-size: 16px;
+position: relative;
+}
+.nav-links a::after { content: '';
+position: absolute;
+left: 0;
+bottom: -5px;
+width: 0;
+height: 2px;
+background: var(--nav-text);
+transition: .3s ease;
+}
+.nav-links a:hover::after { width: 100%;
+}
+}
+</style>
+</head>
+<body>
+
+<!-- Preload trick -->
+<img src="gym6.jpeg" loading="eager" fetchpriority="high" alt="" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none;" />
+
+<!-- ===================== HEADER ===================== -->
+<header class="header" id="site-header">
+<div class="left" id="header-left">
+<div class="logo" id="logo-container">
+<a href="#hero" id="logo-link"><img id="site-logo" src="icon.jpg" alt="Logo" /></a>
+</div>
+<div class="hamburger" id="menuBtn">
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class="overlay" id="overlay"></div>
+<nav class="nav-links" id="navMenu">
+<a id="nav-link-about" href="#about">About</a>
+<a id="nav-link-programs" href="#programs">Programs</a>
+<a id="nav-link-pricing" href="#pricing">Pricing</a>
+<a id="nav-link-trainers" href="#trainers">Trainers</a>
+<a id="nav-link-testimonials" href="#testimonials">Testimonials</a>
+<a id="nav-link-gallery" href="#gallery">Gallery</a>
+<a id="nav-link-contact" href="#contact">Contact</a>
+</nav>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section id="hero" class="hero">
+<img id="hero-bg-img" src="gym6.jpeg" alt=""
+style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;"
+/>
+<div id="hero-bg-layer"></div>
+<div class="hero-content">
+<h1 id="hero-title">Build Strength, Build Discipline, Build You.</h1>
+<p id="hero-desc">
+Transform your body and mindset with structured training and real results.
+</p>
+<a id="hero-btn" href="#contact">Join Today</a>
+</div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about">
+<h1 id="about-title">About us</h1>
+<div class="about-img">
+<img id="about-img" src="trainer1.jpeg" alt="About" />
+<div class="about-text">
+<h3 style="text-align:center;" id="about-brand"> Welcome to You Go Feel Am Fitness.</h3>
+<br />
+<p id="about-part1">
+We are a high-energy fitness center based in Tamale, Ghana. We focus on helping people build strength, improve their health, and transform their bodies through effective and structured training. We specialize in creating a motivating workout environment that doesn't just push you physically, but also helps you build discipline, confidence, and consistency.
+</p>
+<br />
+<p id="about-part2">
+Our programs include strength training, fat loss workouts, and general fitness coaching designed for all levels—from beginners to advanced athletes. We also provide practical guidance on nutrition, water intake, and healthy lifestyle habits to support real results.
+</p>
+</div>
+</div>
+</section>
+
+<!-- ===================== PROGRAMS ===================== -->
+<section id="programs">
+<h2 id="programs-title">Training Programs</h2>
+<p id="programs-subtitle" class="subtitle">
+Choose a program that fits your fitness level and goals
+</p>
+<div class="program-grid">
+<div class="program-card" id="prog-card-1">
+<h3 id="prog-title-1">Beginner Program</h3>
+<p id="prog-desc-1">
+Perfect for beginners. We teach you the basics, fix your form, and help you stay consistent—no confusion, just progress.
+</p>
+<ul id="prog-list-1">
+<li id="prog-list-1-1">Full body workouts</li>
+<li id="prog-list-1-2">Light weights &amp; bodyweight training</li>
+<li id="prog-list-1-3">3 days per week</li>
+</ul>
+</div>
+<div class="program-card" id="prog-card-2">
+<h3 id="prog-title-2">Fat Loss Program</h3>
+<p id="prog-desc-2">
+Burn calories, reduce body fat, and improve stamina through structured workouts.
+</p>
+<ul id="prog-list-2">
+<li id="prog-list-2-1">HIIT training</li>
+<li id="prog-list-2-2">Cardio + strength mix</li>
+<li id="prog-list-2-3">5 days per week</li>
+</ul>
+</div>
+<div class="program-card" id="prog-card-3">
+<h3 id="prog-title-3">Muscle Building</h3>
+<p id="prog-desc-3">
+Designed to increase muscle size, strength, and overall body power.
+</p>
+<ul id="prog-list-3">
+<li id="prog-list-3-1">Heavy weight training</li>
+<li id="prog-list-3-2">Split routines</li>
+<li id="prog-list-3-3">5–6 days per week</li>
+</ul>
+</div>
+<div class="program-card" id="prog-card-4">
+<h3 id="prog-title-4">Advanced Athlete</h3>
+<p id="prog-desc-4">
+For experienced lifters aiming for peak performance and physique control.
+</p>
+<ul id="prog-list-4">
+<li id="prog-list-4-1">Strength + hypertrophy</li>
+<li id="prog-list-4-2">Performance tracking</li>
+<li id="prog-list-4-3">6 days per week</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- ===================== PRICING ===================== -->
+<section id="pricing">
+<h2 id="pricing-title">Membership Plans</h2>
+<p id="pricing-subtitle" class="subtitle">
+Flexible pricing for every fitness level
+</p>
+<div class="pricing-grid">
+<div class="price-card" id="price-card-1">
+<h3 id="price-name-1">Basic Plan</h3>
+<p class="price-amount" id="price-amount-1">
+GHS 80 / month
+</p>
+<ul>
+<li id="price-feat-1-1">Gym access (3 days/week)</li>
+<li id="price-feat-1-2">Basic equipment usage</li>
+<li id="price-feat-1-3">Self training</li>
+</ul>
+<a id="price-btn-1" href="https://wa.me/233555358325" target="_blank">Join Now</a>
+</div>
+<div class="price-card" id="price-card-2">
+<h3 id="price-name-2">Standard Plan</h3>
+<p class="price-amount" id="price-amount-2">
+GHS 150 / month
+</p>
+<ul>
+<li id="price-feat-2-1">Full gym access</li>
+<li id="price-feat-2-2">Personal workout plan</li>
+<li id="price-feat-2-3">5 days/week training</li>
+</ul>
+<a id="price-btn-2" href="https://wa.me/233555358325" target="_blank">Most Popular</a>
+</div>
+<div class="price-card" id="price-card-3">
+<h3 id="price-name-3">Premium Plan</h3>
+<p class="price-amount" id="price-amount-3">
+GHS 250 / month
+</p>
+<ul>
+<li id="price-feat-3-1">Unlimited gym access</li>
+<li id="price-feat-3-2">Personal trainer support</li>
+<li id="price-feat-3-3">Diet &amp; fitness guide</li>
+</ul>
+<a id="price-btn-3" href="https://wa.me/233555358325" target="_blank">Go Premium</a>
+</div>
+</div>
+</section>
+
+<!-- ===================== TRAINERS ===================== -->
+<section id="trainers">
+<h2 id="trainers-title">Meet Our Trainers</h2>
+<p id="trainers-subtitle" class="subtitle">
+Certified professionals to guide your fitness journey
+</p>
+<div class="trainer-grid">
+<div class="trainer-card">
+<img id="trainer-img-1" src="tria2.jpg" alt="Trainer 1" />
+<h3 id="trainer-name-1">Coach Sarah</h3>
+<p id="trainer-role-1">
+Fat Loss &amp; Cardio Training
+</p>
+<div class="stars" id="trainer-stars-1">
+★★★☆☆
+</div>
+<a id="trainer-btn-1" href="https://wa.me/233555358325" target="_blank" class="book-btn">Book Session</a>
+</div>
+<div class="trainer-card">
+<img id="trainer-img-2" src="tria2.png" alt="Trainer 2" />
+<h3 id="trainer-name-2">Coach Daniel</h3>
+<p id="trainer-role-2">
+Strength &amp; Muscle Building
+</p>
+<div class="stars" id="trainer-stars-2">
+★★★★★
+</div>
+<a id="trainer-btn-2" href="https://wa.me/233555358325" target="_blank" class="book-btn">Book Session</a>
+</div>
+<div class="trainer-card">
+<img id="trainer-img-3" src="tria1.jpg" alt="Trainer 3" />
+<h3 id="trainer-name-3">Coach Michael</h3>
+<p id="trainer-role-3">
+Body Transformation Specialist
+</p>
+<div class="stars" id="trainer-stars-3">
+★★★★★
+</div>
+<a id="trainer-btn-3" href="https://wa.me/233555358325" target="_blank" class="book-btn">Book Session</a>
+</div>
+<div class="trainer-card">
+<img id="trainer-img-4" src="trial5.jpeg" alt="Trainer 4" />
+<h3 id="trainer-name-4">Coach A.Hakim Denaps</h3>
+<p id="trainer-role-4">
+Health and Wellness Adviser
+</p>
+<div class="stars" id="trainer-stars-4">
+★★★★★
+</div>
+<a id="trainer-btn-4" href="https://wa.me/233555358325" target="_blank" class="book-btn">Book Session</a>
+</div>
+</div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section id="testimonials">
+<h2 id="testimonials-title">What Our Members Say</h2>
+<p id="testimonials-subtitle" class="subtitle">
+Real results from real people
+</p>
+<div class="testimonial-grid">
+<div class="testimonial-card">
+<p id="testimonial-text-1">
+"I lost 10kg in 3 months. The trainers here are very professional and motivating!"
+</p>
+<h3 id="testimonial-name-1">Johnson Salwa</h3>
+</div>
+<div class="testimonial-card">
+<p id="testimonial-text-2">
+"Best gym in town. The programs are well structured and easy to follow."
+</p>
+<h3 id="testimonial-name-2">Linda Bella</h3>
+</div>
+<div class="testimonial-card">
+<p id="testimonial-text-3">
+"I gained muscle and confidence. This gym changed my lifestyle completely."
+</p>
+<h3 id="testimonial-name-3">Abdul-Ganiw</h3>
+</div>
+</div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section id="gallery">
+<h2 id="gallery-title">Gym Gallery</h2>
+<p id="gallery-subtitle" class="subtitle">
+Moments from training, transformation, and strength
+</p>
+<div class="gallery-grid">
+<img id="gallery-img-1" src="gym1.jpeg" alt="Gym Image 1" />
+<img id="gallery-img-2" src="gym6.jpeg" alt="Gym Image 2" />
+<img id="gallery-img-3" src="gym2.jpeg" alt="Gym Image 3" />
+<img id="gallery-img-4" src="gym3.jpg" alt="Gym Image 4" />
+<img id="gallery-img-5" src="all.jpeg" alt="Gym Image 5" />
+<img id="gallery-img-6" src="gym5.jpeg" alt="Gym Image 6" />
+</div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact">
+<h2 id="contact-title">Contact Us</h2>
+<p id="contact-subtitle" class="subtitle">
+Get in touch — Ask anything. Start anytime. Your transformation starts here.
+</p>
+<div class="cafe-container">
+<a id="contact-email-link" href="mailto:yougofeelam@gmail.com" target="_blank" class="cafe-card">
+<div class="icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0
+1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"
+/></svg>
+</div>
+<div>
+<h3 id="contact-email-label">Email:</h3>
+<p id="contact-email-text">
+yougofeelam@gmail.com
+</p>
+</div>
+</a>
+<a id="contact-phone-link" href="tel:233555358325" class="cafe-card">
+<div class="icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8a15.05 15.05 0 0 0 6.6
+6.6l2.2-2.2a1 1 0 0 1 1-.24c1.1.36 2.3.56 3.5.56a1 1 0 0 1 1 1V20a1 1 0 0 1-1
+1C10.3 21 3 13.7 3 4a1 1 0 0 1 1-1h3.2a1 1 0 0 1 1 1c0 1.2.2 2.4.56 3.5a1 1 0 0
+1-.24 1z" /></svg>
+</div>
+<div>
+<h3 id="contact-phone-label">Phone:</h3>
+<p id="contact-phone-text">
++233 555 358 325
+</p>
+</div>
+</a>
+<div class="cafe-card" id="contact-address-card">
+<div class="icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7
+13 7 13s7-7.7 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0
+5.5z" /></svg>
+</div>
+<div>
+<h3 id="contact-address-label">Address:</h3>
+<p id="contact-address">
+Opposite Unity Junction, Tamale – Northern Region, Ghana
+</p>
+</div>
+</div>
+<div class="cafe-card" id="contact-hours-card">
+<div class="icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+fill="currentColor" viewBox="0 0 24 24"><path d="M12 1a11 11 0 1 0 11 11A11 11 0
+0 0 12 1zm1 11.3V6h-2v7l5 3 1-1.7z" /></svg>
+</div>
+<div>
+<h3 id="contact-hours-label">Working Hours:</h3>
+<p id="contact-hours">
+Mon - Sat: 8AM - 9PM
+</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== FLOATING BUTTONS ===================== -->
+<a id="float-whatsapp" href="https://wa.me/233555358325" class="floating-btn" target="_blank" aria-label="WhatsApp">
+<svg viewBox="0 0 32 32"><path d="M19.11 17.09c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.14-.42-2.17-1.34-.8-.71-1.34-1.59-1.5-1.86-.16-.27-.02-.42.12-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.46-.61-.47h-.52c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.98 2.63 1.12 2.81.14.18 1.93 2.95 4.68 4.13.65.28 1.16.45 1.56.58.65.21 1.24.18 1.71.11.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.18.16-1.28-.07-.1-.25-.16-.52-.3z" /><path d="M16 3C9.38 3 4 8.38 4 15c0 2.39.7 4.62 1.91 6.49L4 29l7.73-1.86C13.55 28.4 14.74 28.7 16 28.7c6.62 0 12-5.38 12-12S22.62 3 16 3zm0 22.7c-1.2 0-2.37-.22-3.46-.66l-.25-.1-4.59 1.1 1.17-4.48-.16-.23C7.48 19.13 6.7 17.13 6.7 15 6.7 9.8 10.8 5.7 16 5.7S25.3 9.8 25.3 15 21.2 25.7 16 25.7z" /></svg>
+</a>
+<a id="float-call" href="tel:+233555358325" class="floating-btn" aria-label="Call">
+<svg viewBox="0 0 24 24"><path d="M6.6 10.79c1.44 2.83 3.78 5.17 6.61 6.61l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.07 21 3 13.93 3 5c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.24.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.22 2.2z" /></svg>
+</a>
+
+<!-- ===================== FOOTER ===================== -->
+<footer id="footer-section">
+<div class="footer-container">
+<div class="footer-box">
+<h3 id="footer-brand" style="font-family:'Times New Roman'">You Go Feel Am Fitness</h3>
+<p id="footer-tagline">
+Build strength. Build discipline. Become your best self.
+</p>
+</div>
+<div class="footer-box">
+<h3 id="footer-social-heading" style="font-family:'Times New Roman'">Follow Us</h3>
+<div class="socials" id="footer-socials">
+<!-- Social icons rendered by editor.js -->
+<a id="footer-social-1" href="https://facebook.com" target="_blank" class="social-icon" aria-label="Facebook" data-icon="facebook">
+<svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z" /></svg>
+</a>
+<a id="footer-social-2" href="https://instagram.com" target="_blank" class="social-icon" aria-label="Instagram" data-icon="instagram">
+<svg viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.65 0 3 1.35 3 3v10c0 1.65-1.35 3-3 3H7c-1.65 0-3-1.35-3-3V7c0-1.65 1.35-3 3-3h10zm-5 3.5A5.5 5.5 0 1 0 17.5 13 5.51 5.51 0 0 0 12 7.5zm0 2A3.5 3.5 0 1 1 8.5 13 3.5 3.5 0 0 1 12 9.5zM18 6.8a1 1 0 1 0 1 1 1 1 0 0 0-1-1z" /></svg>
+</a>
+<a id="footer-social-3" href="https://tiktok.com/@abdulhakim.naporo" target="_blank" class="social-icon" aria-label="TikTok" data-icon="tiktok">
+<svg viewBox="0 0 24 24"><path d="M16 3c.6 2.8 2.3 4.5 5 4.9V11c-2-.1-3.8-.8-5-2v6.5c0 3.6-2.9 6.5-6.5 6.5S3 19.1 3 15.5 5.9 9 9.5 9c.5 0 1 .1 1.5.2V12c-.5-.2-1-.3-1.5-.3-2 0-3.5 1.6-3.5 3.5S7.5 19 9.5 19 13 17.4 13 15.5V3h3z" /></svg>
+</a>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<p id="footer-copyright">
+© 2026 You Go Feel Am Fitness. All Rights Reserved.
+</p>
+</div>
+</footer>
+
+<script>
+// ---- NAV MENU TOGGLE ----
+const menuBtn = document.getElementById('menuBtn');
+const navMenu = document.getElementById('navMenu');
+const overlay = document.getElementById('overlay');
+function toggleMenu(){ navMenu.classList.toggle('nav-active'); overlay.classList.toggle('overlay-active'); }
+function closeMenu(){ navMenu.classList.remove('nav-active'); overlay.classList.remove('overlay-active'); }
+menuBtn.addEventListener('click', toggleMenu);
+overlay.addEventListener('click', closeMenu);
+document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', closeMenu));
+
+// ---- FLOATING BUTTONS: hide at footer ----
+const floatBtns = document.querySelectorAll('.floating-btn');
+const footerEl = document.getElementById('footer-section');
+const floatObserver = new IntersectionObserver(entries => {
+entries.forEach(entry => { floatBtns.forEach(btn => btn.classList.toggle('hide-float', entry.isIntersecting)); });
+}, { threshold: 0.05 });
+floatObserver.observe(footerEl);
+
+// ---- FLOATING BUTTONS: draggable ----
+floatBtns.forEach(btn => {
+let dragging = false, startY = 0, startBottom = 0;
+btn.addEventListener('mousedown', e => { dragging = true; startY = e.clientY; startBottom = parseInt(btn.style.bottom || getComputedStyle(btn).bottom) || 0; e.preventDefault(); });
+document.addEventListener('mousemove', e => { if (!dragging) return; btn.style.bottom = Math.max(10, startBottom + (startY - e.clientY)) + 'px'; });
+document.addEventListener('mouseup', () => { dragging = false; });
+btn.addEventListener('touchstart', e => { dragging = true; startY = e.touches[0].clientY; startBottom = parseInt(btn.style.bottom || getComputedStyle(btn).bottom) || 0; }, { passive: true });
+document.addEventListener('touchmove', e => { if (!dragging) return; btn.style.bottom = Math.max(10, startBottom + (startY - e.touches[0].clientY)) + 'px'; }, { passive: true });
+document.addEventListener('touchend', () => { dragging = false; });
+});
+
+// ---- CSS VAR HELPER ----
+function setCSSVar(name, value) { document.documentElement.style.setProperty(name, value); }
+</script>
+</body>
+</html>

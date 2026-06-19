@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yomyom WebBuild | Template Custermization</title>
+
+  <!-- Spectrum CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.1/spectrum.min.css" />
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<style>
+/* ============================================================
+   EDITOR PANEL CSS — v2
+   Modelled after the working portfolio editor (file 2).
+   Key rules that make inputs/boxes actually appear:
+   - .editor-box has NO overflow:hidden (just border-radius)
+   - .dropdown-content overflow:hidden only on itself
+   - No global border/transition overrides
+   - Spectrum replacer hidden via display:none when closed
+   ============================================================ */
+
+/* ── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+html, body {
+overflow-x: hidden;
+font-family: "Montserrat", sans-serif;
+line-height: 1.6;
+-webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%;
+height: auto;
+display: block;
+}
+button { cursor: pointer;
+font-family: inherit;
+-webkit-tap-highlight-color: transparent;
+}
+
+/* ── Toggle Button ─────────────────────────────────────────── */
+#editorToggleBtn,
+.editor-toggle-btn {
+position: fixed;
+bottom: 20px;
+left: 20px;
+z-index: 10001;
+background: #2563eb;
+color: #fff;
+border: none;
+padding: 7px 10px;
+border-radius: 12px;
+font-size: 12px;
+font-weight: 700;
+box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+transition: background 0.25s;
+}
+#editorToggleBtn:hover,
+.editor-toggle-btn:hover {
+background: #1d4ed8;
+}
+
+/* ── Overlay ───────────────────────────────────────────────── */
+#editorOverlay {
+position: fixed;
+inset: 0;
+background: rgba(0, 0, 0, 0.5);
+opacity: 0;
+pointer-events: none;
+transition: opacity 0.3s ease;
+z-index: 9998;
+}
+#editorOverlay.active {
+opacity: 1;
+pointer-events: all;
+}
+
+/* ── Editor Panel ──────────────────────────────────────────── */
+.editor-panel {
+position: fixed;
+top: 0;
+right: 0;
+height: 100vh;
+width: 360px;
+background: #161616;
+border-left: 1px solid #2a2a2a;
+z-index: 9999;
+transform: translateX(110%);
+transition: transform 0.35s ease;
+display: flex;
+flex-direction: column;
+overflow-y: auto;
+overflow-x: hidden;
+padding: 16px;
+}
+.editor-panel.open {
+transform: translateX(0);
+}
+
+/* ── Panel Header ──────────────────────────────────────────── */
+.panel-title {
+color: #fff;
+font-size: 15px;
+font-weight: 700;
+margin-bottom: 14px;
+padding-bottom: 12px;
+border-bottom: 1px solid #2a2a2a;
+letter-spacing: 1px;
+text-transform: uppercase;
+}
+
+/* ── Sticky Bottom Toolbar ─────────────────────────────────── */
+.team {
+display: flex;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;
+gap: 18px;
+padding: 10px;
+background: #161616;
+border-top: 1px solid #2e2e2e;
+position: sticky;
+bottom: 0;
+z-index: 999;
+width: 100%;
+margin-top: 8px;
+}
+.team hr {
+width: 1px;
+height: 20px;
+border: none;
+border-left: 1px solid #3a3a3a;
+flex-shrink: 0;
+}
+
+/* ── Save / Action Buttons ─────────────────────────────────── */
+.saveBtn {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+padding: 8px 14px;
+font-size: 11px;
+font-family: "Montserrat", sans-serif;
+font-weight: 700;
+letter-spacing: 0.8px;
+text-transform: uppercase;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+white-space: nowrap;
+flex-shrink: 0;
+transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+.saveBtn:active { transform: scale(0.96);
+}
+.saveBtn.save { background: #2563eb;
+color: #fff;
+}
+.saveBtn.save:hover { background: #1d4ed8;
+}
+.saveBtn.reset { background: #ef4444;
+color: #fff;
+border: 1px solid #e05555;
+}
+.saveBtn.reset:hover { background: #dc2626;
+}
+.saveBtn.final { background: #fcd700;
+color: #000;
+}
+.saveBtn.final:hover { background: #64748b;
+color: #fff;
+}
+
+.wa-btn {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+padding: 10px 17px;
+font-size: 11px;
+font-family: "Montserrat", sans-serif;
+font-weight: 700;
+letter-spacing: 0.8px;
+text-transform: uppercase;
+background: #25d366;
+color: #fff;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+white-space: nowrap;
+flex-shrink: 0;
+transition: background 0.2s, transform 0.1s;
+}
+.wa-btn:hover { background: #1db954;
+}
+.wa-btn:active { transform: scale(0.96);
+}
+
+#saveStatus {
+font-size: 11px;
+font-weight: 600;
+color: #888;
+flex: 1;
+min-width: 50px;
+text-align: center;
+padding: 6px 4px;
+}
+
+/* ── Editor Boxes (Accordion wrappers) ─────────────────────── */
+/*
+   NO overflow:hidden here — that is what breaks child inputs.
+   Only border-radius and background. Same as file 2.
+*/
+.editor-box {
+display: flex;
+flex-direction: column;
+margin-bottom: 8px;
+border-radius: 14px;
+background: rgba(255, 255, 255, 0.04);
+border: 1px solid rgba(255, 255, 255, 0.05);
+transition: background 0.2s;
+}
+.editor-box:hover {
+background: rgba(37, 99, 235, 0.12);
+border-color: rgba(37, 99, 235, 0.25);
+}
+
+/* ── Accordion Toggle Button ───────────────────────────────── */
+.editor-btn {
+width: 100%;
+background: none;
+border: none;
+color: #fff;
+padding: 14px 16px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.6px;
+text-transform: uppercase;
+text-align: left;
+border-radius: 14px;
+}
+/* If a <p> tag is inside editor-btn, keep it white */
+.editor-btn p {
+color: #fff;
+margin: 0;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.6px;
+text-transform: uppercase;
+}
+.editor-left {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+.editor-btn .arrow {
+color: #666;
+font-size: 12px;
+flex-shrink: 0;
+transition: transform 0.3s ease;
+display: inline-block;
+}
+.editor-box.active .editor-btn .arrow {
+transform: rotate(180deg);
+}
+
+/* ── Dropdown Content ──────────────────────────────────────── */
+/*
+   overflow:hidden is on .dropdown-content itself, not the parent.
+   max-height animation works fine here because the parent
+   (.editor-box) is NOT overflow:hidden.
+*/
+.dropdown-content {
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.35s ease, padding 0.2s ease;
+padding: 0 16px;
+}
+.editor-box.active .dropdown-content {
+max-height: 9999px;
+padding: 8px 16px 14px;
+}
+
+/* ── Editor Groups ─────────────────────────────────────────── */
+.editor-group {
+border-left: 2px solid #2563eb;
+padding: 8px 12px;
+margin: 10px 0;
+}
+.group-label {
+font-size: 10px;
+font-weight: 700;
+text-transform: uppercase;
+color: #888;
+margin-bottom: 8px;
+letter-spacing: 1.5px;
+}
+
+/* ── Labels ────────────────────────────────────────────────── */
+.dropdown-content label {
+display: block;
+font-size: 11px;
+color: #999;
+margin-bottom: 4px;
+margin-top: 6px;
+}
+
+/* ── Text / URL / Number Inputs ────────────────────────────── */
+.dropdown-content input[type="text"],
+.dropdown-content input[type="url"],
+.dropdown-content input[type="number"] {
+display: block;
+width: 100%;
+padding: 9px 12px;
+margin-bottom: 8px;
+background: #2a2a2a;
+border: 1px solid #3a3a3a;
+border-radius: 8px;
+color: #fff;
+font-size: 12px;
+font-family: "Montserrat", sans-serif;
+outline: none;
+transition: border-color 0.2s;
+-webkit-appearance: none;
+appearance: none;
+}
+.dropdown-content input[type="text"]:focus,
+.dropdown-content input[type="url"]:focus,
+.dropdown-content input[type="number"]:focus {
+border-color: #2563eb;
+}
+.dropdown-content input[type="text"]::placeholder,
+.dropdown-content input[type="url"]::placeholder,
+.dropdown-content input[type="number"]::placeholder {
+color: #555;
+}
+
+/* ── Textarea ──────────────────────────────────────────────── */
+.dropdown-content textarea {
+display: block;
+width: 100%;
+padding: 9px 12px;
+margin-bottom: 8px;
+background: #2a2a2a;
+border: 1px solid #3a3a3a;
+border-radius: 8px;
+color: #fff;
+font-size: 12px;
+font-family: "Montserrat", sans-serif;
+outline: none;
+resize: vertical;
+min-height: 75px;
+transition: border-color 0.2s;
+-webkit-appearance: none;
+appearance: none;
+}
+.dropdown-content textarea:focus { border-color: #2563eb;
+}
+.dropdown-content textarea::placeholder { color: #555;
+}
+
+/* ── File Input ────────────────────────────────────────────── */
+.dropdown-content input[type="file"] {
+display: block;
+width: 100%;
+padding: 8px 10px;
+margin-bottom: 8px;
+background: #2a2a2a;
+border: 1px solid #3a3a3a;
+border-radius: 8px;
+color: #aaa;
+font-size: 11px;
+font-family: "Montserrat", sans-serif;
+cursor: pointer;
+}
+.dropdown-content input[type="file"]::file-selector-button {
+background: #2563eb;
+color: #fff;
+border: none;
+border-radius: 6px;
+padding: 5px 10px;
+font-size: 11px;
+font-weight: 600;
+cursor: pointer;
+margin-right: 8px;
+transition: background 0.2s;
+}
+.dropdown-content input[type="file"]::file-selector-button:hover {
+background: #1d4ed8;
+}
+
+/* ── Range Slider ──────────────────────────────────────────── */
+.dropdown-content input[type="range"] {
+display: block;
+width: 100%;
+accent-color: #2563eb;
+background: transparent;
+border: none;
+outline: none;
+padding: 4px 0;
+margin-bottom: 8px;
+cursor: pointer;
+}
+
+/* ── Pick Button (custom file trigger / icon picker) ───────── */
+.pick-btn {
+display: inline-flex;
+align-items: center;
+gap: 7px;
+width: 100%;
+padding: 9px 12px;
+margin-bottom: 8px;
+background: #2a2a2a;
+color: #ccc;
+border: 1px solid #3a3a3a;
+border-radius: 8px;
+font-size: 12px;
+font-family: "Montserrat", sans-serif;
+font-weight: 600;
+cursor: pointer;
+transition: border-color 0.2s, background 0.2s;
+text-align: left;
+}
+.pick-btn:hover {
+border-color: #2563eb;
+background: #2e2e2e;
+color: #fff;
+}
+
+/* Apply button */
+.apply-btn {
+display: block;
+width: 100%;
+padding: 9px 14px;
+margin-top: 6px;
+background: #2563eb;
+color: #fff;
+border: none;
+border-radius: 8px;
+font-size: 12px;
+font-weight: 600;
+font-family: "Montserrat", sans-serif;
+cursor: pointer;
+transition: background 0.2s;
+}
+.apply-btn:hover { background: #1d4ed8;
+}
+
+/* ── Spectrum Color Picker Overrides ───────────────────────── */
+/*
+   Hide the .sp-replacer when the accordion is closed.
+   When open, style it to match our dark theme.
+*/
+.editor-box:not(.active) .sp-replacer {
+display: none !important;
+}
+
+.sp-replacer {
+width: 40% !important;
+height: 36px;
+background: #2a2a2a !important;
+border: 1px solid #3a3a3a !important;
+border-radius: 15px 36px 16px 16px !important;
+display: flex !important;
+align-items: center;
+padding: 5px 8px;
+margin-bottom: 10px;
+cursor: pointer;
+transition: border-color 0.2s;
+box-shadow: none !important;
+}
+.sp-replacer:hover {
+border-color: #2563eb !important;
+background: #333 !important;
+}
+.sp-preview {
+flex: 1;
+height: 22px;
+border-radius: 6px;
+border: none !important;
+box-shadow: 0 1px 3px rgba(0,0,0,0.4) !important;
+}
+.sp-preview-inner { border-radius: 6px;
+}
+.sp-dd { color: #888;
+font-size: 11px;
+margin-left: 8px;
+}
+
+/* Spectrum popup */
+.sp-container {
+z-index: 99999 !important;
+background: #1e1e1e !important;
+border: 1px solid #3a3a3a !important;
+border-radius: 14px !important;
+box-shadow: 0 8px 30px rgba(0,0,0,0.6) !important;
+padding: 12px !important;
+}
+.sp-input-container input.sp-input {
+background: #2a2a2a !important;
+border: 1px solid #3a3a3a !important;
+border-radius: 8px !important;
+color: #fff !important;
+font-size: 13px !important;
+padding: 6px 10px !important;
+width: 100% !important;
+box-sizing: border-box !important;
+outline: none !important;
+}
+.sp-input-container input.sp-input:focus { border-color: #2563eb !important;
+}
+.sp-choose {
+background: linear-gradient(135deg, #2563eb, #3b82f6) !important;
+color: #fff !important;
+border: none !important;
+border-radius: 8px !important;
+padding: 7px 14px !important;
+font-weight: 700 !important;
+font-size: 12px !important;
+cursor: pointer !important;
+}
+.sp-cancel { color: #888 !important;
+font-size: 12px !important;
+text-decoration: none !important;
+margin-right: 8px !important;
+}
+.sp-cancel:hover { color: #ef4444 !important;
+}
+.sp-thumb-el { border-radius: 4px !important;
+border: 2px solid transparent !important;
+}
+.sp-thumb-el:hover, .sp-thumb-el.sp-thumb-active { border-color: #2563eb !important;
+transform: scale(1.15) !important;
+}
+
+/* ── Icon Picker Modal ─────────────────────────────────────── */
+#iconPickerModal {
+display: none;
+position: fixed;
+z-index: 100000;
+background: #1e1e1e;
+border: 1px solid #3a3a3a;
+border-radius: 12px;
+padding: 14px;
+grid-template-columns: repeat(4, 1fr);
+gap: 8px;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+max-width: 300px;
+max-height: 80vh;
+overflow-y: auto;
+box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+}
+#iconPickerModal .icon-btn {
+background: #2a2a2a;
+border: 1px solid #3a3a3a;
+border-radius: 8px;
+padding: 10px;
+cursor: pointer;
+font-size: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+color: #fff;
+transition: background 0.15s, border-color 0.15s;
+}
+#iconPickerModal .icon-btn:hover { background: #333;
+border-color: #2563eb;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 1280px) { .editor-panel { width: 400px;
+} }
+@media (max-width: 1024px) {
+.editor-panel { width: 360px;
+}
+.saveBtn, .wa-btn { padding: 7px 10px;
+font-size: 10px;
+}
+.team { gap: 6px;
+}
+}
+@media (max-width: 768px) { .editor-panel { width: 85%;
+} }
+@media (max-width: 600px) {
+.editor-panel { width: 100%;
+}
+.saveBtn, .wa-btn { flex: 1;
+min-width: 52px;
+max-width: 82px;
+padding: 7px 8px;
+font-size: 9.5px;
+}
+#saveStatus { width: 100%;
+order: 5;
+}
+}
+@media (max-width: 360px) {
+.saveBtn, .wa-btn { font-size: 9px;
+padding: 6px 7px;
+}
+}
+@media (prefers-reduced-motion: reduce) {
+.editor-panel, .editor-btn .arrow, #editorOverlay { transition: none !important;
+}
+}
+</style>
+</head>
+<body>
+<div id="templatePreview">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Name Portfolio</title>
+<style>
+/* ==========================
+   ROOT VARIABLES
+========================== */
+:root{
+--primary: #2255C4;
+--primary-hover: #0F2044;
+
+--bg: #ffffff;
+--bg-light: #EBF0FB;
+
+--text: #0F2044;
+--text-light: #5A6A8A;
+
+--white: #ffffff;
+--black: #080F1F;
+
+--shadow: 0 5px 20px rgba(15,32,68,.10);
+
+--radius: 16px;
+
+--container: 1200px;
+/* Responsive Typography */
+--img-width: 50%;
+--fs-h1: clamp(2rem,6vw,4.5rem);
+--fs-h2: clamp(1.8rem,4vw,2.8rem);
+--fs-h3: clamp(1.2rem,3vw,1.8rem);
+--fs-body: clamp(.95rem,1.2vw,1.1rem);
+--fs-small: clamp(.8rem,1vw,.95rem);
+
+/* Responsive Spacing */
+--section-padding: clamp(4rem,8vw,7rem);
+--container-padding: clamp(1rem,5vw,8%);
+}
+
+/* ==========================
+   RESET
+========================== */
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+html{
+scroll-behavior: smooth;
+}
+
+body{
+font-family: Arial,sans-serif;
+background: var(--bg);
+color: var(--text);
+line-height: 1.7;
+font-size: var(--fs-body);
+}
+
+img{
+display: block;
+max-width: 100%;
+}
+
+section{
+scroll-margin-top: 110px;
+}
+
+/* ==========================
+   HEADER
+========================== */
+#header{
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+z-index: 1000;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 15px var(--container-padding);
+background: rgba(255,255,255,.85);
+backdrop-filter: blur(4px);
+-webkit-backdrop-filter: blur(4px);
+box-shadow: var(--shadow);
+}
+
+#header img{
+width: 50px;
+border-radius: 50px;
+object-fit: cover;
+}
+
+#header ul{
+display: flex;
+list-style: none;
+gap: 30px;
+}
+
+#header a{
+text-decoration: none;
+color: var(--text);
+font-weight: 600;
+transition: .3s;
+}
+
+#header a:hover{
+color: var(--primary);
+}
+
+/* ==========================
+   HERO
+========================== */
+#home{
+min-height: 70vh;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+padding: 120px var(--container-padding);
+background:
+linear-gradient(
+146deg,
+rgba(15,32,68,0.75),
+rgba(232,160,32,0.55)
+),
+url("hero.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+}
+
+#hero-text h1{
+flex-wrap: wrap;
+line-break: auto;
+font-size: var(--fs-h1);
+color: var(--white);
+}
+
+/* ==========================
+   ABOUT
+========================== */
+#about{
+max-width: var(--container);
+margin: auto;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 60px;
+align-items: center;
+padding: var(--section-padding) var(--container-padding);
+}
+
+.about-text h2{
+font-size: var(--fs-h2);
+margin-bottom: 20px;
+}
+
+#about-desc{
+text-align: left;
+word-spacing: 4px;
+letter-spacing: 0.2px;
+font-weight: 500;
+color: var(--text-light);
+}
+
+.about-image{
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 20px;
+}
+
+/* ==========================
+   WHAT I DO
+========================== */
+#what-i-do{
+background: var(--bg-light);
+padding: var(--section-padding) var(--container-padding);
+}
+
+#what-i-do h2{
+text-align: center;
+font-size: var(--fs-h2);
+margin-bottom: 60px;
+}
+
+.category{
+margin-bottom: 80px;
+}
+
+.category h3{
+text-align: center;
+font-size: var(--fs-h3);
+margin-bottom: 25px;
+}
+
+.grid{
+display: grid;
+grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+gap: 25px;
+}
+
+.item{
+display: flex;
+flex-direction: column;
+transition: 0.4s;
+}
+
+.item:hover{
+transform: translateY(-8px);
+}
+
+.item img{
+width: var(--img-width: 50%;;
+);
+aspect-ratio: 4/5;
+object-fit: cover;
+border-radius: 16px 16px 0px 0px;
+box-shadow: var(--shadow);
+}
+
+.item p{
+background: var(--primary);
+width: var(--img-width: 50%;
+);
+color: var(--white);
+text-align: center;
+padding: 12px;
+font-size: var(--fs-small);
+border-radius: 0 0 16px 16px;
+}
+
+/* ==========================
+   HIRE ME
+========================== */
+#hire-me{
+text-align: center;
+padding: var(--section-padding) var(--container-padding);
+}
+
+#hire-me h2{
+font-size: var(--fs-h2);
+margin-bottom: 15px;
+}
+
+#hire-me p{
+margin-bottom: 25px;
+}
+
+#hire-btn{
+display: inline-block;
+padding: 14px 35px;
+background: #E8A020;
+color: var(--white);
+text-decoration: none;
+border-radius: 50px;
+transition: .3s;
+}
+
+.hire-btn:hover{
+background: #C98810;
+}
+
+/* ==========================
+   FOOTER
+========================== */
+#footer{
+background: var(--black);
+color: var(--white);
+
+text-align: center;
+
+padding: 25px;
+}
+
+/* ==========================
+   TABLETS
+========================== */
+@media (max-width:1024px){
+
+#about{
+gap: 40px;
+}
+
+.grid{
+grid-template-columns: repeat(2,1fr);
+}
+}
+
+/* ==========================
+   MOBILE
+========================== */
+@media (max-width:768px){
+
+#header{
+flex-direction: column;
+gap: 12px;
+padding: 7px 17px;
+}
+
+#header ul{
+gap: 15px;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+#about{
+display: flex;
+flex-direction: column;
+justify-content: center;
+grid-template-columns: 1fr;
+text-align: center;
+gap: 30px;
+}
+
+.grid{
+grid-template-columns: 1fr;
+}
+
+.about-image img{
+max-width: 150px;
+}
+}
+
+/* ==========================
+   SMALL PHONES
+========================== */
+@media (max-width:480px){
+
+#header a{
+font-size: 12px;
+}
+
+.item img{
+aspect-ratio: 1/1.2;
+}
+}
+</style>
+
+</head>
+<body>
+
+<!-- Header -->
+<header id="header">
+<a href="#home"><img src="Yomyom.jpg" alt="Brand Logo"></a>
+<nav>
+<ul>
+<li><a href="#home" id="nav-home">Home</a></li>
+<li><a href="#about" id="nav-about">About</a></li>
+<li><a href="#what-i-do" id="nav-what">What I Do</a></li>
+<li><a href="#hire-me" id="nav-hire">Hire Me</a></li>
+</ul>
+</nav>
+</header>
+
+<!-- Home / Hero Section -->
+<section id="home">
+<div id="hero-text">
+<h1 id="hero-title">Designing Visual Experiences That Leave a Lasting Impression</h1>
+</div>
+</section>
+
+<!-- About Section -->
+<section id="about">
+<div id="about-image">
+<img style="object-fit: center
+max-width: 220px;
+border-radius: 35px; max-height:500px;" src="trainer1.jpeg" alt="Profile Image">
+</div>
+<div id="about-text">
+<h2 id="about-title">About Us</h2>
+<p id="about-desc">
+Welcome to Yomyom Graphics Design
+Bringing creativity, innovation, and professional design solutions to individuals, businesses, and brands.
+At Yomyom Graphics Design, we specialize in creating visually stunning designs that help brands stand out and make a lasting impression. From logos and branding to social media graphics, marketing materials, and digital content, we transform ideas into eye-catching visuals.
+Our goal is to deliver high-quality, creative, and impactful designs that
+communicate your message effectively and strengthen your brand identity
+</p>
+</div>
+</section>
+
+<!-- What I Do Section -->
+<section id="what-i-do">
+<h2 id="what-i-do-title">What I Do</h2>
+
+<!-- Wedding Flyers -->
+<div class="category" id="category-wedding">
+<h3 id="wedding-title">Category 1 Title</h3>
+<div class="grid">
+<div class="item" id="wedding-card-1">
+<img src="img-placehloder.jpg" alt="Wedding Flyer 1">
+<p id="wedding-p1" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="wedding-card-2">
+<img src="img-placehloder.jpg" alt="Wedding Flyer 2">
+<p id="wedding-p2" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="wedding-card-3">
+<img src="img-placehloder.jpg" alt="Wedding Flyer 3">
+<p id="wedding-p3" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="wedding-card-4">
+<img src="img-placehloder.jpg" alt="Wedding Flyer 4">
+<p id="wedding-p4" class="card-caption">
+Image Description
+</p>
+</div>
+</div>
+</div>
+
+<!-- Naming Ceremony Flyers -->
+<div class="category" id="category-naming">
+<h3 id="naming-title">Category 2 Title</h3>
+<div class="grid">
+<div class="item" id="naming-card-1">
+<img src="img-placehloder.jpg" alt="Naming Flyer 1">
+<p id="naming-p1" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="naming-card-2">
+<img src="img-placehloder.jpg" alt="Naming Flyer 2">
+<p id="naming-p2" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="naming-card-3">
+<img src="img-placehloder.jpg" alt="Naming Flyer 3">
+<p id="naming-p3" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="naming-card-4">
+<img src="img-placehloder.jpg" alt="Naming Flyer 4">
+<p id="naming-p4" class="card-caption">
+Image Description
+</p>
+</div>
+</div>
+</div>
+
+<!-- Logo Design -->
+<div class="category" id="category-logo">
+<h3 id="logo-title">Category 3 Title</</h3>
+<div class="grid">
+<div class="item" id="logo-card-1">
+<img src="img-placehloder.jpg" alt="Logo Design 1">
+<p id="logo-p1" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="logo-card-2">
+<img src="img-placehloder.jpg" alt="Logo Design 2">
+<p id="logo-p2" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="logo-card-3">
+<img src="img-placehloder.jpg" alt="Logo Design 3">
+<p id="logo-p3" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="logo-card-4">
+<img src="img-placehloder.jpg" alt="Logo Design 4">
+<p id="logo-p4" class="card-caption">
+Image Description
+</p>
+</div>
+</div>
+</div>
+
+<!-- Business Flyers -->
+<div class="category" id="category-business">
+<h3 id="business-title">Category 4</h3>
+<div class="grid">
+<div class="item" id="business-card-1">
+<img src="img-placehloder.jpg" alt="Business Flyer 1">
+<p id="business-p1" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="business-card-2">
+<img src="img-placehloder.jpg" alt="Business Flyer 2">
+<p id="business-p2" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="business-card-3">
+<img src="img-placehloder.jpg" alt="Business Flyer 3">
+<p id="business-p3" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="business-card-4">
+<img src="img-placehloder.jpg" alt="Business Flyer 4">
+<p id="business-p4" class="card-caption">
+Image Description
+</p>
+</div>
+</div>
+</div>
+
+<!-- Birthday Flyers -->
+<div class="category" id="category-birthday">
+<h3 id="birthday-title">Category 5 Title</</h3>
+<div class="grid">
+<div class="item" id="birthday-card-1">
+<img src="img-placehloder.jpg" alt="Birthday Flyer 1">
+<p id="birthday-p1" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="birthday-card-2">
+<img src="img-placehloder.jpg" alt="Birthday Flyer 2">
+<p id="birthday-p2" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="birthday-card-3">
+<img src="img-placehloder.jpg" alt="Birthday Flyer 3">
+<p id="birthday-p3" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="birthday-card-4">
+<img src="img-placehloder.jpg" alt="Birthday Flyer 4">
+<p id="birthday-p4" class="card-caption">
+Image Description
+</p>
+</div>
+</div>
+</div>
+
+<!-- Citation Flyers -->
+<div class="category" id="category-citation">
+<h3 id="citation-title">Category 6 Title</</h3>
+<div class="grid">
+<div class="item" id="citation-card-1">
+<img src="img-placehloder.jpg" alt="Citation Flyer 1">
+<p id="citation-p1" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="citation-card-2">
+<img src="img-placehloder.jpg" alt="Citation Flyer 2">
+<p id="citation-p2" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="citation-card-3">
+<img src="img-placehloder.jpg" alt="Citation Flyer 3">
+<p id="citation-p3" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="citation-card-4">
+<img src="img-placehloder.jpg" alt="Citation Flyer 4">
+<p id="citation-p4" class="card-caption">
+Image Description
+</p>
+</div>
+</div>
+</div>
+
+<!-- Campaign Flyers -->
+<div class="category" id="category-campaign">
+<h3 id="campaign-title">Category 7 Title</</h3>
+<div class="grid">
+<div class="item" id="campaign-card-1">
+<img src="img-placehloder.jpg" alt="Campaign Flyer 1">
+<p id="campaign-p1" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="campaign-card-2">
+<img src="img-placehloder.jpg" alt="Campaign Flyer 2">
+<p id="campaign-p2" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="campaign-card-3">
+<img src="img-placehloder.jpg" alt="Campaign Flyer 3">
+<p id="campaign-p3" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="campaign-card-4">
+<img src="img-placehloder.jpg" alt="Campaign Flyer 4">
+<p id="campaign-p4" class="card-caption">
+Image Description
+</p>
+</div>
+</div>
+</div>
+
+<!-- T-shirt Designs -->
+<div class="category" id="category-tshirt">
+<h3 id="tshirt-title">Category 8 Title</</h3>
+<div class="grid">
+<div class="item" id="tshirt-card-1">
+<img src="img-placehloder.jpg" alt="T-shirt Design 1">
+<p id="tshirt-p1" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="tshirt-card-2">
+<img src="img-placehloder.jpg" alt="T-shirt Design 2">
+<p id="tshirt-p2" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="tshirt-card-3">
+<img src="img-placehloder.jpg" alt="T-shirt Design 3">
+<p id="tshirt-p3" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="tshirt-card-4">
+<img src="img-placehloder.jpg" alt="T-shirt Design 4">
+<p id="tshirt-p4" class="card-caption">
+Image Description
+</p>
+</div>
+</div>
+</div>
+
+</section>
+
+<!-- Hire Me Section -->
+<section id="hire-me">
+<h2 id="hire-me-title">Ready to bring your ideas to life?</h2>
+<p id="hire-me-desc">
+Hire me today!
+</p>
+<a href="https://wa.me/233555358325" target="_blank" id="hire-btn">WhatsApp Me</a>
+</section>
+
+<!-- Footer -->
+<footer id="footer">
+<div id="footer-bottom">
+&copy; 2026 Brand Name. All rights reserved.
+</div>
+</footer>
+
+</body>
+</html>
+</div>
+
+<!-- TOGGLE BUTTON -->
+<button id="editorToggleBtn">✏ Edit</button>
+
+<!-- OVERLAY -->
+<div id="editorOverlay"></div>
+
+<!-- ==================== EDITOR PANEL ==================== -->
+<div class="editor-panel" id="editorPanel">
+<br>
+<span id="saveStatus"></span>
+<div class="team">
+<button id="saveBtn" class="saveBtn save">Save</button>
+<hr />
+<button id="loadPrevBtn" class="saveBtn" style="background:#fff;color:#000" onclick="loadDraft()">Load</button>
+<hr />
+<button id="resetBtn" class="saveBtn reset" onclick="clearAllData()">Reset</button>
+<hr />
+<br />
+<button id="submitFinalBtn" class="saveBtn final">Submit</button>
+<hr />
+<button id="waContactBtn" class="wa-btn" disabled style="opacity:0.4;cursor:not-allowed" title="Submit first to unlock">WhatsApp</button>
+</div>
+
+<!-- ====== HEADER / NAV ====== -->
+<div class="editor-box">
+<button class="editor-btn">
+Navigation Bar
+<span class="arrow">▼</span>
+</button>
+<div class="dropdown-content">
+
+<div class="editor-group">
+<p class="group-label">
+Colors
+</p>
+<label>Background Color</label>
+<input id="navBgColor" />
+<label>Link Text Color</label>
+<input id="navTextColor" />
+<label>Link Hover Color</label>
+<input id="navHoverColor" />
+</div>
+
+<div class="editor-group">
+<p class="group-label">
+Logo Image
+</p>
+<input type="file" accept="image/*" onchange="uploadLogoImage(event)" />
+</div>
+
+<div class="editor-group">
+<p class="group-label">
+Nav Link Names
+</p>
+<label>Link 1 Text</label>
+<input type="text" placeholder="Home" oninput="setNavText('nav-home', this.value)" />
+<label>Link 1 Destination (#section)</label>
+<input type="text" placeholder="#home" oninput="setNavHref('nav-home', this.value)" />
+
+<label>Link 2 Text</label>
+<input type="text" placeholder="About" oninput="setNavText('nav-about', this.value)" />
+<label>Link 2 Destination (#section)</label>
+<input type="text" placeholder="#about" oninput="setNavHref('nav-about', this.value)" />
+
+<label>Link 3 Text</label>
+<input type="text" placeholder="What I Do" oninput="setNavText('nav-what', this.value)" />
+<label>Link 3 Destination (#section)</label>
+<input type="text" placeholder="#what-i-do" oninput="setNavHref('nav-what', this.value)" />
+
+<label>Link 4 Text</label>
+<input type="text" placeholder="Hire Me" oninput="setNavText('nav-hire', this.value)" />
+<label>Link 4 Destination (#section)</label>
+<input type="text" placeholder="#hire-me" oninput="setNavHref('nav-hire', this.value)" />
+</div>
+
+</div>
+</div>
+
+<!-- ====== HERO ====== -->
+<div class="editor-box">
+<button class="editor-btn">
+Hero Section
+<span class="arrow">▼</span>
+</button>
+<div class="dropdown-content">
+
+<div class="editor-group">
+<p class="group-label">
+Background Image
+</p>
+<!-- Hidden real input — JS reads from this -->
+<input
+type="file"
+accept="image/*"
+id="heroImageInput"
+onchange="uploadHeroImage(event)"
+style="display:none;"
+/>
+<button
+type="button"
+onclick="document.getElementById('heroImageInput').click()"
+style="width:100%;padding:9px;background:#2a2a2a;color:#fff;border:1px solid #3a3a3a;border-radius:8px;font-size:12px;cursor:pointer;transition:border-color 0.2s;"
+onmouseover="this.style.borderColor='#2563eb'"
+onmouseout="this.style.borderColor='#3a3a3a'"
+>📷 Choose Hero Background Image</button>
+<p style="color:#666;font-size:10px;margin-top:4px;">
+</p>
+</div>
+
+<div class="editor-group">
+<p class="group-label">
+Gradient Colors
+</p>
+<label>Gradient Color 1 (top)</label>
+<input id="heroGradientColor1" />
+<label>Gradient Color 2 (bottom)</label>
+<input id="heroGradientColor2" />
+</div>
+
+<div class="editor-group">
+<p class="group-label">
+Overlay Opacity
+</p>
+<label>Opacity: <span id="opacityDisplay">0.65</span></label>
+<input
+type="range"
+min="0" max="1" step="0.01" value="0.65"
+oninput="setHeroOpacity(this.value)"
+style="width:100%;accent-color:#2563eb;margin-bottom:8px;"
+/>
+</div>
+
+<div class="editor-group">
+<p class="group-label">
+Hero Title
+</p>
+<input type="text" placeholder="Welcome to Brand Name" oninput="setText('hero-title', this.value)" />
+<label>Title Color</label>
+<input id="heroTitleColor" />
+</div>
+
+</div>
+</div>
+
+<!-- ====== ABOUT ====== -->
+<div class="editor-box">
+<button class="editor-btn">
+About Section
+<span class="arrow">▼</span>
+</button>
+<div class="dropdown-content">
+
+<div class="editor-group">
+<p class="group-label">
+Background
+</p>
+<label>Background Color</label>
+<input id="aboutBgColor" />
+</div>
+
+<div class="editor-group">
+<p class="group-label">
+About Image
+</p>
+<input type="file" accept="image/*" onchange="uploadAboutImage(event)" />
+</div>
+
+<div class="editor-group">
+<p class="group-label">
+About Title
+</p>
+<input type="text" placeholder="About Me" oninput="setText('about-title', this.value)" />
+<label>Title Color</label>
+<input id="aboutTitleColor" />
+</div>
+
+<div class="editor-group">
+<p class="group-label">
+About Description
+</p>
+<textarea placeholder="Hi! I'm..." oninput="setText('about-desc', this.value)"></textarea>
+<label>Text Color</label>
+<input id="aboutDescColor" />
+</div>
+
+</div>
+</div>
+
+<!-- ====== WHAT I DO ====== -->
+<div class="editor-box">
+<button class="editor-btn">
+What I Do — Section Title
+<span class="arrow">▼</span>
+</button>
+<div class="dropdown-content">
+<div class="editor-group">
+<p class="group-label">
+Section Heading
+</p>
+<input type="text" placeholder="What I Do" oninput="setText('what-i-do-title', this.value)" />
+<label>Heading Color</label>
+<input id="whatTitleColor" />
+<label>Section Background</label>
+<input id="whatBgColor" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card Caption Background Color
+</p>
+<input id="captionBgColor" />
+<label>Card Caption Text Color</label>
+<input id="captionTextColor" />
+</div>
+</div>
+</div>
+
+<!-- ====== WEDDING ====== -->
+<div class="editor-box">
+<button class="editor-btn">Category 1<span class="arrow">▼</span></button>
+<div class="dropdown-content">
+<div class="editor-group">
+<p class="group-label">
+Category Title
+</p>
+<input type="text" placeholder="Wedding Flyers" oninput="setText('wedding-title', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 1
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('wedding-card-1', event)" />
+<input type="text" placeholder="Caption" oninput="setText('wedding-p1', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 2
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('wedding-card-2', event)" />
+<input type="text" placeholder="Caption" oninput="setText('wedding-p2', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 3
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('wedding-card-3', event)" />
+<input type="text" placeholder="Caption" oninput="setText('wedding-p3', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 4
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('wedding-card-4', event)" />
+<input type="text" placeholder="Caption" oninput="setText('wedding-p4', this.value)" />
+</div>
+</div>
+</div>
+
+<!-- ====== NAMING ====== -->
+<div class="editor-box">
+<button class="editor-btn">Category 2<span class="arrow">▼</span></button>
+<div class="dropdown-content">
+<div class="editor-group">
+<p class="group-label">
+Category Title
+</p>
+<input type="text" placeholder="Naming Ceremony Flyers" oninput="setText('naming-title', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 1
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('naming-card-1', event)" />
+<input type="text" placeholder="Caption" oninput="setText('naming-p1', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 2
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('naming-card-2', event)" />
+<input type="text" placeholder="Caption" oninput="setText('naming-p2', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 3
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('naming-card-3', event)" />
+<input type="text" placeholder="Caption" oninput="setText('naming-p3', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 4
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('naming-card-4', event)" />
+<input type="text" placeholder="Caption" oninput="setText('naming-p4', this.value)" />
+</div>
+</div>
+</div>
+
+<!-- ====== LOGO ====== -->
+<div class="editor-box">
+<button class="editor-btn">Category 3 <span class="arrow">▼</span></button>
+<div class="dropdown-content">
+<div class="editor-group">
+<p class="group-label">
+Category Title
+</p>
+<input type="text" placeholder="Logo Design" oninput="setText('logo-title', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 1
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('logo-card-1', event)" />
+<input type="text" placeholder="Caption" oninput="setText('logo-p1', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 2
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('logo-card-2', event)" />
+<input type="text" placeholder="Caption" oninput="setText('logo-p2', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 3
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('logo-card-3', event)" />
+<input type="text" placeholder="Caption" oninput="setText('logo-p3', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 4
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('logo-card-4', event)" />
+<input type="text" placeholder="Caption" oninput="setText('logo-p4', this.value)" />
+</div>
+</div>
+</div>
+
+<!-- ====== BUSINESS ====== -->
+<div class="editor-box">
+<button class="editor-btn">Category 4<span class="arrow">▼</span></button>
+<div class="dropdown-content">
+<div class="editor-group">
+<p class="group-label">
+Category Title
+</p>
+<input type="text" placeholder="Business Flyers" oninput="setText('business-title', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 1
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('business-card-1', event)" />
+<input type="text" placeholder="Caption" oninput="setText('business-p1', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 2
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('business-card-2', event)" />
+<input type="text" placeholder="Caption" oninput="setText('business-p2', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 3
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('business-card-3', event)" />
+<input type="text" placeholder="Caption" oninput="setText('business-p3', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 4
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('business-card-4', event)" />
+<input type="text" placeholder="Caption" oninput="setText('business-p4', this.value)" />
+</div>
+</div>
+</div>
+
+<!-- ====== BIRTHDAY ====== -->
+<div class="editor-box">
+<button class="editor-btn">Category 5 <span class="arrow">▼</span></button>
+<div class="dropdown-content">
+<div class="editor-group">
+<p class="group-label">
+Category Title
+</p>
+<input type="text" placeholder="Birthday Flyers" oninput="setText('birthday-title', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 1
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('birthday-card-1', event)" />
+<input type="text" placeholder="Caption" oninput="setText('birthday-p1', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 2
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('birthday-card-2', event)" />
+<input type="text" placeholder="Caption" oninput="setText('birthday-p2', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 3
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('birthday-card-3', event)" />
+<input type="text" placeholder="Caption" oninput="setText('birthday-p3', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 4
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('birthday-card-4', event)" />
+<input type="text" placeholder="Caption" oninput="setText('birthday-p4', this.value)" />
+</div>
+</div>
+</div>
+
+<!-- ====== CITATION ====== -->
+<div class="editor-box">
+<button class="editor-btn">Category 6 <span class="arrow">▼</span></button>
+<div class="dropdown-content">
+<div class="editor-group">
+<p class="group-label">
+Category Title
+</p>
+<input type="text" placeholder="Citation Flyers" oninput="setText('citation-title', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 1
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('citation-card-1', event)" />
+<input type="text" placeholder="Caption" oninput="setText('citation-p1', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 2
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('citation-card-2', event)" />
+<input type="text" placeholder="Caption" oninput="setText('citation-p2', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 3
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('citation-card-3', event)" />
+<input type="text" placeholder="Caption" oninput="setText('citation-p3', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 4
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('citation-card-4', event)" />
+<input type="text" placeholder="Caption" oninput="setText('citation-p4', this.value)" />
+</div>
+</div>
+</div>
+
+<!-- ====== CAMPAIGN ====== -->
+<div class="editor-box">
+<button class="editor-btn">Category 7 <span class="arrow">▼</span></button>
+<div class="dropdown-content">
+<div class="editor-group">
+<p class="group-label">
+Category Title
+</p>
+<input type="text" placeholder="Campaign Flyers" oninput="setText('campaign-title', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 1
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('campaign-card-1', event)" />
+<input type="text" placeholder="Caption" oninput="setText('campaign-p1', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 2
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('campaign-card-2', event)" />
+<input type="text" placeholder="Caption" oninput="setText('campaign-p2', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 3
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('campaign-card-3', event)" />
+<input type="text" placeholder="Caption" oninput="setText('campaign-p3', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 4
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('campaign-card-4', event)" />
+<input type="text" placeholder="Caption" oninput="setText('campaign-p4', this.value)" />
+</div>
+</div>
+</div>
+
+<!-- ====== TSHIRT ====== -->
+<div class="editor-box">
+<button class="editor-btn">Category 8 <span class="arrow">▼</span></button>
+<div class="dropdown-content">
+<div class="editor-group">
+<p class="group-label">
+Category Title
+</p>
+<input type="text" placeholder="T-shirt Designs" oninput="setText('tshirt-title', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 1
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('tshirt-card-1', event)" />
+<input type="text" placeholder="Caption" oninput="setText('tshirt-p1', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 2
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('tshirt-card-2', event)" />
+<input type="text" placeholder="Caption" oninput="setText('tshirt-p2', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 3
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('tshirt-card-3', event)" />
+<input type="text" placeholder="Caption" oninput="setText('tshirt-p3', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Card 4
+</p>
+<input type="file" accept="image/*" onchange="uploadCardImage('tshirt-card-4', event)" />
+<input type="text" placeholder="Caption" oninput="setText('tshirt-p4', this.value)" />
+</div>
+</div>
+</div>
+
+<!-- ====== HIRE ME ====== -->
+<div class="editor-box">
+<button class="editor-btn">Hire Me Section <span class="arrow">▼</span></button>
+<div class="dropdown-content">
+<div class="editor-group">
+<p class="group-label">
+Colors
+</p>
+<label>Background Color</label>
+<input id="hireBgColor" />
+<label>Title Color</label>
+<input id="hireTitleColor" />
+<label>Description Color</label>
+<input id="hireDescColor" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Text
+</p>
+<input type="text" placeholder="Section Title" oninput="setText('hire-me-title', this.value)" />
+<input type="text" placeholder="Description" oninput="setText('hire-me-desc', this.value)" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Button
+</p>
+<input type="text" placeholder="Button Text" oninput="setText('hire-btn', this.value)" />
+<input type="text" placeholder="https://wa.me/233555358325" oninput="setHref('hire-btn', this.value)" />
+<label>Button Background</label>
+<input id="hireBtnBg" />
+<label>Button Text Color</label>
+<input id="hireBtnText" />
+</div>
+</div>
+</div>
+
+<!-- ====== FOOTER ====== -->
+<div class="editor-box">
+<button class="editor-btn">Footer <span class="arrow">▼</span></button>
+<div class="dropdown-content">
+<div class="editor-group">
+<p class="group-label">
+Colors
+</p>
+<label>Background Color</label>
+<input id="footerBgColor" />
+<label>Text Color</label>
+<input id="footerTextColor" />
+</div>
+<div class="editor-group">
+<p class="group-label">
+Copyright Text
+</p>
+<input type="text" placeholder="© 2026 Brand Name. All rights reserved." oninput="setText('footer-bottom', this.value)" />
+</div>
+</div>
+</div>
+</div>
+
+<!-- end .editor-panel -->
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- Spectrum -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.1/spectrum.min.js"></script>
+<!-- Editor JS -->
+<script src="editor.js"></script>
+
+<script>
+// Panel open/close
+const panel = document.getElementById("editorPanel");
+const btn = document.getElementById("editorToggleBtn");
+const overlay = document.getElementById("editorOverlay");
+
+btn.addEventListener("click", () => {
+const isOpen = panel.classList.contains("open");
+panel.classList.toggle("open", !isOpen);
+overlay.classList.toggle("active", !isOpen);
+});
+overlay.addEventListener("click", () => {
+panel.classList.remove("open");
+overlay.classList.remove("active");
+});
+
+// Accordion
+document.querySelectorAll(".editor-btn").forEach(button => {
+button.addEventListener("click", e => {
+e.stopPropagation();
+const box = button.closest(".editor-box");
+document.querySelectorAll(".editor-box.active").forEach(b => {
+if (b !== box) b.classList.remove("active");
+});
+box.classList.toggle("active");
+});
+});
+</script>
+<!-- SUPABASE MUST BE FIRST -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- EMAILJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<!-- JQUERY -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- SPECTRUM -->
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.1/spectrum.min.js"></script>
+
+<!-- FILES -->
+<script src="DESIGNER PORTFOLIO---EDIT.js"></script>
+<script src="DESIGNER PORTFOLIO----Supabase.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1474 @@
+<!doctype html>
+<html lang="en">
+<meta charset="UTF-8" />
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+name="description"
+content="Opposite Unity Junction, Tamale, Ghana. Visit Royal Fade Barbers for sharp fades, clean haircuts, and expert grooming in Tamale"
+/>
+<title>
+Kurugu's Cuts| Barber Shop in Gbambaga, North East, Ghana – Clean
+Cuts & Fades
+</title>
+
+<!-- Google ===== Fonts-->
+<!-- =========================
+<!-- =========================
+BRAND NAME FONTS
+USED FOR LOGO / BRAND IDENTITY
+========================= -->
+
+<link
+href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap"
+rel="stylesheet"
+/>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+rel="stylesheet"
+/>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
+rel="stylesheet"
+/>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+rel="stylesheet"
+/>
+
+<!-- =========================
+SLOGAN / HERO TEXT FONTS
+USED FOR HERO SUBTITLE / TAGLINE
+========================= -->
+
+<link
+href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+rel="stylesheet"
+/>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap"
+rel="stylesheet"
+/>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+rel="stylesheet"
+/>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
+rel="stylesheet"
+/>
+
+<!-- =========================
+BUTTON FONTS
+USED FOR CTA BUTTONS
+========================= -->
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+rel="stylesheet"
+/>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+rel="stylesheet"
+/>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap"
+rel="stylesheet"
+/>
+
+<style>
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*,
+*::before,
+*::after {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+font-family: "Montserrat", sans-serif;
+background: #0b0f14;
+color: #fff;
+line-height: 1.6;
+-webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   CSS VARIABLES
+   ============================================================ */
+:root {
+/* NAVBAR */
+--nav-bg: rgba(10, 15, 20, 0.85);
+--nav-text: #ffffff;
+--nav-hover: #d4af37;
+
+/* HERO */
+--hero-bg-color: #0b0f14;
+--hero-bg-image: url("phonehero.webp");
+--hero-gradient-1: rgba(0, 0, 0, 0.3);
+--hero-gradient-2: rgba(0, 0, 0, 0.7);
+--hero-gradient-opacity: 1;
+--hero-title-color: #ffffff;
+--hero-text-color: #ffffff;
+
+/* FONTS */
+--font-brand: "Playfair Display", serif;
+--font-slogan: "Great Vibes", cursive;
+--font-button: "Poppins", sans-serif;
+
+/* BUTTONS */
+--hero-btn-bg: #d4af37;
+--hero-btn-text: #000000;
+--hero-btn-hover-bg: #ffffff;
+--hero-btn-hover-text: #000000;
+
+/* SECTIONS */
+--aboutTitleColor: #d4af37;
+--work-bg: #111;
+--testimonial-btn-bg: #c4a003;
+--testimonial-btn-text: white;
+
+/* TYPOGRAPHY SCALE */
+--text-xs: 0.78rem;
+--text-sm: 0.92rem;
+--text-base: 1rem;
+--text-lg: 1.1rem;
+--text-xl: 1.25rem;
+--text-2xl: 1.5rem;
+--text-3xl: 2rem;
+--text-4xl: 2.8rem;
+--text-5xl: 3.5rem;
+--text-6xl: 5rem;
+--text-7xl: 6rem;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+h2,
+h3 {
+font-family: "Playfair Display", serif;
+text-shadow: 2px 1px 1px #000f01;
+color: #d4af37;
+}
+
+section {
+scroll-margin-top: 28px;
+}
+
+section h2 {
+text-align: center;
+margin-bottom: 40px;
+}
+
+strong {
+color: #d6d6d6;
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+nav {
+position: fixed;
+top: 0;
+width: 100%;
+background: var(--nav-bg);
+backdrop-filter: blur(21px);
+-webkit-backdrop-filter: blur(21px);
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+padding: 12px;
+z-index: 1000;
+border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+nav a {
+color: var(--nav-text);
+margin: 0 12px;
+text-decoration: none;
+opacity: 0.9;
+font-weight: 700;
+font-size: var(--text-base);
+transition:
+color 0.2s ease,
+opacity 0.2s ease;
+}
+
+nav a:hover {
+color: var(--nav-hover);
+opacity: 1;
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+#heroSection {
+position: relative;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+min-height: 100vh;
+padding: 20px;
+background: var(--hero-bg-color) var(--hero-bg-image) no-repeat
+center / cover;
+}
+
+/* GRADIENT OVERLAY */
+#heroSection::before {
+content: "";
+position: absolute;
+inset: 0;
+background: linear-gradient(
+to bottom,
+var(--hero-gradient-1),
+var(--hero-gradient-2)
+);
+opacity: var(--hero-gradient-opacity);
+z-index: 1;
+pointer-events: none;
+}
+
+#heroSection * {
+position: relative;
+z-index: 2;
+}
+
+#heroSection h1 {
+font-family: var(--font-brand);
+color: var(--hero-title-color);
+text-shadow: 3px 1px 3px black;
+line-height: 1.1;
+}
+
+.signature {
+font-family: var(--font-slogan);
+color: var(--hero-text-color);
+text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.3);
+}
+
+.signature span {
+font-family: inherit;
+color: var(--hero-title-color);
+}
+
+.signature sup {
+vertical-align: super;
+color: inherit;
+}
+
+#heroSection p:not(.signature) {
+font-family: "Montserrat", sans-serif;
+}
+
+/* HERO BADGE */
+#heroBadge {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+color: #ffd700;
+}
+
+/* CTA BUTTON */
+.btn {
+display: inline-block;
+margin-top: 9px;
+padding: 12px 25px;
+font-family: var(--font-button);
+font-weight: 600;
+font-size: var(--text-base);
+background: var(--hero-btn-bg);
+color: var(--hero-btn-text);
+text-decoration: none;
+border-radius: 10px 25px 36px 50px;
+transition:
+background 0.25s ease,
+color 0.25s ease;
+}
+
+.btn:hover {
+background: var(--hero-btn-hover-bg);
+color: var(--hero-btn-hover-text);
+}
+
+/* ============================================================
+   ABOUT SECTION
+   ============================================================ */
+.about {
+min-height: 100vh;
+display: flex;
+align-items: center;
+background: #0f0f0f;
+padding: 60px 20px;
+}
+
+.about-container {
+max-width: 1000px;
+margin: auto;
+display: flex;
+gap: 30px;
+align-items: center;
+}
+
+.about-img,
+.about-text {
+flex: 1;
+}
+
+#aboutTitle {
+color: var(--aboutTitleColor);
+}
+
+.about-img img {
+width: 65%;
+max-width: 350px;
+border-radius: 20px;
+transition: transform 0.7s ease;
+}
+
+.about-img img:hover {
+transform: scale(1.01);
+}
+
+.about-text p {
+word-spacing: 2.1px;
+color: rgb(250, 248, 248);
+line-height: 1.6;
+}
+
+/* ============================================================
+   SERVICES SECTION
+   ============================================================ */
+#servicesSection {
+padding: 16px;
+}
+
+.services-scroll {
+height: 60vh;
+overflow-y: scroll;
+scroll-snap-type: y mandatory;
+border-radius: 30px;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 22px;
+padding: 20px;
+-ms-overflow-style: none;
+scrollbar-width: none;
+}
+
+.services-scroll::-webkit-scrollbar {
+display: none;
+}
+
+.service-item {
+scroll-snap-align: start;
+width: 100%;
+min-height: 30vh;
+padding: 20px;
+border-radius: 12px;
+box-sizing: border-box;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background: #121821;
+text-align: center;
+transition: transform 0.3s ease;
+}
+
+.service-item h3 {
+margin-bottom: 10px;
+}
+
+.service-item p {
+line-height: 1.5;
+color: rgb(250, 248, 248);
+}
+
+.price {
+margin-top: 12px;
+}
+
+.hidden-service {
+display: none !important;
+}
+
+/* ============================================================
+   WORK / GALLERY SECTION
+   ============================================================ */
+#workSection {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background: var(--work-bg);
+text-align: center;
+padding: 23px;
+}
+
+#workText {
+color: #fff;
+}
+
+.work-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 20px;
+margin-top: 20px;
+}
+
+.work-card {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+background: none;
+padding: 10px;
+border-radius: 10px;
+}
+
+.img-box {
+position: relative;
+flex: 1;
+}
+
+.img-box img {
+width: 100%;
+object-fit: cover;
+border-radius: 18px;
+transition: transform 0.5s ease;
+}
+
+.img-box img:hover {
+transform: scale(1.01);
+}
+
+.img-box span {
+position: absolute;
+bottom: 8px;
+left: 8px;
+background: rgba(0, 0, 0, 0.7);
+padding: 4px 8px;
+border-radius: 5px;
+}
+
+/* ============================================================
+   TESTIMONIALS SECTION
+   ============================================================ */
+.testimonials {
+padding: 60px 20px;
+background: #0f0f0f;
+}
+
+.section-title {
+text-align: center;
+margin-bottom: 25px;
+}
+
+.tName,
+.tText,
+.tNumber {
+color: inherit;
+}
+
+.tNumber {
+background: #d8980e;
+border-radius: 14px;
+font-weight: bold;
+display: inline-block;
+margin-bottom: 10px;
+padding: 2px 10px;
+}
+
+.tName {
+margin-bottom: 10px;
+}
+
+.tText {
+line-height: 1.6;
+}
+
+.slider {
+display: flex;
+gap: 20px;
+overflow-x: auto;
+scroll-snap-type: x mandatory;
+scroll-behavior: smooth;
+scrollbar-width: none;
+padding: 10px 20px;
+}
+
+.slider::-webkit-scrollbar {
+display: none;
+}
+
+.card {
+flex: 0 0 80%;
+background: #1a1a1a;
+padding: 25px;
+border-radius: 20px;
+scroll-snap-align: center;
+transition: transform 0.3s ease;
+}
+
+.card span {
+align-self: flex-start;
+margin: 2px;
+}
+
+.card h3 {
+margin-top: 4px;
+font-weight: bold;
+}
+
+.card p {
+padding-top: 6px;
+line-height: 1.5;
+}
+
+/* ============================================================
+   CONTACT SECTION
+   ============================================================ */
+#contactSection {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background: #111;
+padding: 40px 20px;
+text-align: center;
+}
+
+#contactSection-highlight svg {
+color: #f5b301;
+/* same highlight color for icons */
+}
+
+#contactSection h2 {
+margin-bottom: 20px;
+color: #f5b301;
+}
+
+#contactText {
+color: #d6d6d6;
+line-height: 1.9;
+letter-spacing: 0.5px;
+}
+
+#whatsappLink {
+margin-bottom: 12px;
+}
+
+.contactbtn {
+display: inline-block;
+background: #f5b301;
+color: #000;
+margin-top: 9px;
+padding: 12px 25px;
+font-family: var(--font-button);
+font-weight: 600;
+text-decoration: none;
+border-radius: 10px 25px 36px 50px;
+transition: opacity 0.3s ease;
+}
+
+.contactbtn:hover {
+opacity: 0.88;
+}
+
+.contact-item {
+margin: 12px 0;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+background: #000;
+text-align: center;
+padding: 20px;
+}
+
+.foot {
+color: #fff;
+}
+
+footer p {
+margin: 5px 0;
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE  (max 600px)
+   ============================================================ */
+@media (max-width: 600px) {
+nav a {
+margin: 4px 6px;
+font-size: var(--text-xs);
+}
+
+#heroSection {
+min-height: 100vh;
+padding: 20px 16px;
+}
+
+#heroSection h1 {
+font-size: 2.2rem;
+}
+#heroSection p,
+.signature {
+font-size: 1.6rem;
+margin-top: 1px;
+}
+
+.btn,
+.contactbtn {
+font-size: 0.9rem;
+padding: 11px 20px;
+}
+
+section h2 {
+font-size: 1.9rem;
+margin-bottom: 20px;
+}
+section p {
+font-size: 0.95rem;
+line-height: 1.8;
+}
+h3 {
+font-size: 1.15rem;
+}
+
+.about-container {
+flex-direction: column;
+text-align: center;
+}
+.about-img img {
+max-width: 100%;
+width: 80%;
+}
+.about-text p {
+font-size: 0.95rem;
+}
+
+.services-scroll {
+grid-template-columns: 1fr;
+}
+.service-item {
+min-height: auto;
+padding: 22px 16px;
+}
+.service-item h3 {
+font-size: 1.2rem;
+}
+.service-item p {
+font-size: 0.92rem;
+}
+.price {
+font-size: 0.95rem;
+}
+
+.work-card {
+width: 100%;
+padding: 0px;
+}
+.img-box img {
+width: 90%;
+border-radius: 12px;
+}
+.work-grid {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.card {
+flex: 0 0 88%;
+padding: 20px;
+}
+.card h3 {
+font-size: 1.1rem;
+}
+.card p {
+font-size: 0.92rem;
+}
+.tNumber {
+font-size: 0.88rem;
+}
+
+#contactSection {
+padding: 50px 16px;
+}
+.icon {
+color: #f5b301;
+}
+#contactText,
+.contact-item,
+.contact-item strong,
+.contact-item span {
+font-size: 0.92rem;
+}
+
+footer p {
+font-size: 0.88rem;
+}
+}
+
+/* ============================================================
+   RESPONSIVE — SMALL TABLET  (601px – 767px)
+   ============================================================ */
+@media (min-width: 601px) and (max-width: 767px) {
+nav a {
+font-size: var(--text-sm);
+}
+
+#heroSection {
+min-height: 100vh;
+padding: 30px 24px;
+}
+#heroSection h1 {
+font-size: 3rem;
+}
+#heroSection p,
+.signature {
+font-size: 2rem;
+}
+
+.btn,
+.contactbtn {
+font-size: var(--text-base);
+}
+
+section h2 {
+font-size: 2.2rem;
+}
+section p {
+font-size: var(--text-base);
+}
+h3 {
+font-size: 1.3rem;
+}
+
+.about-container {
+flex-direction: column;
+text-align: center;
+}
+.services-scroll {
+grid-template-columns: repeat(2, 1fr);
+}
+
+.service-item h3 {
+font-size: 1.15rem;
+}
+.service-item p {
+font-size: 0.93rem;
+}
+
+.card {
+flex: 0 0 72%;
+}
+.card p {
+font-size: 1.1rem;
+}
+
+footer p {
+font-size: 1.1rem;
+}
+}
+
+/* ============================================================
+   RESPONSIVE — TABLET  (768px – 1024px)
+   ============================================================ */
+@media (min-width: 768px) and (max-width: 1024px) {
+nav a {
+font-size: var(--text-base);
+}
+
+#heroSection {
+min-height: 100vh;
+padding: 40px;
+background-size: contain;
+}
+#heroSection h1 {
+font-size: 4rem;
+}
+#heroSection p,
+.signature {
+font-size: 1.5rem;
+}
+
+.btn,
+.contactbtn {
+font-size: 1.02rem;
+}
+
+section h2 {
+font-size: 2.6rem;
+}
+section p {
+font-size: 1.02rem;
+}
+h3 {
+font-size: 1.45rem;
+}
+
+.services-scroll {
+grid-template-columns: repeat(2, 1fr);
+}
+.service-item h3 {
+font-size: 1.3rem;
+}
+.service-item p {
+font-size: var(--text-base);
+}
+.price {
+font-size: var(--text-base);
+}
+
+.card {
+flex: 0 0 60%;
+}
+.card p {
+font-size: var(--text-base);
+}
+
+#contactText,
+.contact-item {
+font-size: var(--text-base);
+}
+
+footer p {
+font-size: var(--text-base);
+}
+
+.work-card {
+width: 70%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+}
+
+/* ============================================================
+   RESPONSIVE — LAPTOP  (1025px – 1399px)
+   ============================================================ */
+@media (min-width: 1025px) and (max-width: 1399px) {
+nav a {
+font-size: var(--text-base);
+}
+
+#heroSection {
+min-height: 100vh;
+padding: 60px;
+background-size: cover;
+background-position: 50% 20%;
+}
+#heroSection h1 {
+font-size: 5rem;
+}
+#heroSection p,
+.signature {
+font-size: 1.8rem;
+}
+
+.btn,
+.contactbtn {
+font-size: 1.05rem;
+}
+
+section h2 {
+font-size: 3rem;
+}
+section p {
+font-size: 1.06rem;
+}
+h3 {
+font-size: 1.55rem;
+}
+
+.card {
+flex: 0 0 30%;
+max-width: 320px;
+}
+.card:hover {
+transform: translateY(-10px) scale(1.03);
+}
+.slider {
+overflow: hidden;
+justify-content: center;
+flex-wrap: wrap;
+scroll-snap-type: none;
+}
+.service-controls {
+display: none;
+}
+
+.service-item h3 {
+font-size: 1.4rem;
+}
+.service-item p {
+font-size: var(--text-base);
+}
+.price {
+font-size: 1.03rem;
+}
+
+#contactText,
+.contact-item {
+font-size: var(--text-base);
+}
+
+footer p {
+font-size: var(--text-base);
+}
+}
+
+/* ============================================================
+   RESPONSIVE — LARGE / TV  (1400px+)
+   ============================================================ */
+@media (min-width: 1400px) {
+nav a {
+font-size: var(--text-lg);
+}
+
+#heroSection {
+min-height: 100vh;
+padding: 80px;
+background-size: cover;
+background-position: 30% 30%;
+}
+#heroSection h1 {
+font-size: var(--text-7xl);
+}
+#heroSection p,
+.signature {
+font-size: 2rem;
+}
+
+.btn,
+.contactbtn {
+font-size: var(--text-lg);
+}
+
+section h2 {
+font-size: 3.5rem;
+}
+section p {
+font-size: 1.12rem;
+}
+h3 {
+font-size: 1.75rem;
+}
+
+.card {
+flex: 0 0 25%;
+}
+.card:hover {
+transform: translateY(-10px) scale(1.03);
+}
+.slider {
+overflow: hidden;
+justify-content: center;
+flex-wrap: wrap;
+scroll-snap-type: none;
+}
+.service-controls {
+display: none;
+}
+
+.service-item p,
+.card p,
+#contactText {
+font-size: 1.05rem;
+}
+
+footer p {
+font-size: var(--text-base);
+}
+}
+</style>
+</head>
+
+<body>
+<nav id="navbar">
+<a href="#heroSection" id="navhome">Home</a>
+<a href="#aboutSection" id="navAbout">About</a>
+<a href="#servicesSection" id="navServices">Services</a>
+<a href="#workSection" id="navWork">Work</a>
+<a href="#testimonialSection" id="navReviews">Reviews</a>
+<a href="#contactSection" id="navContact">Contact</a>
+</nav>
+
+<header id="heroSection">
+<h1 id="brandname">
+Yomyom Hair Cuts
+<sup id="heroBadge" class="h1 sup"> </sup>
+</h1>
+<p id="heroText" class="signature">
+<span id="heroPart1">Celebrity</span>
+
+<sup id="heroSup1"></sup>
+
+<span id="heroPart2"> Barber,</span>
+
+<span id="heroPart3"> Where The Magic Happens. </span>
+<sup id="heroSup2"></sup>
+</p>
+<a id="heroBtn" href="#contactSection" class="btn"
+>Get Your Fresh Cut</a
+>
+</header>
+
+<section id="aboutSection" class="about">
+<div class="about-container">
+<div class="about-img">
+<img
+id="aboutImg"
+src="aboutimg2.webp"
+loading="eager"
+decoding="async"
+alt=""
+/>
+</div>
+<div class="about-text">
+<h2 id="aboutTitle">About Us</h2>
+
+<p id="aboutP1">
+Welcome to Yomyom Hair Cuts, where every cut is done with
+skill, and every client leaves looking sharp.
+</p>
+<br />
+
+<p id="aboutP2">
+We blend modern style with expert barbering to give you
+a clean and confident look. From fresh haircuts, bold
+hair dye, dreadlocks, beard grooming, and precise
+shaping — we handle everything your hair needs.
+</p>
+<br />
+
+<p id="aboutP3">
+We also offer manicure and pedicure services to keep
+your hands and feet clean and well cared for. Step in,
+sit down, and trust the process. At Kurugu’s Cuts, it’s
+more than a haircut — it’s quality you can see.
+</p>
+</div>
+</div>
+</section>
+
+<section id="servicesSection">
+<h2 style="text-align: center" id="servicesHeading">Services</h2>
+
+<div class="services-scroll">
+<div class="service-item" id="service1">
+<h3 id="serviceTitle1">Clean Shave / Bald Cut</h3>
+<p id="serviceDesc1">
+Full clean shave or smooth bald finish.
+</p>
+<div id="servicePrice1" class="price">
+Price:Ghs 10
+</div>
+</div>
+
+<div class="service-item" id="service2">
+<h3 id="serviceTitle2">Home / Event Service</h3>
+<p id="serviceDesc2">
+Get fresh anywhere you are. We travel to your location
+for personal cuts or group grooming during occasions.
+</p>
+<div id="servicePrice2" class="price">
+Price: Depends on distance & number of people.
+</div>
+</div>
+
+<div class="service-item" id="service3">
+<h3 id="serviceTitle3">Hair Shaping</h3>
+<p id="serviceDesc3">
+Sharp shape-up and clean edges for a fresh look.
+</p>
+<div id="servicePrice3" class="price">
+Price: Ghs 15
+</div>
+</div>
+
+<div class="service-item" id="service4">
+<h3 id="serviceTitle4">Beard Grooming</h3>
+<p id="serviceDesc4">
+Beard trimming, shaping, and full grooming for a clean
+finish.
+</p>
+<div id="servicePrice4" class="price">
+Price: Ghs 15
+</div>
+</div>
+
+<div class="service-item" id="service5">
+<h3 id="serviceTitle5">Haircut</h3>
+<p id="serviceDesc5">
+Professional haircut tailored to your style.
+</p>
+<div id="servicePrice5" class="price">
+Price: Ghs 20
+</div>
+</div>
+
+<div class="service-item" id="service6">
+<h3 id="serviceTitle6">Manicure/ Pedicure</h3>
+<p id="serviceDesc6">
+Manicure and pedicure service for clean and well-groomed
+hands and feet. It includes nail cleaning, trimming, and
+shaping for healthy-looking fingernails and toenails.
+</p>
+<div id="servicePrice6" class="price">
+Price: Ghs 10
+</div>
+</div>
+
+<div class="service-item" id="service7">
+<h3 id="serviceTitle7">Hair Dye / Coloring</h3>
+<p id="serviceDesc7">
+Add style and confidence with professional hair coloring
+and modern dye designs.
+</p>
+<div id="servicePrice7" class="price">
+Price: Ghs 30
+</div>
+</div>
+<!---EMPTY SERVICES CARDS--->
+<!---===========--->
+<div class="service-item hidden-service" id="service8">
+<h3 id="serviceTitle8"></h3>
+<p id="serviceDesc8"></p>
+<div id="servicePrice8" class="price"></div>
+</div>
+<div class="service-item hidden-service" id="service9">
+<h3 id="serviceTitle9"></h3>
+<p id="serviceDesc9"></p>
+<div id="servicePrice9" class="price"></div>
+</div>
+<div class="service-item hidden-service" id="service10">
+<h3 id="serviceTitle10"></h3>
+<p id="serviceDesc10"></p>
+<div id="servicePrice10" class="price"></div>
+</div>
+<div class="service-item hidden-service" id="service11">
+<h3 id="serviceTitle11"></h3>
+<p id="serviceDesc11"></p>
+<div id="servicePrice11" class="price"></div>
+</div>
+</div>
+</section>
+
+<section class="workSection" id="workSection">
+<h2 id="workTitle">Our Work</h2>
+<p class="workText" id="workText">
+Trusted by clients who expect excellence. See real
+transformations that speak for themselves. Your confidence
+starts here.
+</p>
+
+<div class="work-grid">
+<div class="work-card">
+<div class="img-box">
+<img
+id="work1"
+src="img-placehloder.jpg"
+loading="eager"
+alt="gallery 1"
+/>
+</div>
+</div>
+<div class="work-card">
+<div class="img-box">
+<img
+id="work2"
+src="img-placehloder.jpg"
+loading="eager"
+alt="gallery 2"
+/>
+</div>
+</div>
+
+<div class="work-card">
+<div class="img-box">
+<img
+id="work3"
+src="img-placehloder.jpg"
+loading="eager"
+alt="gallery 3 "
+/>
+</div>
+</div>
+<div class="work-card">
+<div class="img-box">
+<img
+id="work4"
+src="img-placehloder.jpg"
+loading="eager"
+alt="gallery 4"
+/>
+</div>
+</div>
+<div class="work-card">
+<div class="img-box">
+<img
+id="work5"
+src="img-placehloder.jpg"
+loading="eager"
+alt="gallery 5"
+/>
+</div>
+</div>
+</div>
+</section>
+
+<!---Testimonial  Section--->
+<section id="testimonialSection" class="testimonials">
+<h2 id="testimonialTitle" class="section-title">
+Clients Feedback
+</h2>
+
+<div class="slider" id="testimonial-slider">
+<div class="card" id="testimonial1">
+<h3 class="tName" id="tName1">Yaw Boateng</h3>
+
+<p class="tText" id="tText1">
+Sharp cuts, no delays, and affordable too. Highly
+recommended!
+</p>
+</div>
+
+<div class="card" id="testimonial2">
+<h3 class="tName" id="tName2">Kwame Mensah</h3>
+
+<p class="tText" id="tText2">
+I tried this place once and now I don’t go anywhere
+else. Attention to detail is top-notch.
+</p>
+</div>
+
+<div class="card" id="testimonial3">
+<h3 class="tName" id="tName3">Ibrahim Sulemana</h3>
+
+<p class="tText" id="tText3">
+Very professional and friendly. The environment is calm
+and the service is excellent.
+</p>
+</div>
+</div>
+</section>
+<!---Testimonial  Section End---->
+<!---Contact Section---->
+<section id="contactSection">
+<h2 id="contactTitle">Contact Us</h2>
+<p>
+<span id="contactText">
+WhatsApp us to get your fresh cut, Schedule your perfect
+time or request a home service. We’ll come to you and keep
+you looking sharp wherever you are.</span
+>
+<br />
+<br />
+<!-- INPUT -->
+<!-- BUTTON -->
+<a
+id="whatsappLink"
+class="contactbtn"
+href="#"
+target="_blank"
+>
+<span id="btnText">Send Message</span>
+</a>
+</p>
+<br />
+<br />
+
+<p class="contact-item">
+<i class="fa-solid fa-location-dot"></i>
+<sub class="icon sub-icon"
+><svg
+width="26"
+height="26"
+viewBox="0 0 24 24"
+xmlns="http://www.w3.org/2000/svg"
+>
+<path
+d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+fill="currentColor"
+opacity="0.95"
+/>
+<circle cx="12" cy="9" r="2.3" fill="" /></svg
+></sub>
+<strong id="locationText">Unity Junction, North Region, Ghana.</strong>
+</p>
+
+<p class="contact-item">
+<i class="fa-solid fa-phone"></i>
+<sub class="icon sub-icon">
+<svg
+width="24"
+height="24"
+viewBox="0 0 24 24"
+xmlns="http://www.w3.org/2000/svg"
+>
+<path
+fill="currentColor"
+d="M6.6 10.8c1.5 3 3.6 5.1 6.6 6.6l2.4-2.4c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1v3.2c0 .6-.4 1-1 1C10.3 20.5 3.5 13.7 3.5 5.5c0-.6.4-1 1-1H7.7c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8z"
+/>
+</svg>
+</sub>
+<strong id="phoneText"> +233 555 358 325</strong>
+</p>
+
+<p class="contact-item">
+<i class="fa-brands fa-whatsapp"></i>
+<sub class="icon sub-icon"
+><svg
+width="24"
+height="24"
+viewBox="0 0 24 24"
+xmlns="http://www.w3.org/2000/svg"
+>
+<path
+fill="none"
+d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.47 0 .1 5.37.1 11.98c0 2.11.55 4.16 1.6 5.98L0 24l6.21-1.63a11.9 11.9 0 0 0 5.86 1.5h.01c6.6 0 11.97-5.37 11.97-11.98 0-3.19-1.24-6.18-3.52-8.41z"
+/>
+<path
+fill="currentColor"
+d="M12.07 21.3c-1.86 0-3.68-.5-5.26-1.45l-.38-.23-3.69.97.99-3.6-.25-.37a9.8 9.8 0 0 1-1.52-5.24c0-5.41 4.41-9.82 9.83-9.82 2.62 0 5.08 1.02 6.93 2.87a9.74 9.74 0 0 1 2.89 6.95c0 5.41-4.41 9.82-9.83 9.82zm5.7-7.37c-.31-.15-1.83-.9-2.11-1-.28-.1-.48-.15-.68.15-.2.31-.78 1-.96 1.2-.18.2-.35.22-.66.08-.31-.15-1.3-.48-2.48-1.53-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.48.13-.63.14-.14.31-.36.46-.54.15-.18.2-.31.31-.52.1-.2.05-.39-.03-.54-.08-.15-.68-1.64-.93-2.24-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.52.07-.8.39-.28.31-1.06 1.04-1.06 2.52s1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.83-.75 2.09-1.47.26-.72.26-1.33.18-1.47-.08-.14-.28-.22-.59-.37z"
+/></svg
+></sub>
+<strong id="whatsappPhoneText"> +233 555 358 325</strong>
+</p>
+
+<p class="contact-item">
+<i class="fa-solid fa-clock"></i>
+<sub class="icon sub-icon" style="margin-right: 7px"
+><svg
+width="26"
+height="26"
+viewBox="0 0 24 24"
+fill="none"
+xmlns="http://www.w3.org/2000/svg"
+>
+<circle
+cx="12"
+cy="12"
+r="10"
+stroke="currentColor"
+stroke-width="2.5"
+/>
+<path
+d="M12 7V12L15 13.5"
+stroke="currentColor"
+stroke-width="2.5"
+stroke-linecap="round"
+/></svg
+></sub>
+<span>
+<strong id="hourstext1">
+Mon - Sat: 7:30 AM - 10:00 PM
+</strong>
+<br />
+<strong id="hourstext2"
+>Sunday: 8:00 AM - 9:30 PM</strong
+></span
+>
+</p>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer id="footer">
+<p>
+<span id="footerCopyright" class="foot">
+© 2026 Yomyom Hair Cuts. All rights reserved.
+</span>
+</p>
+
+<p id="footerSlogan1" class="foot">
+Fresh cuts. Clean style. Sharp confidence️
+</p>
+</footer>
+<script>
+const slider = document.getElementById("testimonial-slider");
+
+let autoSlide;
+let isInteracting = false;
+
+function startAutoSlide() {
+clearInterval(autoSlide);
+
+autoSlide = setInterval(() => {
+if (isInteracting) return;
+
+const cardWidth = slider.querySelector(".card").offsetWidth;
+const gap = 20; // adjust if your slider gap differs
+
+if (
+slider.scrollLeft + slider.clientWidth >=
+slider.scrollWidth - 10
+) {
+slider.scrollTo({
+left: 0,
+behavior: "smooth"
+});
+} else {
+slider.scrollBy({
+left: cardWidth + gap,
+behavior: "smooth"
+});
+}
+}, 4000);
+}
+
+startAutoSlide();
+
+// Pause when user touches or drags
+slider.addEventListener("touchstart", () => {
+isInteracting = true;
+});
+
+slider.addEventListener("mousedown", () => {
+isInteracting = true;
+});
+
+// Resume after interaction ends
+function resumeAutoSlide() {
+setTimeout(() => {
+isInteracting = false;
+}, 3000); // waits 3 seconds before auto sliding again
+}
+
+slider.addEventListener("touchend", resumeAutoSlide);
+slider.addEventListener("mouseup", resumeAutoSlide);
+slider.addEventListener("scroll", () => {
+isInteracting = true;
+
+clearTimeout(slider.scrollTimeout);
+
+slider.scrollTimeout = setTimeout(() => {
+isInteracting = false;
+}, 3000);
+});
+</script>
+</body>
+</html>

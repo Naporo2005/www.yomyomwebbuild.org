@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Yomyom WebBuild | No-Code Website Builder</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Righteous&family=Unbounded:wght@200..900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=stacked_email" />
+
+<style>
+:root {
+--primary: #0d9488;
+--primary-dark: #0f766e;
+--accent: #6366f1;
+--bg: #f9fafb;
+--surface: #ffffff;
+--text: #1f2937;
+--muted: #6b7280;
+--border: #e5e7eb;
+--shadow: rgba(0,0,0,0.08);
+}
+
+* { margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+background: var(--bg);
+color: var(--text);
+font-family: "Poppins", sans-serif;
+min-height: 100vh;
+}
+
+/* ── NAV ── */
+nav {
+background: var(--surface);
+border-bottom: 1px solid var(--border);
+position: sticky;
+top: 0;
+z-index: 100;
+box-shadow: 0 2px 8px var(--shadow);
+}
+
+.nav-inner {
+max-width: 1100px;
+margin: auto;
+display: flex;
+align-items: center;
+padding: 0 24px;
+height: 64px;
+gap: 8px;
+}
+
+.logo {
+font-family: "Lilita One", sans-serif;
+font-size: 1.4rem;
+color: var(--accent);
+margin-right: auto;
+white-space: nowrap;
+}
+
+.nav-links {
+display: flex;
+gap: 4px;
+list-style: none;
+}
+
+.nav-links button {
+background: none;
+border: none;
+cursor: pointer;
+font-family: "Poppins", sans-serif;
+font-size: 0.9rem;
+font-weight: 500;
+color: var(--muted);
+padding: 8px 13px;
+border-radius: 8px;
+transition: color 0.2s, background 0.2s;
+white-space: nowrap;
+}
+
+.nav-links button:hover {
+color: var(--primary);
+background: rgba(13,148,136,0.07);
+}
+
+.nav-links button.active {
+color: var(--accent);
+background: rgba(99,102,241,0.1);
+font-weight: 600;
+}
+
+/* Hamburger */
+.hamburger {
+display: none;
+flex-direction: column;
+justify-content: center;
+gap: 5px;
+background: none;
+border: none;
+cursor: pointer;
+padding: 6px;
+border-radius: 8px;
+transition: background 0.2s;
+}
+.hamburger:hover { background: rgba(13,148,136,0.08);
+}
+.hamburger span {
+display: block;
+width: 24px;
+height: 2.5px;
+background: var(--text);
+border-radius: 4px;
+transition: transform 0.3s, opacity 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) { opacity: 0;
+}
+.hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg);
+}
+
+/* Mobile menu */
+.mobile-menu {
+display: none;
+flex-direction: column;
+background: var(--surface);
+border-top: 1px solid var(--border);
+padding: 12px 16px 16px;
+gap: 4px;
+box-shadow: 0 6px 16px var(--shadow);
+}
+.mobile-menu.open { display: flex;
+}
+.mobile-menu button {
+background: none;
+border: none;
+cursor: pointer;
+font-family: "Poppins", sans-serif;
+font-size: 1rem;
+font-weight: 500;
+color: var(--muted);
+padding: 12px 16px;
+border-radius: 10px;
+text-align: left;
+transition: color 0.2s, background 0.2s;
+}
+.mobile-menu button:hover { color: var(--primary);
+background: rgba(13,148,136,0.07);
+}
+.mobile-menu button.active { color: var(--accent);
+background: rgba(99,102,241,0.1);
+font-weight: 600;
+}
+
+@media (max-width: 700px) {
+.nav-links { display: none;
+}
+.hamburger { display: flex;
+}
+}
+
+/* ── SECTIONS ── */
+.section { display: none;
+}
+.section.active { display: block;
+}
+
+/* ── HOW IT WORKS ── */
+.hero {
+background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+color: #fff;
+padding: 80px 24px 64px;
+text-align: center;
+}
+.hero h1 {
+font-family: "Righteous", sans-serif;
+font-size: clamp(2rem, 5vw, 3.2rem);
+margin-bottom: 16px;
+line-height: 1.2;
+}
+.hero p { font-size: 1.1rem;
+opacity: 0.9;
+max-width: 640px;
+margin: auto;
+}
+
+.hiw-steps {
+max-width: 1000px;
+margin: 60px auto;
+padding: 0 24px;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+gap: 24px;
+}
+
+.step-card {
+background: var(--surface);
+border: 1px solid var(--border);
+border-radius: 16px;
+padding: 28px 24px;
+box-shadow: 0 4px 12px var(--shadow);
+transition: transform 0.3s, border-color 0.3s;
+position: relative;
+overflow: hidden;
+}
+.step-card::before {
+content: attr(data-num);
+position: absolute;
+top: -10px;
+right: 14px;
+font-family: "Unbounded", sans-serif;
+font-size: 4rem;
+font-weight: 900;
+color: rgba(13,148,136,0.06);
+line-height: 1;
+}
+.step-card:hover { transform: translateY(-6px);
+border-color: var(--primary);
+}
+.step-card h3 { font-family: "Unbounded", sans-serif;
+color: var(--primary);
+font-size: 0.95rem;
+margin-bottom: 10px;
+}
+.step-card p { color: var(--muted);
+font-size: 0.93rem;
+line-height: 1.6;
+}
+
+/* ── TEMPLATES (shared hero + grid styles) ── */
+.templates-hero {
+background: #0f172a;
+color: #fff;
+padding: 64px 24px 52px;
+text-align: center;
+}
+.templates-hero h1 { font-family: "Righteous", sans-serif;
+font-size: clamp(2rem, 5vw, 3rem);
+margin-bottom: 12px;
+}
+.templates-hero h1 span {
+background: linear-gradient(90deg, var(--primary), var(--accent));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+.templates-hero p { color: #94a3b8;
+font-size: 1rem;
+}
+
+/* ── GROUP LABELS ── */
+.group-label {
+max-width: 1000px;
+margin: 40px auto 0;
+padding: 0 24px;
+}
+.group-label h4 {
+font-family: "Unbounded", sans-serif;
+font-size: 0.78rem;
+font-weight: 700;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(--primary);
+border-left: 3px solid var(--primary);
+padding-left: 12px;
+margin-bottom: 0;
+}
+
+/* Filter tabs */
+.filter-tabs {
+max-width: 900px;
+margin: 36px auto 0;
+padding: 0 24px;
+display: flex;
+gap: 8px;
+flex-wrap: wrap;
+justify-content: center;
+}
+.filter-btn {
+background: none;
+border: 1px solid var(--border);
+border-radius: 24px;
+padding: 7px 18px;
+font-family: "Poppins", sans-serif;
+font-size: 0.9rem;
+color: var(--muted);
+cursor: pointer;
+transition: 0.2s;
+}
+.filter-btn:hover, .filter-btn.active {
+background: var(--accent);
+color: #fff;
+border-color: var(--accent);
+}
+
+.templates-grid {
+max-width: 1000px;
+margin: 20px auto 0;
+padding: 0 24px;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 28px;
+}
+
+.more-soon {
+text-align: center;
+color: var(--muted);
+padding: 40px 0 48px;
+font-size: 0.95rem;
+}
+
+/* Template cards */
+.template-card {
+background: var(--surface);
+border: 1px solid var(--border);
+border-radius: 16px;
+overflow: hidden;
+box-shadow: 0 4px 16px var(--shadow);
+transition: transform 0.3s, box-shadow 0.3s;
+}
+.template-card:hover { transform: translateY(-6px);
+box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+}
+
+.template-thumb {
+height: 180px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: "Unbounded", sans-serif;
+font-size: 0.75rem;
+font-weight: 700;
+letter-spacing: 0.05em;
+color: #fff;
+}
+
+.template-thumb.portfolio { background: linear-gradient(135deg, #1e1b4b, #4c1d95);
+}
+.template-thumb.store { background: linear-gradient(135deg, #fef9c3, #fde68a);
+color: #92400e;
+}
+
+.template-info { padding: 18px 20px 20px;
+}
+.template-info h3 { font-family: "Unbounded", sans-serif;
+font-size: 0.88rem;
+color: var(--text);
+margin-bottom: 4px;
+}
+.template-info .tag { font-size: 0.8rem;
+color: var(--muted);
+margin-bottom: 14px;
+display: block;
+}
+.price { background: #a4bec79a;
+padding: 4px;
+text-align: center;
+border-radius: 50px;
+}
+
+.template-actions { display: flex;
+gap: 10px;
+}
+
+.btn-outline {
+flex: 1;
+padding: 9px 0;
+border: 1px solid var(--border);
+border-radius: 8px;
+background: none;
+font-family: "Poppins", sans-serif;
+text-align: center;
+text-decoration: none;
+font-size: 0.88rem;
+font-weight: 500;
+color: var(--text);
+cursor: pointer;
+transition: 0.2s;
+}
+.btn-outline:hover { border-color: var(--primary);
+color: var(--primary);
+}
+
+.btn-primary {
+flex: 1.4;
+padding: 9px 0;
+border: none;
+border-radius: 8px;
+background: linear-gradient(135deg, var(--primary), var(--accent));
+font-family: "Poppins", sans-serif;
+text-decoration: none;
+text-align: center;
+font-size: 0.88rem;
+font-weight: 600;
+color: #fff;
+cursor: pointer;
+transition: filter 0.2s;
+}
+.btn-primary:hover { filter: brightness(1.08);
+}
+
+.btn-primary1 {
+flex: 1.4;
+padding: 9px 0;
+border: none;
+border-radius: 8px;
+background: linear-gradient(135deg, #7dae6e, #17d85b, #30c500);
+font-family: "Poppins", sans-serif;
+text-decoration: none;
+text-align: center;
+font-size: 0.88rem;
+font-weight: 600;
+color: #fff;
+cursor: pointer;
+transition: filter 0.2s;
+}
+.btn-primary1 i { margin: 1px;
+color: var(--surface);
+}
+
+/* ── ONE TIME PURCHASE SECTION ── */
+.otp-hero {
+background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+color: #fff;
+padding: 64px 24px 52px;
+text-align: center;
+}
+.otp-hero h1 { font-family: "Righteous", sans-serif;
+font-size: clamp(2rem, 5vw, 3rem);
+margin-bottom: 12px;
+}
+.otp-hero h1 span {
+background: linear-gradient(90deg, #30c500, #17d85b);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+.otp-hero p { color: #94a3b8;
+font-size: 1rem;
+max-width: 560px;
+margin: auto;
+}
+
+.otp-badge {
+display: inline-block;
+margin-top: 16px;
+background: rgba(23,216,91,0.15);
+border: 1px solid rgba(23,216,91,0.3);
+color: #17d85b;
+font-family: "Unbounded", sans-serif;
+font-size: 0.72rem;
+font-weight: 700;
+letter-spacing: 0.08em;
+padding: 5px 16px;
+border-radius: 20px;
+}
+
+.otp-grid {
+max-width: 1000px;
+margin: 40px auto 60px;
+padding: 0 24px;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 28px;
+}
+
+/* ── TERMS ── */
+.hero-banner {
+background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+color: #fff;
+padding: 72px 24px 64px;
+text-align: center;
+}
+.hero-eyebrow {
+font-family: "Unbounded", sans-serif;
+font-size: 0.75rem;
+font-weight: 600;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+opacity: 0.8;
+margin-bottom: 18px;
+}
+.hero-title { font-family: "Righteous", sans-serif;
+font-size: clamp(2rem, 5vw, 3.2rem);
+line-height: 1.2;
+margin-bottom: 20px;
+}
+.hero-title em { font-style: normal;
+background: rgba(255,255,255,0.25);
+border-radius: 6px;
+padding: 0 8px;
+}
+.hero-desc { font-size: 1.05rem;
+opacity: 0.9;
+max-width: 600px;
+margin: auto;
+line-height: 1.7;
+}
+.motto { display: inline-block;
+margin-top: 10px;
+font-family: "Unbounded", sans-serif;
+font-size: 0.8rem;
+font-weight: 700;
+letter-spacing: 0.05em;
+background: rgba(255,255,255,0.18);
+border-radius: 20px;
+padding: 4px 14px;
+}
+
+.terms-wrap { max-width: 760px;
+margin: 60px auto;
+padding: 0 24px 60px;
+}
+.terms-wrap h2 { font-family: "Lilita One", sans-serif;
+font-size: 2rem;
+color: var(--accent);
+margin-bottom: 28px;
+text-align: center;
+}
+.terms-box { background: var(--surface);
+border-left: 4px solid var(--accent);
+border-radius: 12px;
+padding: 24px 28px;
+color: var(--muted);
+line-height: 1.7;
+margin-bottom: 32px;
+box-shadow: 0 4px 12px var(--shadow);
+}
+.terms-box h3 { font-family: "Unbounded", sans-serif;
+font-size: 0.85rem;
+color: var(--primary);
+margin-bottom: 10px;
+margin-top: 18px;
+}
+.terms-box h3:first-child { margin-top: 0;
+}
+.terms-agree { background: rgba(99,102,241,0.06);
+border: 1px solid rgba(99,102,241,0.2);
+border-radius: 12px;
+padding: 20px 24px;
+color: var(--text);
+font-size: 0.95rem;
+margin-bottom: 28px;
+}
+.terms-agree a { color: var(--accent);
+font-weight: 600;
+text-decoration: none;
+}
+.btn-continue { display: block;
+width: fit-content;
+margin: auto;
+background: linear-gradient(135deg, var(--primary), var(--accent));
+color: #fff;
+padding: 15px 40px;
+border-radius: 40px;
+font-weight: 600;
+font-family: "Poppins", sans-serif;
+font-size: 1rem;
+border: none;
+cursor: pointer;
+text-decoration: none;
+transition: transform 0.2s, filter 0.2s;
+}
+.btn-continue:hover { transform: translateY(-2px);
+filter: brightness(1.06);
+}
+
+/* ── SUPPORT ── */
+.support-wrap { max-width: 800px;
+margin: 60px auto;
+padding: 0 24px 60px;
+text-align: center;
+}
+.support-wrap h2 { font-family: "Lilita One", sans-serif;
+font-size: 2rem;
+color: var(--accent);
+margin-bottom: 12px;
+}
+.support-wrap > p { color: var(--muted);
+margin-bottom: 44px;
+}
+.support-cards { display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+gap: 20px;
+margin-bottom: 48px;
+}
+.support-card { background: var(--surface);
+border: 1px solid var(--border);
+border-radius: 16px;
+padding: 28px 20px;
+box-shadow: 0 4px 12px var(--shadow);
+transition: transform 0.3s, border-color 0.3s;
+}
+.support-card:hover { transform: translateY(-4px);
+border-color: var(--primary);
+}
+.support-icon { font-size: 2.4rem;
+margin-bottom: 12px;
+}
+.support-card h3 { font-family: "Unbounded", sans-serif;
+font-size: 0.88rem;
+color: var(--primary);
+margin-bottom: 8px;
+}
+.support-card p { color: var(--muted);
+font-size: 0.88rem;
+line-height: 1.6;
+margin-bottom: 16px;
+}
+.support-link { display: inline-block;
+color: var(--accent);
+font-weight: 600;
+font-size: 0.88rem;
+text-decoration: none;
+border-bottom: 1px solid rgba(99,102,241,0.3);
+padding-bottom: 2px;
+transition: border-color 0.2s;
+}
+.support-link:hover { border-color: var(--accent);
+}
+.faq-section { text-align: left;
+}
+.faq-section h3 { font-family: "Lilita One", sans-serif;
+font-size: 1.4rem;
+color: var(--primary);
+margin-bottom: 20px;
+text-align: center;
+}
+.faq-item { background: var(--surface);
+border: 1px solid var(--border);
+border-radius: 12px;
+padding: 18px 20px;
+margin-bottom: 12px;
+cursor: pointer;
+transition: border-color 0.2s;
+}
+.faq-item:hover { border-color: var(--primary);
+}
+.faq-item summary { font-weight: 600;
+color: var(--text);
+font-size: 0.95rem;
+list-style: none;
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 12px;
+}
+.faq-item summary::after { content: "+";
+font-size: 1.3rem;
+color: var(--accent);
+flex-shrink: 0;
+}
+details[open] .faq-item summary::after { content: "−";
+}
+details:hover{
+color: var(--accent);
+font-weight: 560;
+}
+.faq-item p { color: var(--muted);
+font-weight: 500;
+font-size: 0.9rem;
+line-height: 1.7;
+margin-top: 12px;
+}
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid var(--border);
+text-align: center;
+padding: 28px;
+color: var(--muted);
+font-size: 0.88rem;
+}
+
+@media (max-width: 640px) {
+.nav-inner { padding: 0 16px;
+}
+.hiw-steps, .templates-grid, .otp-grid { padding: 0 16px;
+}
+.filter-tabs { padding: 0 16px;
+}
+.group-label { padding: 0 16px;
+}
+}
+
+/* ── PAGE LOADING OVERLAY ── */
+#page-loading-overlay {
+position: fixed;
+inset: 0;
+background: var(--bg);
+z-index: 9999;
+display: flex;
+align-items: center;
+justify-content: center;
+opacity: 0;
+visibility: hidden;
+pointer-events: none;
+transition: opacity 0.25s ease;
+}
+#page-loading-overlay.show {
+opacity: 1;
+visibility: visible;
+pointer-events: all;
+}
+.loading-spinner {
+width: 46px;
+height: 46px;
+border: 4px solid var(--border);
+border-top-color: var(--accent);
+border-radius: 50%;
+animation: spin 0.7s linear infinite;
+}
+@keyframes spin {
+to { transform: rotate(360deg);
+}
+}
+</style>
+</head>
+<body>
+
+<!-- ── PAGE LOADING OVERLAY (shown briefly before navigating to a template page) ── -->
+<div id="page-loading-overlay">
+<div class="loading-spinner"></div>
+</div>
+
+<!-- ── NAV ── -->
+<nav>
+<div class="nav-inner">
+<div class="logo">
+Yomyom WebBuild
+</div>
+
+<!-- Desktop links -->
+<ul class="nav-links">
+<li><button onclick="show('how-it-works')" id="tab-how-it-works" class="active">How It Works</button></li>
+<li><button onclick="show('templates')" id="tab-templates">Customizable Templates</button></li>
+<li><button onclick="show('one-time')" id="tab-one-time">One Time Purchase</button></li>
+<li><button onclick="show('terms')" id="tab-terms">Terms & Conditions</button></li>
+<li><button onclick="show('support')" id="tab-support">Support</button></li>
+</ul>
+
+<!-- Hamburger (mobile only) -->
+<button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+<span></span><span></span><span></span>
+</button>
+</div>
+
+<!-- Mobile drawer -->
+<div class="mobile-menu" id="mobile-menu">
+<button onclick="show('how-it-works'); closeMenu()" id="mob-tab-how-it-works" class="active">How It Works</button>
+<button onclick="show('templates'); closeMenu()"
+id="mob-tab-templates">Customizable Templates</button>
+<button onclick="show('one-time'); closeMenu()" id="mob-tab-one-time">One Time Purchase</button>
+<button onclick="show('terms'); closeMenu()" id="mob-tab-terms">Terms & Conditions</button>
+<button onclick="show('support'); closeMenu()" id="mob-tab-support">Support</button>
+</div>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════════════ -->
+<div id="how-it-works" class="section active">
+<div class="hero">
+<h1>Build Professional Websites Without Coding</h1>
+<p>
+Create, customize, and publish stunning websites in minutes. Yomyom WebBuild makes it easy for businesses, creators, and entrepreneurs to build their online presence.
+</p>
+</div>
+
+<div class="hiw-steps">
+<div class="step-card" data-num="1">
+<h3>1. Choose a Template</h3>
+<p>
+Select a professionally designed template that fits your business or project.
+</p>
+</div>
+<div class="step-card" data-num="2">
+<h3>2. Customize</h3>
+<p>
+Edit text, images, colors, and layout to match your brand identity.
+</p>
+</div>
+<div class="step-card" data-num="3">
+<h3>3. Submit Design</h3>
+<p>
+Once you're done customizing, submit your completed website for review.
+</p>
+</div>
+<div class="step-card" data-num="4">
+<h3>4. Order Confirmation</h3>
+<p>
+Contact our team via WhatsApp to confirm and verify your project details.
+</p>
+</div>
+<div class="step-card" data-num="5">
+<h3>5. Payment Processing</h3>
+<p>
+Complete secure payment after your order has been confirmed.
+</p>
+</div>
+<div class="step-card" data-num="6">
+<h3>6. Delivery & Hosting</h3>
+<p>
+Receive your website files or request Yomyom WebBuild to handle hosting and setup.
+</p>
+</div>
+<div class="step-card" data-num="OR">
+<h3>One Time Purchase Templates</h3>
+<p>
+Select your one-time purchase option. WhatsApp Yomyom WebBuild directly, and we
+will customize the template exclusively for you. Once finalized, we’ll confirm
+your purchase and proceed with delivery.
+</p>
+</div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     TEMPLATES (Customizable)
+══════════════════════════════════════════ -->
+<div id="templates" class="section">
+<div class="templates-hero">
+<h1>Choose a <span>Template</span></h1>
+<p>
+Pick a template and customize it to make it yours.
+</p>
+</div>
+
+<!-- Filter buttons -->
+<div class="filter-tabs">
+<button class="filter-btn active" onclick="filterTemplates('all', this)">All</button>
+<button class="filter-btn" onclick="filterTemplates('portfolio', this)">Portfolios</button>
+<button class="filter-btn" onclick="filterTemplates('business', this)">Business</button>
+<button class="filter-btn" onclick="filterTemplates('hospitality', this)">Hospitality</button>
+<button class="filter-btn" onclick="filterTemplates('food', this)">Food & Restaurant</button>
+</div>
+
+<!-- ── GROUP: Portfolios ── -->
+<div class="group-label" data-group="portfolio">
+<h4>Portfolios</h4>
+</div>
+<div class="templates-grid">
+
+<!-- Personal Portfolio (GH₵300) -->
+<div class="template-card" data-category="portfolio">
+<div class="template-thumb minimal" style="background: linear-gradient(
+135deg,
+#092649,
+#092649,
+#000000,
+#000000);">
+<div style="text-align:center; padding:20px;">
+<div style=" font-size:1rem;  font-weight:300; margin-bottom:6px;">
+Highly Versatile Personal Portfolio Template, Designed For Freelancers,
+Entrepreneurs, And Creatives. Showcase Your CV, Skills, And Achievements. <br>Fully
+Adaptable To Any Project Or Professional Purpose.
+</div>
+</div>
+</div>
+<div class="template-info">
+<h3>Proffessional Portfolio</h3>
+<span class="tag"><br>
+<span class="price">GH₵230</span>
+</span>
+<div class="template-actions">
+<a href="View-personal-PORTFOLIO.html" class="btn-outline nav-out-link">Preview</a>
+<a href="personal portfolio.html" class="btn-primary nav-out-link">Customize Template</a>
+</div>
+</div>
+</div>
+
+<!-- Designer Portfolio (GH₵150) -->
+<div class="template-card" data-category="portfolio">
+<div class="template-thumb minimal" style="background:
+linear-gradient(
+146deg,
+rgba(15,32,68,0.75),
+rgba(232,160,32,0.55)
+);">
+<div style="text-align:center; padding:20px;">
+<div style="font-size:1rem; font-weight:300; margin-bottom:6px;">
+Image-Focused Portfolio, Creative Showcase, Visual Storytelling, Project
+Gallery, <br>Personal Branding
+</div>
+</div>
+</div>
+<div class="template-info">
+<h3>Image-Focused Portfolio</h3>
+<span class="tag"><br>
+<span class="price">GH₵140</span>
+</span>
+<div class="template-actions">
+<a href="view-designer-PORT.html" class="btn-outline nav-out-link">Preview</a>
+<a href="DESIGNER PORTFOLIO.html" class="btn-primary nav-out-link">Customize Template</a>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ── GROUP: Business ── -->
+<div class="group-label" data-group="business">
+<h4>Business</h4>
+</div>
+<div class="templates-grid">
+
+<!-- BizPro (Business) -->
+<div class="template-card" data-category="business">
+<div class="template-thumb biz"
+style="background:
+linear-gradient(
+9deg,
+#0a0c14,
+#2f374c,
+#0e0f12
+);">
+<div style="text-align:center; padding:20px;">
+<div style="font-size:1rem; font-weight:300; margin-bottom:6px;">
+Barber Shop, Hair Studio, Grooming Services, Local Business, Modern Design, Service Showcase, Client Reviews, Photo
+Gallery, Business Information,
+Perfect For All Businesses
+</div>
+<div style="font-size:0.7rem; opacity:0.85;">
+</div>
+
+</div>
+</div>
+<div class="template-info">
+<h3>Responsive Multi-Purpose Website</h3>
+<span class="tag"><br>
+<span class="price">GH₵340</span>
+</span>
+<div class="template-actions">
+<a href="view-Studio-hub.html" class="btn-outline nav-out-link">Preview</a>
+<a href="edit-Studio-hub.html" class="btn-primary nav-out-link">Customize Template</a>
+</div>
+</div>
+</div>
+<div class="template-card" data-category="business">
+<div class="template-thumb biz" style="background:
+linear-gradient(
+0deg,
+rgba(0,0,0,0.7),
+rgba(111,166,154,0.809)
+);">
+<div style="text-align:center; padding:20px;">
+<div style="font-size:1rem; font-weight:300; margin-bottom:6px;">
+A Premium, Adaptable Website Template Designed To Fit Any Business With
+Versatile.
+<br>Professional Features.
+</div>
+<div style="font-size:0.7rem; opacity:0.85;">
+</div>
+</div>
+</div>
+<div class="template-info">
+<h3>Universal Design</h3>
+<span class="tag"><br>
+<span class="price">GH₵500</span>
+</span>
+<div class="template-actions">
+<a href="View-GYMSITE.html" class="btn-outline nav-out-link">Preview</a>
+<a href="GYMSITE.html" class="btn-primary nav-out-link">Customize Template</a>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ── GROUP: Hospitality ── -->
+<div class="group-label" data-group="hospitality">
+<h4>Hospitality</h4>
+</div>
+<div class="templates-grid">
+
+<div class="template-card" data-category="hospitality">
+<div class="template-thumb biz" style="background: linear-gradient(
+69deg,
+#fc7c20 2%,
+#db803f 60%
+);">
+<div style="text-align:center; padding:20px;">
+<div style="font-size:1rem; font-weight:300; margin-bottom:6px;">
+Modern Hotel Website Template For Showcasing Rooms, Amenities, Booking Options,
+And A Live Location Map.
+</div>
+<div style="font-size:0.7rem; opacity:0.85;">
+</div>
+</div>
+</div>
+<div class="template-info">
+<h3>Hotel System</h3>
+<span class="tag"><br>
+<span class="price">GH₵650</span>
+</span>
+<div class="template-actions">
+<a href="View-Hotel.html" class="btn-outline nav-out-link">Preview</a>
+<a href="Hotel.html" class="btn-primary nav-out-link">Customize Template</a>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ── GROUP: Food & Restaurant ── -->
+<div class="group-label" data-group="food">
+<h4>Food &amp; Restaurant</h4>
+</div>
+<div class="templates-grid">
+
+<!-- Fast Food placeholder -->
+<div class="template-card" data-category="food">
+<div class="template-thumb store" style="background:
+linear-gradient(
+to right,
+rgba(0,0,0,.75),
+rgba(0,0,0,.35)
+);">
+<div style="text-align:center; padding:20px;">
+<div style="font-size:1rem; font-weight:300; color:#fff; margin-bottom:6px;">
+Modern Restaurant Website Template For Showcasing Dishes, Taking Orders, And
+Displaying Contact Details With A Live Location Map For Easy Customer Access.
+</div>
+<div style="font-size:0.7rem; color:#fef3c7;">
+</div>
+</div>
+</div>
+<div class="template-info">
+<h3>Restaurant Pro</h3>
+<span class="tag"><br>
+<span class="price">GH₵650</span>
+</span>
+<div class="template-actions">
+<a href="View-Resturant.html" class="btn-outline nav-out-link">Preview</a>
+<a href="Restaurant.html" class="btn-primary nav-out-link">Customize Template</a>
+</div>
+</div>
+</div>
+
+</div>
+
+<p class="more-soon">
+♡ &nbsp;More templates coming soon.
+</p>
+</div>
+
+<!-- ══════════════════════════════════════════
+     ONE TIME PURCHASE TEMPLATES
+══════════════════════════════════════════ -->
+<div id="one-time" class="section">
+<div class="otp-hero">
+<h1>One Time <span>Purchase</span> Templates</h1>
+<p>
+Ready-made websites — buy once, own it forever. Contact us on WhatsApp to complete your purchase.
+</p>
+<span class="otp-badge">Buy Once · Own Forever</span>
+</div>
+
+<div class="otp-grid">
+
+
+<!-- Clean & Modern School -->
+<div class="template-card">
+<div class="template-thumb blog" style="      background-image:repeating-linear-gradient(
+124deg,
+#104f3f4a,
+#6155484a); color:#000; ">
+<div style="text-align:center; padding:20px;">
+<div style="font-size:1rem; font-weight:220; margin-bottom:6px;">
+Modern School Website Template For Showcasing Programs, Accepting Admission
+Enquiries, And Displaying Staff And Curriculum Details With A Smooth Mobile
+Experience For Easy Parent And Student Access.
+</div>
+</div>
+</div>
+<div class="template-info">
+<h3>Clean &amp; Modern School Website</h3>
+<p>
+<span class="tag"><br><span class="price">
+GH₵750</span>
+</p>
+
+<div class="template-actions">
+<a href="School.html" class="btn-outline nav-out-link">Preview</a>
+<a href="https://wa.me/233555358325" target="_blank" class="btn-primary1 nav-out-link">
+<sub><i style="font-size:21px;" class="ph-fill ph-whatsapp-logo"></i></sub> WhatsApp
+</a>
+</div>
+</div>
+</div>
+<!-- Event Planner -->
+<div class="template-card">
+<div class="template-thumb blog2" style="background: linear-gradient(160deg,
+rgb(42,20,41) 40%, rgba(78,43,77,0.7) 100%);">
+<div style="text-align:center; padding:20px;">
+<div style="font-size:1rem; font-weight:300; margin-bottom:6px;">
+Modern Event Planner Portfolio For Presenting Services, Showcasing
+Past Events, And Connecting With Clients Through Contact Details And A
+Step-By-Step Process Guide For Easy Booking
+</div>
+</div>
+</div>
+<div class="template-info">
+<h3>Elite Event Planer Portfolio</h3>
+<p>
+<span class="tag"><br><span class="price">
+GH₵450</span>
+</p>
+
+<div class="template-actions">
+<a href="Event--Planer.html" class="btn-outline nav-out-link">Preview</a>
+<a href="https://wa.me/233555358325" target="_blank" class="btn-primary1 nav-out-link">
+<sub><i style="font-size:21px;" class="ph-fill ph-whatsapp-logo"></i></sub> WhatsApp
+</a>
+</div>
+</div>
+</div>
+<!-- Modern Pharmacy -->
+<div class="template-card">
+<div class="template-thumb blog" style="background: linear-gradient(34deg,
+#146b59 0%, #44a490 100%); color: #fff;">
+<div style="text-align:center; padding:20px;">
+<div style="font-size:1rem; font-weight:240; margin-bottom:6px;">
+High-end Website For Showcasing A Pharmacy Healthcare Services, Displaying
+Wellness Products, And Connecting Patients With Prescription Transfers And
+Consultation Bookings For Easy Access To Trusted Local Care
+</div>
+</div>
+</div>
+<div class="template-info">
+<h3>Signature Pharmacy Website</h3>
+<p>
+<span class="tag"><br><span class="price">
+GH₵600</span>
+</p>
+<div class="template-actions">
+<a href="Drug--store.html" class="btn-outline nav-out-link">Preview</a>
+<a href="https://wa.me/233555358325" target="_blank" class="btn-primary1 nav-out-link">
+<sub><i style="font-size:21px;" class="ph-fill ph-whatsapp-logo"></i></sub> WhatsApp
+</a>
+</div>
+</div>
+</div>
+<!-- Photographer Portfolio -->
+
+<div class="template-card">
+<div class="template-thumb blog" style="background:
+linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.65) 100%),
+url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80') center/cover no-repeat;
+}">
+<div style="text-align:center; padding:20px;">
+<div style="font-size:1rem; font-weight:300; margin-bottom:6px;">
+Advanced Photography Portfolio For Showcasing Event Work,
+Displaying Service Packages, And Accepting Booking Requests With A Filterable
+Gallery And Direct WhatsApp Contact For Fast Client Reach.
+</div>
+</div>
+</div>
+<div class="template-info">
+<h3>Supreme Photographer Portfolio</h3>
+<p>
+<span class="tag"><br><span class="price">
+GH₵450</span>
+</p>
+<div class="template-actions">
+<a href="photor.html" class="btn-outline nav-out-link">Preview</a>
+<a href="https://wa.me/233555358325" target="_blank" class="btn-primary1 nav-out-link">
+<sub><i style="font-size:21px;" class="ph-fill ph-whatsapp-logo"></i></sub> WhatsApp
+</a>
+</div>
+</div>
+</div>
+<!-- Bloggers Page -->
+<div class="template-card">
+<div class="template-thumb blog3" style="background: linear-gradient(160deg,
+#c3dad1 0%, #c3dad1 55%, hsl(156.7,21.9%,47.9%) 100%); color:#000000;">
+<div style="text-align:center; padding:20px;">
+<div style="font-size:1rem; font-weight:300; margin-bottom:6px;">
+Blog Website For Publishing Articles, Filtering Posts By
+Category, Growing An Email Subscriber List, And Displaying Paginated Content
+With A Clean Reading Experience For Engaged Audiences.
+</div>
+</div>
+</div>
+<div class="template-info">
+<h3>Blog/ Landing pages</h3>
+<p>
+<span class="tag"><br><span class="price">
+GH₵870</span>
+</p>
+<div class="template-actions">
+<a href="Blog.html" class="btn-outline nav-out-link">Preview</a>
+<a href="https://wa.me/233555358325" target="_blank" class="btn-primary1 nav-out-link">
+<sub><i style="font-size:21px;" class="ph-fill ph-whatsapp-logo"></i></sub> WhatsApp
+</a>
+</div>
+</div>
+</div>
+</div>
+<p class="more-soon">
+♡ &nbsp;More templates coming soon.
+</p>
+</div>
+
+<!-- ══════════════════════════════════════════
+     TERMS & CONDITIONS
+══════════════════════════════════════════ -->
+<div id="terms" class="section">
+<div class="hero-banner">
+<p class="hero-eyebrow">
+About Our Platform
+</p>
+<h1 class="hero-title">Websites for <em>everyone</em> —<br />no code required.</h1>
+<p class="hero-desc">
+Yomyom WebBuild is designed for everyone, regardless of technical skill.
+Get your website live in minutes, not months — at a price that's honest and fair.<br>
+<span class="motto">Build it fast, build it today.</span>
+</p>
+</div>
+
+<div class="terms-wrap">
+<h2>Terms &amp; Conditions</h2>
+<div class="terms-box">
+<h3>1. Acceptance of Terms</h3>
+<p>
+By accessing or using Yomyom WebBuild, you agree to be bound by these Terms &amp; Conditions. If you do not agree, please do not use our services.
+</p>
+
+<h3>2. Services Provided</h3>
+<p>
+Yomyom WebBuild provides a no-code website building platform that allows users to select templates, customize designs, and request website delivery and hosting. The final website files or hosting service are provided after payment confirmation.
+</p>
+
+<h3>3. Order &amp; Payment</h3>
+<p>
+All orders must be confirmed via WhatsApp with our team before payment is processed. Payment is required in full before delivery of your completed website.
+</p>
+
+<h3>4. Intellectual Property</h3>
+<p>
+Templates provided by Yomyom WebBuild are licensed for your use upon purchase. You retain ownership of the content you provide. You may not resell or redistribute our templates without written permission.
+</p>
+
+<h3>5. Limitation of Liability</h3>
+<p>
+Yomyom WebBuild is not liable for any indirect, incidental, or consequential damages arising from use of our platform or services.
+</p>
+
+<h3>6. Changes to Terms</h3>
+<p>
+We reserve the right to update these Terms &amp; Conditions at any time. Continued use of the platform constitutes your acceptance of any changes.
+</p>
+</div>
+<br>
+<br>
+
+<div class="terms-agree">
+By Using <strong>Yomyom WebBuild</strong>, you acknowledge that you have read,
+understood, and agreed to our <b>Terms &amp; Conditions</b>.
+</div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SUPPORT
+══════════════════════════════════════════ -->
+<div id="support" class="section">
+<div class="support-wrap">
+<h2>Support</h2>
+<p>
+We're here to help. Reach out through any of the channels below.
+</p>
+
+<div class="support-cards">
+<div class="support-card">
+<div class="support-icon">
+<i style="font-size:50px;" class="ph-fill ph-whatsapp-logo"></i>
+</div>
+<h3>WhatsApp</h3>
+<p>
+Chat with our team directly for fast order confirmations and project support.
+</p>
+<a href="https://wa.me/233555358325" class="support-link nav-out-link" target="_blank">Open WhatsApp</a>
+</div>
+<div class="support-card">
+<div class="support-icon">
+<span style="font-size:50px;" class="material-symbols-outlined">stacked_email</span>
+</div>
+<h3>Email Us</h3>
+<p>
+Send us a detailed message and we'll respond within 24 hours on business days.
+</p>
+<a href="mailto:support@yomyomwebbuild.com" class="support-link">Send Email</a>
+</div>
+<div class="support-card">
+<div class="support-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10h6V4" /><path d="m2 4 6 6" /><path d="M21 10V7a2 2 0 0 0-2-2h-7" /><path d="M3 14v2a2 2 0 0 0 2 2h3" /><rect x="12" y="14" width="10" height="7" rx="1" /></svg>
+</div>
+<h3>Help Docs</h3>
+<p>
+Browse our guides on templates, customization, payment, and delivery process.
+</p>
+<a href="#" class="support-link">View Docs</a>
+</div>
+</div>
+
+<div class="faq-section">
+<h3>Frequently Asked Questions</h3>
+
+<details>
+<div class="faq-item">
+<summary>How do I get started with Yomyom WebBuild?</summary>
+<p>
+Go to the Templates section, pick a design you like, and click "Use this template." Follow the steps from there — our team will guide you through customization, confirmation, and delivery.
+</p>
+</div>
+</details>
+
+<details>
+<div class="faq-item">
+<summary>How long does delivery take?</summary>
+<p>
+After payment is confirmed, most websites are delivered within 2–5 business days depending on complexity and requested customizations.
+</p>
+</div>
+</details>
+
+<details>
+<div class="faq-item">
+<summary>Can Yomyom WebBuild handle my hosting?</summary>
+<p>
+Yes! You can either receive the website files to self-host, or request our team to handle hosting and setup on your behalf. Pricing varies — contact us for details.
+</p>
+</div>
+</details>
+
+<details>
+<div class="faq-item">
+<summary>What payment methods do you accept?</summary>
+<p>
+Payment options are confirmed during the WhatsApp order confirmation step. We'll walk you through accepted methods based on your region.
+</p>
+</div>
+</details>
+</div>
+</div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+© 2026 Yomyom WebBuild. All Rights Reserved.
+</footer>
+
+<script>
+var STORAGE_KEY = 'yomyom-active-section';
+
+function show(id, skipHistory) {
+document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+document.querySelectorAll('.nav-links button, .mobile-menu button').forEach(b => b.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+var dt = document.getElementById('tab-' + id);
+if (dt) dt.classList.add('active');
+var mt = document.getElementById('mob-tab-' + id);
+if (mt) mt.classList.add('active');
+window.scrollTo({ top: 0, behavior: 'smooth' });
+
+// Persist which section is active so a "back" navigation (or refresh)
+// can restore it instead of defaulting to "how-it-works".
+try { sessionStorage.setItem(STORAGE_KEY, id); } catch (e) {}
+
+// Keep the URL hash in sync too, and push a history entry so the
+// browser's native back button steps between sections correctly.
+if (!skipHistory) {
+var newHash = '#' + id;
+if (window.location.hash !== newHash) {
+history.pushState({ section: id }, '', newHash);
+}
+}
+}
+
+function toggleMenu() {
+document.getElementById('mobile-menu').classList.toggle('open');
+document.getElementById('hamburger').classList.toggle('open');
+}
+
+function closeMenu() {
+document.getElementById('mobile-menu').classList.remove('open');
+document.getElementById('hamburger').classList.remove('open');
+}
+
+function filterTemplates(category, btn) {
+document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+btn.classList.add('active');
+
+// Show/hide individual cards
+document.querySelectorAll('.template-card').forEach(card => {
+card.style.display = (category === 'all' || card.dataset.category === category) ? '': 'none';
+});
+
+// Show/hide group labels — only show if at least one card in that group is visible
+document.querySelectorAll('.group-label').forEach(label => {
+const group = label.dataset.group;
+if (category === 'all' || category === group) {
+label.style.display = '';
+} else {
+label.style.display = 'none';
+}
+});
+}
+
+/* ──────────────────────────────────────────────────────────
+   RESTORE THE CORRECT SECTION ON LOAD / BACK NAVIGATION
+   ──────────────────────────────────────────────────────────
+   Whenever the user leaves this page (Preview / Customize /
+   WhatsApp link) and then comes back via the browser's back
+   button, this restores whichever section ("templates",
+   "one-time", etc.) they were actually on — instead of
+   resetting to "how-it-works".
+*/
+function restoreSection() {
+var fromHash = window.location.hash ? window.location.hash.replace('#', ''): null;
+var fromStorage = null;
+try { fromStorage = sessionStorage.getItem(STORAGE_KEY); } catch (e) {}
+var target = fromHash || fromStorage;
+var validIds = ['how-it-works', 'templates', 'one-time', 'terms', 'support'];
+if (target && validIds.indexOf(target) !== -1) {
+show(target, true);
+}
+}
+
+window.addEventListener('DOMContentLoaded', restoreSection);
+
+// Handle native back/forward button presses while still on this page
+// (e.g. moving between sections via pushState) and also covers the
+// case of returning to this page from a template page.
+window.addEventListener('popstate', function (e) {
+var section = (e.state && e.state.section) || (window.location.hash ? window.location.hash.replace('#', ''): null);
+var validIds = ['how-it-works', 'templates', 'one-time', 'terms', 'support'];
+if (section && validIds.indexOf(section) !== -1) {
+show(section, true);
+}
+});
+
+// Some browsers restore the page from cache (bfcache) when you hit
+// back from an external page — re-check the saved section then too.
+window.addEventListener('pageshow', function (e) {
+if (e.persisted) {
+restoreSection();
+}
+});
+
+/* ──────────────────────────────────────────────────────────
+   LOADING TRANSITION BEFORE NAVIGATING TO A TEMPLATE PAGE
+   ──────────────────────────────────────────────────────────
+   Shows a brief full-screen loading overlay the moment someone
+   clicks "Preview", "Customize Template", or a WhatsApp link,
+   so the next page feels like it's loading in smoothly.
+*/
+(function () {
+var overlay = document.getElementById('page-loading-overlay');
+document.querySelectorAll('.nav-out-link').forEach(function (link) {
+link.addEventListener('click', function (e) {
+var href = link.getAttribute('href');
+if (!href || href === '#') return;
+
+var opensNewTab = link.getAttribute('target') === '_blank';
+
+if (!opensNewTab) {
+e.preventDefault();
+overlay.classList.add('show');
+setTimeout(function () {
+window.location.href = href;
+}, 450);
+} else {
+// For links that open in a new tab (e.g. WhatsApp), still show
+// a quick loading flash on this page without blocking navigation.
+overlay.classList.add('show');
+setTimeout(function () {
+overlay.classList.remove('show');
+}, 600);
+}
+});
+});
+})();
+</script>
+</body>
+</html>

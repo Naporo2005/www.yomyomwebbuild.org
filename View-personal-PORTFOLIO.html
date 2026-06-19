@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+/>
+<title>Personal Portfolio | YellowGo WebBuild</title>
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+<style>
+:root {
+/* BASE */
+--body-bg: #f4f7fb;
+--text-color: #333;
+
+/* NAV */
+--nav-bg: #2a3d66;
+--nav-link-color: #ffffff;
+--nav-link-hover: #ff6f61;
+
+/* HERO */
+--hero-bg: linear-gradient(
+130deg,
+#000000,
+#000000,
+#000000);
+--hero-title-color: #ffffff;
+--hero-description-color: #ffffff;
+
+/* BUTTONS */
+--button-bg: #2a3d66;
+--button-color: #ffffff;
+--button-hover-bg: #ad8e0c;
+
+/* ABOUT */
+--about-bg: #ffffff;
+--about-title-color: #2a3d66;
+--about-card-bg: #f4f7fb;
+--about-icon-color: #ff6f61;
+--about-text-color: #555555;
+
+/* SERVICES */
+--services-bg: #e3e9f2;
+--services-title-color: #2a3d66;
+--services-card-bg: #ffffff;
+--services-card-title-color: #ff6f61;
+
+/* WORK */
+--work-bg: #ffffff;
+--work-title-color: #2a3d66;
+--work-card-bg: #f4f7fb;
+--work-card-title-color: #ff6f61;
+
+/* CONTACT */
+--contact-bg: #e3e9f2;
+--contact-title-color: #2a3d66;
+--contact-btn-bg: #ff6f61;
+--contact-btn-color: #ffffff;
+--contact-btn-hover-bg: #2a3d66;
+
+/* FOOTER */
+--footer-bg: #2a3d66;
+--footer-color: #ffffff;
+}
+
+/* BASE */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+scroll-behavior: smooth;
+}
+
+body {
+font-family: "Poppins", sans-serif;
+background: var(--body-bg);
+color: var(--text-color);
+line-height: 1.6;
+}
+
+/* NAVBAR */
+nav {
+position: fixed;
+top: 0;
+width: 100%;
+background: var(--nav-bg);
+display: flex;
+justify-content: center;
+padding: 14px;
+z-index: 1000;
+}
+
+nav a {
+color: var(--nav-link-color);
+margin: 0 14px;
+text-decoration: none;
+font-weight: 600;
+transition: color 0.3s;
+}
+
+nav a:hover {
+color: var(--nav-link-hover);
+}
+
+/* HERO */
+#heroSection {
+display: flex;
+align-items: center;
+justify-content: space-between;
+min-height: 70vh;
+padding: 60px 40px;
+background: var(--hero-bg);
+}
+
+#heroSection .hero-text {
+flex: 1;
+max-width: 500px;
+}
+
+#heroTitle {
+font-size: 3rem;
+color: var(--hero-title-color);
+text-shadow: 1px 2px 1px;
+margin-bottom: 20px;
+}
+
+#heroDescription {
+color: var(--hero-description-color);
+font-weight: 300;
+margin-bottom: 20px;
+}
+
+#heroSection .hero-img {
+flex: 1;
+display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+}
+
+#heroSection .hero-img .big-box {
+margin-top: 23px;
+width: 350px;
+height: 350px;
+border-radius: 20px;
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+/* IMAGE RESPONSIVE */
+@media (min-width: 576px) {
+#heroSection .hero-img .big-box {
+width: 300px;
+height: 300px;
+}
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+#heroSection {
+flex-direction: column;
+}
+
+#heroTitle {
+font-size: 2.2rem;
+}
+
+#heroSection .hero-img {
+margin-top: 30px;
+}
+}
+
+@media (min-width: 768px) {
+#heroSection .hero-img .big-box {
+width: 400px;
+height: 400px;
+}
+}
+
+@media (min-width: 992px) {
+#heroSection .hero-img .big-box {
+width: 450px;
+height: 450px;
+}
+}
+
+@media (min-width: 1200px) {
+#heroSection {
+gap: 46px;
+}
+#heroSection .hero-img .big-box {
+width: 550px;
+height: 550px;
+}
+.hero-img {
+margin-top: 13px;
+}
+}
+
+/* BUTTON */
+.btn {
+display: inline-block;
+padding: 12px 28px;
+background: var(--button-bg);
+color: var(--button-color);
+font-weight: 600;
+border-radius: 13px;
+text-decoration: none;
+}
+
+.btn:hover {
+background: var(--button-hover-bg);
+}
+
+/* ABOUT */
+#aboutSection {
+padding: 80px 30px;
+background: var(--about-bg);
+text-align: center;
+}
+
+#aboutTitle {
+color: var(--about-title-color);
+margin-bottom: 20px;
+font-size: clamp(1.8rem, 4vw, 3.2rem);
+}
+
+#aboutSection .overlay {
+display: flex;
+justify-content: center;
+gap: 20px;
+flex-wrap: wrap;
+margin-bottom: 30px;
+}
+
+.overlay-item {
+background: var(--about-card-bg);
+border-radius: 12px;
+width: clamp(150px, 18vw, 220px);
+padding: clamp(15px, 2vw, 30px);
+}
+
+.overlay-item i {
+font-size: clamp(2rem, 3vw, 3.5rem);
+color: var(--about-icon-color);
+margin-bottom: 10px;
+}
+
+#aboutSection p {
+font-size: clamp(14px, 2vw, 20px);
+line-height: 1.7;
+max-width: 700px;
+margin: auto;
+color: var(--about-text-color);
+}
+/* Tablet */
+@media (min-width: 768px) {
+#aboutSection {
+padding: 80px 30px;
+}
+
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+#aboutSection {
+padding: 100px 40px;
+}
+
+#aboutSection .overlay {
+gap: 40px;
+}
+
+#aboutSection p {
+max-width: 800px;
+}
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+
+#aboutSection p {
+max-width: 900px;
+}
+}
+
+/* SERVICES */
+#servicesSection {
+padding: 80px 30px;
+background: var(--services-bg);
+}
+#servicesSection h2 {
+text-align: center;
+color: var(--services-title-color);
+margin-bottom: 30px;
+font-size: 1.8rem;
+}
+.services-scroll {
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+justify-content: center;
+}
+.service-item {
+flex: 1 1 250px;
+background: var(--services-card-bg);
+padding: 20px;
+border-radius: 12px;
+text-align: center;
+transition: transform 0.3s;
+}
+.service-item:hover {
+transform: translateY(-5px);
+}
+.service-item h3 {
+color: var(--services-card-title-color);
+margin-bottom: 10px;
+font-size: 1.3rem;
+}
+/* Tablet */
+@media (min-width: 768px) {
+#servicesSection {
+padding: 80px 30px;
+}
+
+#servicesSection h2 {
+font-size: 2.4rem;
+}
+
+.services-scroll {
+gap: 25px;
+}
+
+.service-item {
+padding: 25px;
+}
+
+.service-item h3 {
+font-size: 1.5rem;
+}
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+#servicesSection {
+padding: 100px 40px;
+}
+
+#servicesSection h2 {
+font-size: 2.8rem;
+}
+
+.services-scroll {
+gap: 30px;
+}
+
+.service-item {
+padding: 30px;
+}
+
+.service-item h3 {
+font-size: 1.7rem;
+}
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+#servicesSection h2 {
+font-size: 3.2rem;
+}
+
+.service-item h3 {
+font-size: 1.9rem;
+}
+}
+
+/* PORTFOLIO */
+#workSection {
+padding: 80px 20px;
+background: var(--work-bg);
+text-align: center;
+}
+
+#workSection h2 {
+color: var(--work-title-color);
+margin-bottom: 20px;
+}
+
+.work-grid {
+display: grid;
+grid-template-columns: repeat(
+auto-fit,
+minmax(280px, 1fr)
+);
+gap: 20px;
+}
+
+.work-card {
+background: var(--work-card-bg);
+border-radius: 12px;
+padding: 20px;
+}
+
+.work-card h3 {
+color: var(--work-card-title-color);
+margin-bottom: 10px;
+}
+
+.cv-download {
+margin-top: 20px;
+}
+
+.cv-download button {
+display: none;
+}
+
+.cv-download a {
+display: inline-block;
+padding: 12px 25px;
+background: var(--button-bg);
+color: var(--button-color);
+border-radius: 30px;
+text-decoration: none;
+font-weight: 600;
+}
+#workSection h2 {
+font-size: clamp(1.8rem, 4vw, 3.2rem);
+}
+
+.work-card h3 {
+font-size: clamp(1.3rem, 2vw, 1.9rem);
+}
+
+.cv-download a {
+font-size: clamp(14px, 2vw, 20px);
+}
+
+/* CONTACT */
+#contactSection {
+padding: 60px 15px;
+background: var(--contact-bg);
+text-align: center;
+}
+
+#contactSection h2 {
+color: var(--contact-title-color);
+margin-bottom: 1px;
+font-size: 1.8rem;
+}
+@media (min-width: 480px) {
+#contactSection {
+padding: 70px 20px;
+}
+
+#contactSection h2 {
+font-size: 2rem;
+}
+}
+
+@media (min-width: 768px) {
+#contactSection {
+padding: 80px 30px;
+}
+
+#contactSection h2 {
+font-size: 2.4rem;
+}
+}
+
+@media (min-width: 992px) {
+#contactSection {
+padding: 100px 40px;
+}
+
+#contactSection h2 {
+font-size: 2.8rem;
+}
+}
+
+@media (min-width: 1200px) {
+#contactSection {
+padding: 120px 60px;
+}
+
+#contactSection h2 {
+font-size: 3.2rem;
+}
+}
+
+@media (min-width: 1400px) {
+#contactSection h2 {
+font-size: 3.6rem;
+}
+}
+.link-p {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+text-align: center;
+gap: 4px;
+font-size: 15px;
+/* Small phones */
+}
+
+@media (min-width: 480px) {
+.link-p {
+font-size: 14px;
+gap: 6px;
+}
+}
+
+@media (min-width: 768px) {
+.link-p {
+font-size: 17px;
+gap: 10px;
+}
+}
+
+@media (min-width: 992px) {
+.link-p {
+font-size: 19px;
+gap: 14px;
+}
+}
+
+@media (min-width: 1200px) {
+.link-p {
+font-size: 22px;
+gap: 18px;
+}
+}
+
+@media (min-width: 1400px) {
+.link-p {
+font-size: 24px;
+gap: 22px;
+}
+}
+
+@media (min-width: 1600px) {
+.link-p {
+font-size: 26px;
+gap: 26px;
+}
+}
+@media (min-width: 1920px) {
+.link-p {
+font-size: 30px;
+gap: 30px;
+}
+}
+.contactbtn {
+background: var(--contact-btn-bg);
+color: var(--contact-btn-color);
+padding: 10px 8px;
+border-radius: 12px;
+text-decoration: none;
+}
+
+.contactbtn:hover {
+background: var(--contact-btn-hover-bg);
+}
+/* Tablet */
+@media (min-width: 768px) {
+.contactbtn {
+padding: 12px 16px;
+font-size: 16px;
+}
+
+footer {
+padding: 25px;
+font-size: 16px;
+}
+
+.footer-socials {
+gap: 20px;
+}
+
+.footer-socials a {
+font-size: 40px;
+}
+}
+
+/* Small Desktop */
+@media (min-width: 992px) {
+.contactbtn {
+padding: 14px 20px;
+font-size: 18px;
+}
+
+footer {
+padding: 30px;
+font-size: 18px;
+}
+
+.footer-socials a {
+font-size: 45px;
+}
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+.contactbtn {
+padding: 16px 24px;
+font-size: 20px;
+}
+
+footer {
+font-size: 20px;
+}
+
+.footer-socials {
+gap: 25px;
+}
+
+.footer-socials a {
+font-size: 50px;
+}
+}
+/* FOOTER */
+footer {
+background: var(--footer-bg);
+color: var(--footer-color);
+text-align: center;
+padding: 20px;
+font-size: 15px;
+}
+
+.footer-socials {
+display: flex;
+justify-content: center;
+gap: 15px;
+}
+
+.footer-socials a {
+font-size: 35px;
+color: inherit;
+text-decoration: none;
+}
+</style>
+</head>
+<body>
+<!-- NAVBAR -->
+<nav>
+<a id="navHome" href="#heroSection">Home</a>
+<a id="navAbout" href="#aboutSection">About</a>
+<a id="navServices" href="#servicesSection">Services</a>
+<a id="navWork" href="#workSection">Portfolio</a>
+<a id="navContact" href="#contactSection">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section id="heroSection">
+<div class="hero-text">
+<h1 id="heroTitle">Graduate Portfolio</h1>
+
+<p id="heroDescription">
+Showcase your personal projects, experience, and
+CV in one professional space.
+</p>
+
+<a id="heroButton" href="#workSection" class="btn">
+Hire Me
+</a>
+</div>
+
+<div class="hero-img">
+<img
+id="heroImage"
+src="img-placehloder.jpg"
+class="big-box"
+alt="Hero Image"
+/>
+</div>
+</section>
+
+<!-- ABOUT section -->
+<section id="aboutSection">
+<h2 id="aboutTitle">About Me</h2>
+
+<div class="overlay">
+<div class="overlay-item">
+<i id="aboutIcon1">🎓</i>
+<p id="aboutLabel1">
+Education
+</p>
+</div>
+<div class="overlay-item">
+<i id="aboutIcon2">💼</i>
+<p id="aboutLabel2">
+Experience
+</p>
+</div>
+
+<div class="overlay-item">
+<i id="aboutIcon3">🛠️</i>
+<p id="aboutLabel3">
+Skills
+</p>
+</div>
+</div>
+
+<p id="aboutDescription">
+This is a sample about section where you can
+describe yourself, your journey, and your goals.
+</p>
+</section>
+
+<!-- SERVICES -->
+<section id="servicesSection">
+<h2 id="servicesTitle">My Specialities</h2>
+
+<div class="services-scroll">
+<div class="service-item">
+<h3 id="serviceTitle1">Web Development</h3>
+<p id="serviceText1">
+Building responsive websites.
+</p>
+</div>
+
+<div class="service-item">
+<h3 id="serviceTitle2">Design</h3>
+<p id="serviceText2">
+Creative UI/UX solutions.
+</p>
+</div>
+
+<div class="service-item">
+<h3 id="serviceTitle3">Consulting</h3>
+<p id="serviceText3">
+Helping clients with digital strategy.
+</p>
+</div>
+</div>
+</section>
+
+<!-- WORK / PORTFOLIO -->
+<section id="workSection">
+<h2 id="workTitle">My Portfolio</h2>
+
+<div class="work-grid">
+<div class="work-card">
+<h3 id="projectTitle1">Project One</h3>
+<p id="projectText1">
+Sample project showcase.
+</p>
+</div>
+
+<div class="work-card">
+<h3 id="projectTitle2">Project Two</h3>
+<p id="projectText2">
+Another project example.
+</p>
+</div>
+
+<div class="work-card">
+<h3 id="cvTitle">Download CV</h3>
+
+<div class="cv-download">
+<button id="cvHiddenButton">
+Hidden Button
+</button>
+
+<a
+id="cvDownloadLink"
+href="cv.pdf"
+download
+>
+Download CV
+</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contactSection">
+<h2 id="contactTitle">Contact Me On</h2>
+
+<p id="contactDescription">
+Get in touch for collaborations or opportunities.
+You can reach me via email or social platforms.
+</p>
+<br />
+<div class="link-p">
+<a
+id="contactEmailLink"
+href="mailto:example@email.com"
+class="contactbtn"
+>
+<span id="contactEmailText">Email Me</span>
+</a>
+
+<a
+id="contactWhatsappLink"
+href="https://wa.me/233599888290"
+class="contactbtn"
+>
+
+<span id="contactWhatsappText"
+>WhatsApp Me</span
+>
+</a>
+
+<a
+id="contactPhoneLink"
+href="tel:+23355358325"
+class="contactbtn"
+>
+<span id="contactPhoneText">Call Me</span>
+</a>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footerSection">
+<div class="footer-socials">
+<a id="footerSocial1" href="#">
+<i id="footerIcon1" class="ph-fill ph-facebook-logo"></i>
+</a>
+
+<a id="footerSocial2" href="#">
+<i id="footerIcon2" class="ph-fill ph-instagram-logo"></i>
+</a>
+
+<a id="footerSocial3" href="#">
+<i id="footerIcon3" class="ph-fill ph-whatsapp-logo"></i>
+</a>
+</div>
+<p id="footerCopyright">
+&copy; 2026 Personal Portfolio | YellowGo WebBuild
+</p>
+
+<p id="footerDescription">
+Designed for graduates and professionals to showcase
+their work.
+</p>
+</footer>
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+</body>
+</html>

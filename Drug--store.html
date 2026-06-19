@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MediCare Pharmacy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* ─── CSS CUSTOM PROPERTIES (Edit these to restyle the whole site) ─── */
+:root {
+/* Brand Colors */
+--color-primary: #0C6E5A;
+--color-primary-dark: #084D3F;
+--color-primary-light: #E6F4F0;
+--color-accent: #F4A042;
+--color-accent-hover: #E08C2A;
+
+/* Neutrals */
+--color-bg: #F8FAFA;
+--color-surface: #FFFFFF;
+--color-surface-alt: #EDF6F3;
+--color-border: #D4E8E2;
+--color-text: #1A2D28;
+--color-text-muted: #5A7A72;
+--color-text-light: #FFFFFF;
+
+/* Typography */
+--font-display: 'DM Serif Display', Georgia, serif;
+--font-body: 'Inter', sans-serif;
+--font-mono: 'DM Mono', monospace;
+
+/* Type Scale */
+--text-xs: 0.75rem;
+--text-sm: 0.875rem;
+--text-base: 1rem;
+--text-lg: 1.125rem;
+--text-xl: 1.25rem;
+--text-2xl: 1.5rem;
+--text-3xl: 2rem;
+--text-4xl: 2.75rem;
+--text-5xl: 3.75rem;
+
+/* Spacing */
+--space-1: 0.25rem;
+--space-2: 0.5rem;
+--space-3: 0.75rem;
+--space-4: 1rem;
+--space-6: 1.5rem;
+--space-8: 2rem;
+--space-12: 3rem;
+--space-16: 4rem;
+--space-24: 6rem;
+
+/* Layout */
+--max-width: 1200px;
+--navbar-height: 72px;
+--radius-sm: 6px;
+--radius-md: 12px;
+--radius-lg: 20px;
+--radius-pill: 999px;
+
+/* Shadows */
+--shadow-sm: 0 1px 3px rgba(12,110,90,0.08);
+--shadow-md: 0 4px 16px rgba(12,110,90,0.12);
+--shadow-lg: 0 12px 40px rgba(12,110,90,0.16);
+
+/* Transitions */
+--transition: 0.22s ease;
+
+/* Navbar specifics */
+--navbar-bg: #FFFFFF;
+--navbar-border: var(--color-border);
+
+/* Footer */
+--footer-bg: #0C2620;
+--footer-text: #A8C8BF;
+--footer-heading: #FFFFFF;
+}
+
+/* ─── RESET & BASE ─── */
+*, *::before, *::after { box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+html { scroll-behavior: smooth;
+}
+body {
+font-family: var(--font-body);
+background: var(--color-bg);
+color: var(--color-text);
+font-size: var(--text-base);
+line-height: 1.6;
+-webkit-font-smoothing: antialiased;
+}
+img { display: block;
+max-width: 100%;
+}
+a { color: inherit;
+text-decoration: none;
+}
+ul { list-style: none;
+}
+
+/* ─── LAYOUT UTILITIES ─── */
+.container {
+max-width: var(--max-width);
+margin: 0 auto;
+padding: 0 var(--space-6);
+}
+
+/* ─── NAVBAR ─── */
+#navbar {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+height: var(--navbar-height);
+background: var(--navbar-bg);
+border-bottom: 1.5px solid var(--navbar-border);
+z-index: 1000;
+box-shadow: var(--shadow-sm);
+transition: background var(--transition), box-shadow var(--transition);
+}
+#navbar .container {
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: var(--space-6);
+}
+#navbar-logo {
+display: flex;
+align-items: center;
+gap: var(--space-3);
+font-family: var(--font-display);
+font-size: var(--text-xl);
+color: var(--color-primary);
+font-weight: 400;
+letter-spacing: -0.01em;
+}
+#navbar-logo .logo-icon {
+width: 38px;
+height: 38px;
+background: var(--color-primary);
+border-radius: var(--radius-sm);
+display: flex;
+align-items: center;
+justify-content: center;
+}
+#navbar-logo .logo-icon svg { width: 22px;
+height: 22px;
+fill: #fff;
+}
+#navbar-logo span em {
+font-style: italic;
+color: var(--color-accent);
+}
+
+#navbar-links {
+display: flex;
+align-items: center;
+gap: var(--space-8);
+}
+.nav-link {
+font-size: var(--text-sm);
+font-weight: 500;
+color: var(--color-text-muted);
+transition: color var(--transition);
+position: relative;
+padding-bottom: 2px;
+}
+.nav-link::after {
+content: '';
+position: absolute;
+bottom: -2px;
+left: 0;
+right: 100%;
+height: 2px;
+background: var(--color-primary);
+transition: right var(--transition);
+}
+.nav-link:hover { color: var(--color-primary);
+}
+.nav-link:hover::after { right: 0;
+}
+
+#navbar-actions {
+display: flex;
+align-items: center;
+gap: var(--space-3);
+}
+.btn {
+display: inline-flex;
+align-items: center;
+gap: var(--space-2);
+padding: 0.55rem 1.25rem;
+border-radius: var(--radius-pill);
+font-family: var(--font-body);
+font-size: var(--text-sm);
+font-weight: 600;
+border: none;
+cursor: pointer;
+transition: all var(--transition);
+white-space: nowrap;
+}
+.btn-outline {
+background: transparent;
+border: 1.5px solid var(--color-border);
+color: var(--color-text-muted);
+}
+.btn-outline:hover {
+border-color: var(--color-primary);
+color: var(--color-primary);
+}
+.btn-primary {
+background: var(--color-primary);
+color: #fff;
+}
+.btn-primary:hover {
+background: var(--color-primary-dark);
+transform: translateY(-1px);
+box-shadow: var(--shadow-md);
+}
+.btn-accent {
+background: var(--color-accent);
+color: #fff;
+}
+.btn-accent:hover {
+background: var(--color-accent-hover);
+transform: translateY(-1px);
+box-shadow: var(--shadow-md);
+}
+.btn-lg {
+padding: 0.85rem 2rem;
+font-size: var(--text-base);
+border-radius: var(--radius-pill);
+}
+
+/* ─── HERO ─── */
+#hero {
+padding-top: calc(var(--navbar-height) + var(--space-16));
+padding-bottom: var(--space-24);
+background: linear-gradient(160deg, #E6F4F0 0%, #F8FAFA 55%, #FFF9F2 100%);
+overflow: hidden;
+position: relative;
+}
+#hero::before {
+content: '';
+position: absolute;
+top: -80px;
+right: -120px;
+width: 520px;
+height: 520px;
+background: radial-gradient(circle, rgba(12,110,90,0.08) 0%, transparent 70%);
+pointer-events: none;
+}
+#hero .container {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: var(--space-16);
+align-items: center;
+}
+#hero-eyebrow {
+display: inline-flex;
+align-items: center;
+gap: var(--space-2);
+background: var(--color-surface);
+border: 1.5px solid var(--color-border);
+border-radius: var(--radius-pill);
+padding: 0.3rem 0.85rem;
+font-size: var(--text-xs);
+font-weight: 600;
+color: var(--color-primary);
+letter-spacing: 0.06em;
+text-transform: uppercase;
+margin-bottom: var(--space-6);
+}
+#hero-eyebrow .dot {
+width: 6px;
+height: 6px;
+background: var(--color-accent);
+border-radius: 50%;
+animation: pulse 2s infinite;
+}
+@keyframes pulse {
+0%, 100% { opacity: 1;
+transform: scale(1);
+}
+50% { opacity: 0.5;
+transform: scale(0.8);
+}
+}
+#hero-headline {
+font-family: var(--font-display);
+font-size: var(--text-5xl);
+line-height: 1.05;
+color: var(--color-text);
+letter-spacing: -0.02em;
+margin-bottom: var(--space-6);
+}
+#hero-headline em {
+font-style: italic;
+color: var(--color-primary);
+}
+#hero-subtext {
+font-size: var(--text-lg);
+color: var(--color-text-muted);
+max-width: 440px;
+line-height: 1.7;
+margin-bottom: var(--space-8);
+}
+#hero-actions {
+display: flex;
+align-items: center;
+gap: var(--space-4);
+flex-wrap: wrap;
+}
+#hero-trust {
+display: flex;
+align-items: center;
+gap: var(--space-3);
+margin-top: var(--space-12);
+padding-top: var(--space-8);
+border-top: 1.5px solid var(--color-border);
+}
+.trust-item {
+display: flex;
+align-items: center;
+gap: var(--space-2);
+font-size: var(--text-sm);
+color: var(--color-text-muted);
+}
+.trust-item .checkmark {
+width: 20px;
+height: 20px;
+background: var(--color-primary-light);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(--color-primary);
+font-size: 11px;
+flex-shrink: 0;
+}
+.trust-divider {
+width: 1px;
+height: 28px;
+background: var(--color-border);
+}
+
+/* Hero visual */
+#hero-visual {
+position: relative;
+}
+#hero-card-main {
+background: var(--color-surface);
+border-radius: var(--radius-lg);
+padding: var(--space-8);
+box-shadow: var(--shadow-lg);
+border: 1.5px solid var(--color-border);
+position: relative;
+z-index: 2;
+}
+.rx-label {
+font-family: var(--font-mono);
+font-size: var(--text-xs);
+color: var(--color-text-muted);
+letter-spacing: 0.08em;
+text-transform: uppercase;
+margin-bottom: var(--space-4);
+}
+.med-list { display: flex;
+flex-direction: column;
+gap: var(--space-3);
+}
+.med-item {
+display: flex;
+align-items: center;
+gap: var(--space-4);
+padding: var(--space-4);
+background: var(--color-bg);
+border-radius: var(--radius-md);
+border: 1.5px solid var(--color-border);
+}
+.med-icon {
+width: 44px;
+height: 44px;
+border-radius: var(--radius-sm);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.4rem;
+flex-shrink: 0;
+}
+.med-info { flex: 1;
+}
+.med-name { font-weight: 600;
+font-size: var(--text-sm);
+}
+.med-refill { font-size: var(--text-xs);
+color: var(--color-text-muted);
+margin-top: 2px;
+}
+.med-badge {
+font-size: var(--text-xs);
+font-weight: 600;
+padding: 3px 10px;
+border-radius: var(--radius-pill);
+}
+.badge-ready { background: #E6F4F0;
+color: var(--color-primary);
+}
+.badge-due { background: #FEF3E2;
+color: #B87020;
+}
+
+#hero-card-float {
+position: absolute;
+bottom: -24px;
+left: -32px;
+background: var(--color-surface);
+border-radius: var(--radius-md);
+padding: var(--space-4) var(--space-6);
+box-shadow: var(--shadow-md);
+border: 1.5px solid var(--color-border);
+z-index: 3;
+min-width: 180px;
+}
+.float-label { font-size: var(--text-xs);
+color: var(--color-text-muted);
+margin-bottom: var(--space-1);
+}
+.float-stat {
+font-family: var(--font-display);
+font-size: var(--text-3xl);
+color: var(--color-primary);
+line-height: 1;
+}
+.float-sub { font-size: var(--text-xs);
+color: var(--color-text-muted);
+margin-top: 2px;
+}
+
+/* ─── SECTION COMMON ─── */
+.section {
+padding: var(--space-24) 0;
+}
+.section-alt { background: var(--color-surface-alt);
+}
+.section-dark {
+background: var(--color-primary-dark);
+color: var(--color-text-light);
+}
+.section-eyebrow {
+font-family: var(--font-mono);
+font-size: var(--text-xs);
+font-weight: 500;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(--color-accent);
+margin-bottom: var(--space-3);
+}
+.section-title {
+font-family: var(--font-display);
+font-size: var(--text-4xl);
+line-height: 1.1;
+letter-spacing: -0.02em;
+margin-bottom: var(--space-4);
+}
+.section-subtitle {
+font-size: var(--text-lg);
+color: var(--color-text-muted);
+max-width: 540px;
+line-height: 1.7;
+}
+.section-dark .section-subtitle { color: rgba(255,255,255,0.65);
+}
+.section-header { margin-bottom: var(--space-12);
+}
+.section-header.centered { text-align: center;
+}
+.section-header.centered .section-subtitle { margin: 0 auto;
+}
+
+/* ─── SERVICES GRID ─── */
+#services-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: var(--space-6);
+}
+.service-card {
+background: var(--color-surface);
+border: 1.5px solid var(--color-border);
+border-radius: var(--radius-lg);
+padding: var(--space-8);
+transition: all var(--transition);
+cursor: default;
+}
+.service-card:hover {
+border-color: var(--color-primary);
+box-shadow: var(--shadow-lg);
+transform: translateY(-3px);
+}
+.service-icon {
+width: 52px;
+height: 52px;
+background: var(--color-primary-light);
+border-radius: var(--radius-md);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.6rem;
+margin-bottom: var(--space-6);
+}
+.service-title {
+font-family: var(--font-display);
+font-size: var(--text-xl);
+margin-bottom: var(--space-2);
+}
+.service-desc { font-size: var(--text-sm);
+color: var(--color-text-muted);
+line-height: 1.7;
+}
+
+/* ─── HOW IT WORKS ─── */
+#steps-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: var(--space-6);
+position: relative;
+}
+#steps-grid::before {
+content: '';
+position: absolute;
+top: 28px;
+left: 10%;
+right: 10%;
+height: 1.5px;
+background: linear-gradient(to right, var(--color-border), var(--color-primary), var(--color-border));
+z-index: 0;
+}
+.step-card {
+position: relative;
+z-index: 1;
+text-align: center;
+padding: var(--space-6);
+}
+.step-num {
+width: 56px;
+height: 56px;
+margin: 0 auto var(--space-6);
+background: var(--color-surface);
+border: 2px solid var(--color-primary);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: var(--font-display);
+font-size: var(--text-xl);
+color: var(--color-primary);
+}
+.step-title { font-weight: 600;
+margin-bottom: var(--space-2);
+}
+.step-desc { font-size: var(--text-sm);
+color: var(--color-text-muted);
+line-height: 1.7;
+}
+
+/* ─── FEATURED PRODUCTS ─── */
+#products-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: var(--space-6);
+}
+.product-card {
+background: var(--color-surface);
+border: 1.5px solid var(--color-border);
+border-radius: var(--radius-lg);
+overflow: hidden;
+transition: all var(--transition);
+}
+.product-card:hover {
+box-shadow: var(--shadow-md);
+transform: translateY(-2px);
+}
+.product-image {
+height: 160px;
+background: var(--color-primary-light);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 3rem;
+}
+.product-body { padding: var(--space-4) var(--space-6) var(--space-6);
+}
+.product-category {
+font-size: var(--text-xs);
+font-weight: 600;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+color: var(--color-accent);
+margin-bottom: var(--space-1);
+}
+.product-name { font-weight: 600;
+margin-bottom: var(--space-2);
+}
+.product-desc { font-size: var(--text-sm);
+color: var(--color-text-muted);
+margin-bottom: var(--space-4);
+}
+.product-footer {
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+.product-price {
+font-family: var(--font-display);
+font-size: var(--text-xl);
+color: var(--color-primary);
+}
+.product-price span { font-family: var(--font-body);
+font-size: var(--text-sm);
+color: var(--color-text-muted);
+}
+.btn-sm {
+padding: 0.4rem 0.9rem;
+font-size: var(--text-xs);
+border-radius: var(--radius-pill);
+}
+
+/* ─── TESTIMONIALS ─── */
+#testimonials-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: var(--space-6);
+}
+.testimonial-card {
+background: rgba(255,255,255,0.06);
+border: 1.5px solid rgba(255,255,255,0.12);
+border-radius: var(--radius-lg);
+padding: var(--space-8);
+}
+.testimonial-stars { color: var(--color-accent);
+margin-bottom: var(--space-4);
+letter-spacing: 2px;
+}
+.testimonial-quote {
+font-family: var(--font-display);
+font-size: var(--text-lg);
+font-style: italic;
+line-height: 1.6;
+margin-bottom: var(--space-6);
+color: rgba(255,255,255,0.88);
+}
+.testimonial-author { display: flex;
+align-items: center;
+gap: var(--space-3);
+}
+.author-avatar {
+width: 44px;
+height: 44px;
+border-radius: 50%;
+background: var(--color-primary-light);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.2rem;
+flex-shrink: 0;
+}
+.author-name { font-weight: 600;
+font-size: var(--text-sm);
+color: #fff;
+}
+.author-role { font-size: var(--text-xs);
+color: rgba(255,255,255,0.5);
+}
+
+/* ─── CTA BANNER ─── */
+#cta-banner {
+background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+border-radius: var(--radius-lg);
+padding: var(--space-16) var(--space-12);
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: var(--space-8);
+position: relative;
+overflow: hidden;
+}
+#cta-banner::after {
+content: '💊';
+position: absolute;
+right: 300px;
+top: -20px;
+font-size: 6rem;
+opacity: 0.08;
+transform: rotate(-15deg);
+}
+.cta-text .section-title { color: #fff;
+margin-bottom: var(--space-2);
+}
+.cta-text p { color: rgba(255,255,255,0.7);
+font-size: var(--text-lg);
+}
+#cta-actions { display: flex;
+gap: var(--space-4);
+flex-shrink: 0;
+}
+
+/* ─── CONTACT ─── */
+#contact-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: var(--space-16);
+align-items: start;
+}
+.contact-info h3 {
+font-family: var(--font-display);
+font-size: var(--text-2xl);
+margin-bottom: var(--space-4);
+}
+.contact-info p {
+color: var(--color-text-muted);
+line-height: 1.7;
+margin-bottom: var(--space-8);
+}
+.contact-detail {
+display: flex;
+align-items: flex-start;
+gap: var(--space-4);
+margin-bottom: var(--space-6);
+}
+.contact-icon {
+width: 44px;
+height: 44px;
+background: var(--color-primary-light);
+border-radius: var(--radius-sm);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.2rem;
+flex-shrink: 0;
+}
+.contact-detail-label { font-size: var(--text-xs);
+color: var(--color-text-muted);
+margin-bottom: 2px;
+}
+.contact-detail-value { font-weight: 600;
+}
+
+/* Form */
+.form-group { margin-bottom: var(--space-4);
+}
+.form-row { display: grid;
+grid-template-columns: 1fr 1fr;
+gap: var(--space-4);
+}
+label {
+display: block;
+font-size: var(--text-sm);
+font-weight: 500;
+color: var(--color-text);
+margin-bottom: var(--space-2);
+}
+input, select, textarea {
+width: 100%;
+padding: 0.7rem 1rem;
+background: var(--color-surface);
+border: 1.5px solid var(--color-border);
+border-radius: var(--radius-sm);
+font-family: var(--font-body);
+font-size: var(--text-sm);
+color: var(--color-text);
+transition: border-color var(--transition), box-shadow var(--transition);
+outline: none;
+}
+input:focus, select:focus, textarea:focus {
+border-color: var(--color-primary);
+box-shadow: 0 0 0 3px rgba(12,110,90,0.1);
+}
+textarea { resize: vertical;
+min-height: 100px;
+}
+
+/* ─── FOOTER ─── */
+#footer {
+background: var(--footer-bg);
+padding: var(--space-16) 0 var(--space-8);
+}
+#footer-top {
+display: grid;
+grid-template-columns: 2fr 1fr 1fr 1fr;
+gap: var(--space-12);
+padding-bottom: var(--space-12);
+border-bottom: 1.5px solid rgba(255,255,255,0.08);
+margin-bottom: var(--space-8);
+}
+#footer-brand .logo-text {
+font-family: var(--font-display);
+font-size: var(--text-xl);
+color: var(--footer-heading);
+margin-bottom: var(--space-4);
+display: flex;
+align-items: center;
+gap: var(--space-2);
+}
+#footer-brand p {
+font-size: var(--text-sm);
+color: var(--footer-text);
+line-height: 1.7;
+margin-bottom: var(--space-6);
+}
+.social-links { display: flex;
+gap: var(--space-3);
+}
+.social-btn {
+width: 38px;
+height: 38px;
+border-radius: var(--radius-sm);
+background: rgba(255,255,255,0.08);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1rem;
+transition: background var(--transition);
+}
+.social-btn:hover { background: var(--color-primary);
+}
+.footer-col h4 {
+font-size: var(--text-sm);
+font-weight: 600;
+color: var(--footer-heading);
+margin-bottom: var(--space-4);
+letter-spacing: 0.04em;
+}
+.footer-col ul { display: flex;
+flex-direction: column;
+gap: var(--space-3);
+}
+.footer-col ul li a {
+font-size: var(--text-sm);
+color: var(--footer-text);
+transition: color var(--transition);
+}
+.footer-col ul li a:hover { color: #fff;
+}
+#footer-bottom {
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+#footer-bottom p {
+font-size: var(--text-sm);
+color: var(--footer-text);
+}
+.footer-badges { display: flex;
+gap: var(--space-3);
+}
+.footer-badge {
+padding: 0.3rem 0.75rem;
+background: rgba(255,255,255,0.06);
+border: 1px solid rgba(255,255,255,0.1);
+border-radius: var(--radius-pill);
+font-size: var(--text-xs);
+color: var(--footer-text);
+}
+
+/* ─── SCROLLED NAVBAR STATE ─── */
+#navbar.scrolled {
+box-shadow: var(--shadow-md);
+}
+
+/* ─── MOBILE MENU TOGGLE ─── */
+#mobile-menu-btn {
+display: none;
+background: var(--color-primary-light);
+border: 1.5px solid var(--color-border);
+border-radius: var(--radius-sm);
+cursor: pointer;
+padding: 8px;
+width: 44px;
+height: 44px;
+align-items: center;
+justify-content: center;
+position: relative;
+transition: background var(--transition), border-color var(--transition);
+flex-shrink: 0;
+}
+#mobile-menu-btn:hover {
+background: var(--color-primary);
+border-color: var(--color-primary);
+}
+#mobile-menu-btn:hover svg { stroke: #fff;
+}
+
+/* Two SVG icons stacked — one fades in as the other fades out */
+#mobile-menu-btn svg {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 24px;
+height: 24px;
+stroke: var(--color-primary);
+fill: none;
+stroke-width: 2;
+stroke-linecap: round;
+stroke-linejoin: round;
+transition: opacity 0.3s ease, transform 0.35s cubic-bezier(.68,-.55,.27,1.55);
+}
+
+/* STETHOSCOPE — shown when closed */
+#icon-stethoscope {
+opacity: 1;
+transform: translate(-50%, -50%) rotate(0deg) scale(1);
+}
+/* PLUS/HELP — hidden when closed */
+#icon-help {
+opacity: 0;
+transform: translate(-50%, -50%) rotate(-90deg) scale(0.5);
+}
+
+/* When menu is open, swap icons */
+#mobile-menu-btn.open #icon-stethoscope {
+opacity: 0;
+transform: translate(-50%, -50%) rotate(90deg) scale(0.5);
+}
+#mobile-menu-btn.open #icon-help {
+opacity: 1;
+transform: translate(-50%, -50%) rotate(0deg) scale(1);
+}
+#mobile-menu-btn.open {
+background: #FEF2F2;
+border-color: #FCA5A5;
+}
+#mobile-menu-btn.open svg { stroke: #DC2626;
+}
+
+/* ─── MOBILE DROPDOWN MENU ─── */
+#mobile-nav {
+display: none;
+position: fixed;
+top: var(--navbar-height);
+left: 0;
+right: 0;
+background: var(--color-surface);
+border-bottom: 1.5px solid var(--color-border);
+box-shadow: var(--shadow-lg);
+z-index: 999;
+padding: var(--space-4) var(--space-6);
+flex-direction: column;
+gap: var(--space-2);
+transform: translateY(-10px);
+opacity: 0;
+transition: opacity 0.25s ease, transform 0.25s ease;
+}
+#mobile-nav.open {
+opacity: 1;
+transform: translateY(0);
+}
+#mobile-nav .nav-link {
+display: block;
+padding: var(--space-3) var(--space-4);
+border-radius: var(--radius-sm);
+font-size: var(--text-base);
+font-weight: 500;
+color: var(--color-text);
+transition: background var(--transition), color var(--transition);
+}
+#mobile-nav .nav-link:hover {
+background: var(--color-primary-light);
+color: var(--color-primary);
+}
+#mobile-nav .nav-link::after { display: none;
+}
+#mobile-nav-actions {
+display: flex;
+flex-direction: column;
+gap: var(--space-3);
+padding: var(--space-4) var(--space-4) var(--space-2);
+border-top: 1.5px solid var(--color-border);
+margin-top: var(--space-2);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+#products-grid { grid-template-columns: repeat(2, 1fr);
+}
+#steps-grid { grid-template-columns: repeat(2, 1fr);
+}
+#steps-grid::before { display: none;
+}
+}
+@media (max-width: 768px) {
+:root {
+--text-5xl: 2.5rem;
+--text-4xl: 2rem;
+}
+#navbar-links, #navbar-actions { display: none;
+}
+#mobile-menu-btn { display: flex;
+}
+#mobile-nav { display: flex;
+}
+#hero .container { grid-template-columns: 1fr;
+}
+#hero-visual { display: none;
+}
+#services-grid, #testimonials-grid { grid-template-columns: 1fr;
+}
+#products-grid { grid-template-columns: 1fr;
+}
+#footer-top { grid-template-columns: 1fr 1fr;
+}
+#contact-grid { grid-template-columns: 1fr;
+}
+.form-row { grid-template-columns: 1fr;
+}
+#cta-banner { flex-direction: column;
+text-align: center;
+}
+#cta-actions { justify-content: center;
+}
+#footer-bottom { flex-direction: column;
+gap: var(--space-4);
+text-align: center;
+}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAVBAR ═══════════ -->
+<header id="navbar">
+<div class="container">
+<a href="#" id="navbar-logo">
+<div class="logo-icon">
+<!-- Rx SVG icon -->
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 3h6a4 4 0 0 1 0 8H9V3zm0 8h2l4 7h-3l-3-5v5H6V3" /></svg>
+</div>
+<span>Medi<em>Care</em> Pharmacy</span>
+</a>
+
+<nav id="navbar-links">
+<a class="nav-link" href="#services">Services</a>
+<a class="nav-link" href="#products">Products</a>
+<a class="nav-link" href="#how-it-works">How It Works</a>
+<a class="nav-link" href="#about">About</a>
+<a class="nav-link" href="#contact">Contact</a>
+</nav>
+
+<div id="navbar-actions">
+<button class="btn btn-outline">Refill Rx</button>
+<button class="btn btn-primary">Book Consultation</button>
+</div>
+<!-- Mobile toggle: stethoscope → red help cross -->
+<button id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+<!-- Stethoscope icon (open state) -->
+<svg id="icon-stethoscope" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.5 6.5a2 2 0 0 1 4 0v5a4.5 4.5 0 0 0 9 0V9" />
+<circle cx="17.5" cy="7.5" r="1.5" />
+<circle cx="12" cy="19" r="2" />
+</svg>
+<!-- Help / Plus cross icon (close state) -->
+<svg id="icon-help" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<rect x="10.5" y="3" width="3" height="18" rx="1.5" />
+<rect x="3" y="10.5" width="18" height="3" rx="1.5" />
+</svg>
+</button>
+</div>
+</header>
+
+<!-- ═══════════ MOBILE NAV DROPDOWN ═══════════ -->
+<nav id="mobile-nav" aria-hidden="true">
+<a class="nav-link" href="#services">Services</a>
+<a class="nav-link" href="#products">Products</a>
+<a class="nav-link" href="#how-it-works">How It Works</a>
+<a class="nav-link" href="#about">About</a>
+<a class="nav-link" href="#contact">Contact</a>
+<div id="mobile-nav-actions">
+<button class="btn btn-outline" style="width:100%;justify-content:center;">Refill Rx</button>
+<button class="btn btn-primary" style="width:100%;justify-content:center;">Book Consultation</button>
+</div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero">
+<div class="container">
+<div id="hero-content">
+<div id="hero-eyebrow">
+<span class="dot"></span> Your Neighborhood Health Partner
+</div>
+<h1 id="hero-headline">
+Care that knows<br />your <em>name</em>.
+</h1>
+<p id="hero-subtext">
+From same-day prescriptions to wellness consultations, MediCare Pharmacy brings expert, personal healthcare within reach — every day.
+</p>
+<div id="hero-actions">
+<button class="btn btn-primary btn-lg">Transfer Your Prescription</button>
+<button class="btn btn-outline btn-lg">Browse Products</button>
+</div>
+<div id="hero-trust">
+<div class="trust-item">
+<span class="checkmark">✓</span> Licensed Pharmacists
+</div>
+<div class="trust-divider"></div>
+<div class="trust-item">
+<span class="checkmark">✓</span> Insurance Accepted
+</div>
+<div class="trust-divider"></div>
+<div class="trust-item">
+<span class="checkmark">✓</span> Free Home Delivery
+</div>
+</div>
+</div>
+
+<div id="hero-visual">
+<div id="hero-card-main">
+<p class="rx-label">
+Your Prescriptions
+</p>
+<div class="med-list">
+<div class="med-item">
+<div class="med-icon" style="background:#E6F4F0;">
+💊
+</div>
+<div class="med-info">
+<div class="med-name">
+Lisinopril 10mg
+</div>
+<div class="med-refill">
+Refill due in 5 days
+</div>
+</div>
+<span class="med-badge badge-ready">Ready</span>
+</div>
+<div class="med-item">
+<div class="med-icon" style="background:#FEF3E2;">
+🩺
+</div>
+<div class="med-info">
+<div class="med-name">
+Metformin 500mg
+</div>
+<div class="med-refill">
+Last filled June 3
+</div>
+</div>
+<span class="med-badge badge-due">Due Soon</span>
+</div>
+<div class="med-item">
+<div class="med-icon" style="background:#EEF0FF;">
+💉
+</div>
+<div class="med-info">
+<div class="med-name">
+Atorvastatin 20mg
+</div>
+<div class="med-refill">
+Auto-refill active
+</div>
+</div>
+<span class="med-badge badge-ready">Ready</span>
+</div>
+</div>
+</div>
+<div id="hero-card-float">
+<div class="float-label">
+Customers served
+</div>
+<div class="float-stat">
+12,400+
+</div>
+<div class="float-sub">
+Across 3 locations
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ═══════════ SERVICES ═══════════ -->
+<section id="services" class="section">
+<div class="container">
+<div class="section-header centered">
+<p class="section-eyebrow">
+What We Offer
+</p>
+<h2 class="section-title">Every health need, covered.</h2>
+<p class="section-subtitle">
+From everyday vitamins to complex compounding, our licensed team handles it all under one roof.
+</p>
+</div>
+<div id="services-grid">
+<div class="service-card">
+<div class="service-icon">
+💊
+</div>
+<h3 class="service-title">Prescription Dispensing</h3>
+<p class="service-desc">
+Fast, accurate, and private. We work with all major insurers and accept transfer prescriptions from any pharmacy.
+</p>
+</div>
+<div class="service-card">
+<div class="service-icon">
+🧪
+</div>
+<h3 class="service-title">Compounding Services</h3>
+<p class="service-desc">
+Custom medications blended precisely for your dosage, allergen restrictions, or delivery preferences.
+</p>
+</div>
+<div class="service-card">
+<div class="service-icon">
+💉
+</div>
+<h3 class="service-title">Immunizations & Vaccines</h3>
+<p class="service-desc">
+Walk-in flu shots, travel vaccines, and routine immunizations — no appointment required.
+</p>
+</div>
+<div class="service-card">
+<div class="service-icon">
+🩺
+</div>
+<h3 class="service-title">Health Consultations</h3>
+<p class="service-desc">
+One-on-one medication reviews and chronic disease management with our certified pharmacist team.
+</p>
+</div>
+<div class="service-card">
+<div class="service-icon">
+🚚
+</div>
+<h3 class="service-title">Free Home Delivery</h3>
+<p class="service-desc">
+Same-day delivery within our coverage zone. Set up auto-refills and never run out again.
+</p>
+</div>
+<div class="service-card">
+<div class="service-icon">
+🔬
+</div>
+<h3 class="service-title">Rapid Lab Testing</h3>
+<p class="service-desc">
+Blood glucose, cholesterol, A1C, and more — results in minutes without a doctor's visit.
+</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ═══════════ HOW IT WORKS ═══════════ -->
+<section id="how-it-works" class="section section-alt">
+<div class="container">
+<div class="section-header centered">
+<p class="section-eyebrow">
+Simple Process
+</p>
+<h2 class="section-title">Your prescription in four steps.</h2>
+</div>
+<div id="steps-grid">
+<div class="step-card">
+<div class="step-num">
+1
+</div>
+<h3 class="step-title">Send Us Your Rx</h3>
+<p class="step-desc">
+Transfer from your doctor, snap a photo, or have your physician send it directly.
+</p>
+</div>
+<div class="step-card">
+<div class="step-num">
+2
+</div>
+<h3 class="step-title">We Verify & Prepare</h3>
+<p class="step-desc">
+Our pharmacists review for safety, check interactions, and confirm your insurance coverage.
+</p>
+</div>
+<div class="step-card">
+<div class="step-num">
+3
+</div>
+<h3 class="step-title">Pick Up or Deliver</h3>
+<p class="step-desc">
+Ready within the hour for in-store pickup, or dispatched same-day for home delivery.
+</p>
+</div>
+<div class="step-card">
+<div class="step-num">
+4
+</div>
+<h3 class="step-title">Stay on Track</h3>
+<p class="step-desc">
+We send refill reminders and sync your records so your health history is always current.
+</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ═══════════ PRODUCTS ═══════════ -->
+<section id="products" class="section">
+<div class="container">
+<div class="section-header">
+<p class="section-eyebrow">
+Featured Products
+</p>
+<h2 class="section-title">Shop our wellness aisle.</h2>
+<p class="section-subtitle">
+Pharmacist-curated OTC products, vitamins, and personal care essentials.
+</p>
+</div>
+<div id="products-grid">
+<div class="product-card">
+<div class="product-image">
+🌿
+</div>
+<div class="product-body">
+<p class="product-category">
+Vitamins
+</p>
+<h4 class="product-name">Daily Multivitamin</h4>
+<p class="product-desc">
+Complete A–Z formula for everyday wellness support.
+</p>
+<div class="product-footer">
+<div class="product-price">
+$18 <span>/ 90ct</span>
+</div>
+<button class="btn btn-primary btn-sm">Add to Cart</button>
+</div>
+</div>
+</div>
+<div class="product-card">
+<div class="product-image">
+🩹
+</div>
+<div class="product-body">
+<p class="product-category">
+First Aid
+</p>
+<h4 class="product-name">First Aid Kit</h4>
+<p class="product-desc">
+120-piece kit covering cuts, burns, and minor injuries.
+</p>
+<div class="product-footer">
+<div class="product-price">
+$34 <span>/ kit</span>
+</div>
+<button class="btn btn-primary btn-sm">Add to Cart</button>
+</div>
+</div>
+</div>
+<div class="product-card">
+<div class="product-image">
+😷
+</div>
+<div class="product-body">
+<p class="product-category">
+Cold & Flu
+</p>
+<h4 class="product-name">NightRelief Capsules</h4>
+<p class="product-desc">
+Non-drowsy daytime formula for colds and congestion.
+</p>
+<div class="product-footer">
+<div class="product-price">
+$12 <span>/ 24ct</span>
+</div>
+<button class="btn btn-primary btn-sm">Add to Cart</button>
+</div>
+</div>
+</div>
+<div class="product-card">
+<div class="product-image">
+🫀
+</div>
+<div class="product-body">
+<p class="product-category">
+Heart Health
+</p>
+<h4 class="product-name">Omega-3 Fish Oil</h4>
+<p class="product-desc">
+Pharmacist-recommended 1000mg EPA+DHA supplement.
+</p>
+<div class="product-footer">
+<div class="product-price">
+$22 <span>/ 60ct</span>
+</div>
+<button class="btn btn-primary btn-sm">Add to Cart</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ═══════════ TESTIMONIALS ═══════════ -->
+<section id="about" class="section section-dark">
+<div class="container">
+<div class="section-header centered">
+<p class="section-eyebrow">
+Patient Stories
+</p>
+<h2 class="section-title" style="color:#fff;">Trusted by the community.</h2>
+<p class="section-subtitle">
+Over 12,000 patients choose MediCare — here's why they stay.
+</p>
+</div>
+<div id="testimonials-grid">
+<div class="testimonial-card">
+<div class="testimonial-stars">
+★★★★★
+</div>
+<p class="testimonial-quote">
+"They remembered my daughter's allergy from a visit two years ago. That kind of care is rare and irreplaceable."
+</p>
+<div class="testimonial-author">
+<div class="author-avatar">
+👩
+</div>
+<div>
+<div class="author-name">
+Maria T.
+</div>
+<div class="author-role">
+Patient for 6 years
+</div>
+</div>
+</div>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-stars">
+★★★★★
+</div>
+<p class="testimonial-quote">
+"Same-day delivery saved me when I was too sick to leave the house. My prescription was at my door in 90 minutes."
+</p>
+<div class="testimonial-author">
+<div class="author-avatar">
+👨
+</div>
+<div>
+<div class="author-name">
+James K.
+</div>
+<div class="author-role">
+Patient for 3 years
+</div>
+</div>
+</div>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-stars">
+★★★★★
+</div>
+<p class="testimonial-quote">
+"The pharmacist spent 20 minutes reviewing my medication list and caught a dangerous interaction. My doctor didn't even notice."
+</p>
+<div class="testimonial-author">
+<div class="author-avatar">
+👵
+</div>
+<div>
+<div class="author-name">
+Ruth A.
+</div>
+<div class="author-role">
+Patient for 8 years
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ═══════════ CTA BANNER ═══════════ -->
+<section class="section">
+<div class="container">
+<div id="cta-banner">
+<div class="cta-text">
+<h2 class="section-title">Start your prescription transfer today.</h2>
+<p>
+Takes under 2 minutes. No insurance hassle. We handle everything.
+</p>
+</div>
+<div id="cta-actions">
+<button class="btn btn-accent btn-lg">Transfer Prescription</button>
+<button class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,0.3);color:#fff;">Call Us Now</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section id="contact" class="section section-alt">
+<div class="container">
+<div id="contact-grid">
+<div class="contact-info">
+<p class="section-eyebrow">
+Get In Touch
+</p>
+<h3>We're here when you need us.</h3>
+<p>
+Whether you have a question about a prescription, want to schedule a consultation, or need help with insurance — our team is ready.
+</p>
+<div class="contact-detail">
+<div class="contact-icon">
+📍
+</div>
+<div>
+<div class="contact-detail-label">
+Address
+</div>
+<div class="contact-detail-value">
+142 Wellness Ave, Suite 100<br />Springfield, IL 62701
+</div>
+</div>
+</div>
+<div class="contact-detail">
+<div class="contact-icon">
+📞
+</div>
+<div>
+<div class="contact-detail-label">
+Phone
+</div>
+<div class="contact-detail-value">
+(800) 555-0192
+</div>
+</div>
+</div>
+<div class="contact-detail">
+<div class="contact-icon">
+⏰
+</div>
+<div>
+<div class="contact-detail-label">
+Hours
+</div>
+<div class="contact-detail-value">
+Mon–Fri 8am–9pm · Sat 9am–7pm · Sun 10am–5pm
+</div>
+</div>
+</div>
+</div>
+
+<div>
+<div class="form-row">
+<div class="form-group">
+<label for="fname">First Name</label>
+<input type="text" id="fname" placeholder="Jane" />
+</div>
+<div class="form-group">
+<label for="lname">Last Name</label>
+<input type="text" id="lname" placeholder="Smith" />
+</div>
+</div>
+<div class="form-group">
+<label for="email">Email Address</label>
+<input type="email" id="email" placeholder="jane@example.com" />
+</div>
+<div class="form-group">
+<label for="topic">Topic</label>
+<select id="topic">
+<option>Prescription Transfer</option>
+<option>Refill Request</option>
+<option>Consultation Booking</option>
+<option>Insurance Question</option>
+<option>General Inquiry</option>
+</select>
+</div>
+<div class="form-group">
+<label for="message">Message</label>
+<textarea id="message" placeholder="How can we help you?"></textarea>
+</div>
+<button class="btn btn-primary btn-lg" style="width:100%">Send Message</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer id="footer">
+<div class="container">
+<div id="footer-top">
+<div id="footer-brand">
+<div class="logo-text">
+💊 MediCare Pharmacy
+</div>
+<p>
+Your trusted, neighborhood pharmacy — delivering expert care, every prescription, every person, every time.
+</p>
+<div class="social-links">
+<a class="social-btn" href="#">📘</a>
+<a class="social-btn" href="#">📸</a>
+<a class="social-btn" href="#">🐦</a>
+<a class="social-btn" href="#">▶️</a>
+</div>
+</div>
+<div class="footer-col">
+<h4>Services</h4>
+<ul>
+<li><a href="#">Prescriptions</a></li>
+<li><a href="#">Compounding</a></li>
+<li><a href="#">Immunizations</a></li>
+<li><a href="#">Lab Testing</a></li>
+<li><a href="#">Consultations</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Products</h4>
+<ul>
+<li><a href="#">Vitamins & Supplements</a></li>
+<li><a href="#">Cold & Flu</a></li>
+<li><a href="#">First Aid</a></li>
+<li><a href="#">Heart Health</a></li>
+<li><a href="#">Personal Care</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Company</h4>
+<ul>
+<li><a href="#">About Us</a></li>
+<li><a href="#">Our Team</a></li>
+<li><a href="#">Careers</a></li>
+<li><a href="#">Blog</a></li>
+<li><a href="#">Privacy Policy</a></li>
+</ul>
+</div>
+</div>
+<div id="footer-bottom">
+<p>
+© 2026 MediCare Pharmacy. All rights reserved.
+</p>
+<div class="footer-badges">
+<span class="footer-badge">HIPAA Compliant</span>
+<span class="footer-badge">Licensed & Accredited</span>
+<span class="footer-badge">NABP Verified</span>
+</div>
+</div>
+</div>
+</footer>
+
+<!-- ═══════════ JAVASCRIPT ═══════════ -->
+<script>
+// ─── ROOT VARIABLE EDITOR ─────────────────────────────────
+// Call window.setVar(name, value) from the console to live-edit any CSS variable.
+// Examples:
+//   window.setVar('--color-primary', '#2563EB')
+//   window.setVar('--font-body', "'Roboto', sans-serif")
+//   window.setVar('--navbar-height', '90px')
+window.setVar = function(name, value) {
+document.documentElement.style.setProperty(name, value);
+console.log(`✅ CSS var ${name} → ${value}`);
+};
+
+// ─── BATCH THEME PRESETS ─────────────────────────────────
+// window.applyTheme('ocean') — switch the whole palette at once
+const themes = {
+// Default deep green
+green: {
+'--color-primary': '#0C6E5A',
+'--color-primary-dark': '#084D3F',
+'--color-primary-light': '#E6F4F0',
+'--color-accent': '#F4A042',
+'--footer-bg': '#0C2620',
+},
+// Royal blue
+ocean: {
+'--color-primary': '#1E40AF',
+'--color-primary-dark': '#1E3A8A',
+'--color-primary-light': '#EFF6FF',
+'--color-accent': '#F59E0B',
+'--footer-bg': '#0F172A',
+},
+// Warm burgundy / maroon
+ruby: {
+'--color-primary': '#9B1C1C',
+'--color-primary-dark': '#771A1A',
+'--color-primary-light': '#FFF1F2',
+'--color-accent': '#D97706',
+'--footer-bg': '#1C0A0A',
+},
+// Modern slate
+slate: {
+'--color-primary': '#475569',
+'--color-primary-dark': '#334155',
+'--color-primary-light': '#F1F5F9',
+'--color-accent': '#0EA5E9',
+'--footer-bg': '#0F172A',
+},
+};
+window.applyTheme = function(name) {
+const theme = themes[name];
+if (!theme) { console.warn(`Theme "${name}" not found. Available: ${Object.keys(themes).join(', ')}`); return; }
+Object.entries(theme).forEach(([k, v]) => window.setVar(k, v));
+console.log(`🎨 Theme "${name}" applied.`);
+};
+
+// ─── TEXT / CONTENT EDITORS ──────────────────────────────
+// window.setText(id, newText) — update any element by its id
+window.setText = function(id, text) {
+const el = document.getElementById(id);
+if (!el) { console.warn(`No element with id "${id}"`); return; }
+el.textContent = text;
+console.log(`✅ #${id} text updated.`);
+};
+// window.setHTML(id, html) — update innerHTML of any element
+window.setHTML = function(id, html) {
+const el = document.getElementById(id);
+if (!el) { console.warn(`No element with id "${id}"`); return; }
+el.innerHTML = html;
+console.log(`✅ #${id} HTML updated.`);
+};
+
+// ─── MOBILE MENU TOGGLE ──────────────────────────────────
+const mobileBtn = document.getElementById('mobile-menu-btn');
+const mobileNav = document.getElementById('mobile-nav');
+let menuOpen = false;
+
+function toggleMenu(force) {
+menuOpen = (force !== undefined) ? force: !menuOpen;
+mobileBtn.classList.toggle('open', menuOpen);
+mobileNav.classList.toggle('open', menuOpen);
+mobileBtn.setAttribute('aria-expanded', menuOpen);
+mobileNav.setAttribute('aria-hidden', !menuOpen);
+}
+
+mobileBtn.addEventListener('click', () => toggleMenu());
+
+// Close when a nav link is tapped
+mobileNav.querySelectorAll('.nav-link').forEach(link => {
+link.addEventListener('click', () => toggleMenu(false));
+});
+
+// Close on outside tap
+document.addEventListener('click', e => {
+if (menuOpen && !mobileBtn.contains(e.target) && !mobileNav.contains(e.target)) {
+toggleMenu(false);
+}
+});
+
+// ─── NAVBAR SCROLL BEHAVIOR ──────────────────────────────
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+navbar.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// ─── SMOOTH SCROLL FOR NAV LINKS ─────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+link.addEventListener('click', e => {
+e.preventDefault();
+const target = document.querySelector(link.getAttribute('href'));
+if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+});
+
+// ─── INTERSECTION OBSERVER FADE-IN ───────────────────────
+const observer = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.style.opacity = '1';
+entry.target.style.transform = 'translateY(0)';
+}
+});
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.service-card, .step-card, .product-card, .testimonial-card').forEach(el => {
+el.style.opacity = '0';
+el.style.transform = 'translateY(20px)';
+el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+observer.observe(el);
+});
+
+// ─── FORM SUBMIT HANDLER ─────────────────────────────────
+document.querySelector('#contact button.btn-primary').addEventListener('click', () => {
+const fields = ['fname', 'lname', 'email', 'message'];
+const missing = fields.filter(id => !document.getElementById(id).value.trim());
+if (missing.length) {
+alert(`Please fill in: ${missing.join(', ')}`);
+} else {
+alert('✅ Message sent! We\'ll be in touch within one business day.');
+}
+});
+
+// ─── CONSOLE HELP MESSAGE ────────────────────────────────
+console.log(`
+%c🏥 MediCare Pharmacy — Developer Console
+%c
+Live editing API:
+window.setVar('--color-primary', '#1E40AF')   // change any CSS variable
+window.setText('hero-headline', 'New text')    // update element text
+window.setHTML('hero-eyebrow', '...')          // update element HTML
+window.applyTheme('ocean')                     // apply a color theme
+
+Available themes: green, ocean, ruby, slate
+
+Key element IDs:
+#navbar           #hero             #hero-headline
+#hero-subtext     #services         #services-grid
+#how-it-works     #products         #products-grid
+#about            #cta-banner       #contact
+#footer           #footer-top       #footer-bottom
+`, 'color:#0C6E5A; font-size:14px; font-weight:bold;', 'color:#5A7A72; font-size:12px;');
+</script>
+</body>
+</html>

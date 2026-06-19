@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Yomyom Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+
+:root {
+--navy: #0F2044;
+--navy-mid: #1A3560;
+--royal: #2255C4;
+--royal-light: #EBF0FB;
+--gold: #E8A020;
+--gold-hover: #C98810;
+--gold-light: #FDF3E0;
+--bg: #F7F8FC;
+--surface: #FFFFFF;
+--surface-alt: #F0F3FA;
+--border: #D6DFEE;
+--text: #0F2044;
+--text-muted: #5A6A8A;
+--text-light: #FFFFFF;
+--font-display: 'Playfair Display', Georgia, serif;
+--font-body: 'Plus Jakarta Sans', sans-serif;
+--font-mono: 'JetBrains Mono', monospace;
+--xs: 0.72rem;
+--sm: 0.875rem;
+--base: 1rem;
+--lg: 1.125rem;
+--xl: 1.3rem;
+--2xl: 1.6rem;
+--3xl: 2.1rem;
+--4xl: 2.8rem;
+--5xl: 3.8rem;
+--s1: 0.25rem;
+--s2: 0.5rem;
+--s3: 0.75rem;
+--s4: 1rem;
+--s5: 1.25rem;
+--s6: 1.5rem;
+--s8: 2rem;
+--s10: 2.5rem;
+--s12: 3rem;
+--s16: 4rem;
+--s20: 5rem;
+--s24: 6rem;
+--max-w: 1200px;
+--nav-h: 72px;
+--r-sm: 6px;
+--r-md: 14px;
+--r-lg: 22px;
+--r-pill: 999px;
+--sh-sm: 0 1px 4px rgba(15,32,68,.07);
+--sh-md: 0 4px 18px rgba(15,32,68,.11);
+--sh-lg: 0 12px 42px rgba(15,32,68,.15);
+--ease: 0.22s ease;
+}
+
+*,*::before,*::after{box-sizing: border-box;
+margin: 0;
+padding: 0}
+html{scroll-behavior: smooth}
+body{font-family: var(--font-body);
+background: var(--bg);
+color: var(--text);
+line-height: 1.65;
+-webkit-font-smoothing: antialiased}
+img{display: block;
+max-width: 100%}
+a{color: inherit;
+text-decoration: none}
+ul{list-style: none}
+button{font-family: var(--font-body);
+cursor: pointer}
+.container{max-width: var(--max-w);
+margin: 0 auto;
+padding: 0 var(--s6)}
+
+/* ── NAVBAR ── */
+#navbar{position: fixed;
+top: 0;
+left: 0;
+right: 0;
+height: var(--nav-h);
+background: var(--surface);
+border-bottom: 1.5px solid var(--border);
+z-index: 1000;
+box-shadow: var(--sh-sm);
+transition: box-shadow var(--ease)}
+#navbar.scrolled{box-shadow: var(--sh-md)}
+#navbar .container{height: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: var(--s6)}
+#nav-logo{display: flex;
+align-items: center;
+gap: var(--s3);
+font-family: var(--font-display);
+font-size: var(--xl);
+color: var(--navy);
+font-weight: 700;
+letter-spacing: -.02em;
+flex-shrink: 0}
+.logo-shield{width: 40px;
+height: 40px;
+background: var(--navy);
+border-radius: var(--r-sm) var(--r-sm) 50% 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0}
+.logo-shield svg{width: 22px;
+height: 22px;
+fill: var(--gold)}
+#nav-links{display: flex;
+align-items: center;
+gap: var(--s8)}
+.nav-link{font-size: var(--sm);
+font-weight: 600;
+color: var(--text-muted);
+position: relative;
+padding-bottom: 3px;
+transition: color var(--ease)}
+.nav-link::after{content: '';
+position: absolute;
+bottom: -2px;
+left: 0;
+right: 100%;
+height: 2px;
+background: var(--royal);
+transition: right var(--ease)}
+.nav-link:hover{color: var(--royal)}
+.nav-link:hover::after{right: 0}
+#nav-actions{display: flex;
+align-items: center;
+gap: var(--s3)}
+.btn{display: inline-flex;
+align-items: center;
+gap: var(--s2);
+padding: .55rem 1.3rem;
+border: none;
+border-radius: var(--r-pill);
+font-size: var(--sm);
+font-weight: 700;
+transition: all var(--ease);
+white-space: nowrap}
+.btn-outline{background: transparent;
+border: 1.5px solid var(--border);
+color: var(--text-muted)}
+.btn-outline:hover{border-color: var(--royal);
+color: var(--royal)}
+.btn-primary{background: var(--navy);
+color: #fff}
+.btn-primary:hover{background: var(--royal);
+transform: translateY(-1px);
+box-shadow: var(--sh-md)}
+.btn-gold{background: var(--gold);
+color: #fff}
+.btn-gold:hover{background: var(--gold-hover);
+transform: translateY(-1px);
+box-shadow: var(--sh-md)}
+.btn-lg{padding: .85rem 2rem;
+font-size: var(--base);
+border-radius: var(--r-pill)}
+.btn-sm{padding: .38rem .9rem;
+font-size: var(--xs);
+border-radius: var(--r-pill)}
+
+/* Mobile toggle */
+#mob-btn{display: none;
+width: 44px;
+height: 44px;
+background: var(--royal-light);
+border: 1.5px solid var(--border);
+border-radius: var(--r-sm);
+align-items: center;
+justify-content: center;
+position: relative;
+transition: background var(--ease),border-color var(--ease)}
+#mob-btn:hover{background: var(--royal);
+border-color: var(--royal)}
+#mob-btn:hover svg{stroke: #fff}
+#mob-btn svg{position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+width: 22px;
+height: 22px;
+stroke: var(--royal);
+fill: none;
+stroke-width: 2;
+stroke-linecap: round;
+stroke-linejoin: round;
+transition: opacity .3s ease,transform .32s cubic-bezier(.68,-.55,.27,1.55)}
+#icon-cap{opacity: 1;
+transform: translate(-50%,-50%) scale(1) rotate(0deg)}
+#icon-book{opacity: 0;
+transform: translate(-50%,-50%) scale(.5) rotate(-90deg)}
+#mob-btn.open #icon-cap{opacity: 0;
+transform: translate(-50%,-50%) scale(.5) rotate(90deg)}
+#mob-btn.open #icon-book{opacity: 1;
+transform: translate(-50%,-50%) scale(1) rotate(0deg)}
+#mob-btn.open{background: #FFF7E6;
+border-color: var(--gold)}
+#mob-btn.open svg{stroke: var(--gold)}
+
+/* Mobile dropdown */
+#mob-nav{display: none;
+position: fixed;
+top: var(--nav-h);
+left: 0;
+right: 0;
+background: var(--surface);
+border-bottom: 1.5px solid var(--border);
+box-shadow: var(--sh-lg);
+z-index: 999;
+padding: var(--s4) var(--s6);
+flex-direction: column;
+gap: var(--s2);
+opacity: 0;
+transform: translateY(-8px);
+transition: opacity .25s ease,transform .25s ease}
+#mob-nav.open{opacity: 1;
+transform: translateY(0)}
+#mob-nav .nav-link{display: block;
+padding: var(--s3) var(--s4);
+border-radius: var(--r-sm);
+font-size: var(--base);
+color: var(--text);
+transition: background var(--ease),color var(--ease)}
+#mob-nav .nav-link::after{display: none}
+#mob-nav .nav-link:hover{background: var(--royal-light);
+color: var(--royal)}
+#mob-nav-footer{display: flex;
+flex-direction: column;
+gap: var(--s3);
+padding: var(--s4) var(--s4) var(--s2);
+border-top: 1.5px solid var(--border);
+margin-top: var(--s2)}
+
+/* ── HERO ── */
+#hero{padding-top: calc(var(--nav-h) + var(--s20));
+padding-bottom: var(--s24);
+background: radial-gradient(ellipse 70% 60% at 80% 40%, rgba(34,85,196,.08) 0%, transparent 70%),linear-gradient(170deg, #EBF0FB 0%, #F7F8FC 50%, #FDF3E0 100%);
+overflow: hidden;
+position: relative}
+#hero::before{content: '';
+position: absolute;
+inset: 0;
+background-image: repeating-linear-gradient(to bottom,transparent,transparent 39px,rgba(34,85,196,.06) 39px,rgba(34,85,196,.06) 40px);
+pointer-events: none}
+#hero .container{display: grid;
+grid-template-columns: 1fr 420px;
+gap: var(--s16);
+align-items: center;
+position: relative;
+z-index: 1}
+.hero-tag{display: inline-flex;
+align-items: center;
+gap: var(--s2);
+background: var(--surface);
+border: 1.5px solid var(--border);
+border-radius: var(--r-pill);
+padding: .3rem .85rem;
+font-size: var(--xs);
+font-weight: 700;
+color: var(--royal);
+letter-spacing: .07em;
+text-transform: uppercase;
+margin-bottom: var(--s5)}
+.hero-tag .dot{width: 6px;
+height: 6px;
+background: var(--gold);
+border-radius: 50%;
+animation: blink 2.2s infinite}
+@keyframes blink{0%,100%{opacity: 1;
+transform: scale(1)}50%{opacity: .4;
+transform: scale(.7)}}
+#hero-h1{font-family: var(--font-display);
+font-size: var(--5xl);
+font-weight: 900;
+line-height: 1.04;
+letter-spacing: -.03em;
+color: var(--navy);
+margin-bottom: var(--s5)}
+#hero-h1 em{font-style: italic;
+color: var(--royal)}
+#hero-h1 .gold-word{color: var(--gold)}
+#hero-sub{font-size: var(--lg);
+color: var(--text-muted);
+max-width: 460px;
+line-height: 1.75;
+margin-bottom: var(--s8)}
+#hero-btns{display: flex;
+gap: var(--s4);
+flex-wrap: wrap;
+align-items: center}
+#hero-stats{display: flex;
+gap: var(--s8);
+margin-top: var(--s12);
+padding-top: var(--s8);
+border-top: 1.5px solid var(--border)}
+.hero-stat-val{font-family: var(--font-display);
+font-size: var(--3xl);
+font-weight: 700;
+color: var(--navy);
+line-height: 1}
+.hero-stat-val span{color: var(--gold)}
+.hero-stat-label{font-size: var(--xs);
+color: var(--text-muted);
+margin-top: 3px}
+
+/* Hero card */
+#hero-card{background: var(--surface);
+border-radius: var(--r-lg);
+border: 1.5px solid var(--border);
+box-shadow: var(--sh-lg);
+padding: var(--s8);
+position: relative}
+#hero-card::before{content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+height: 5px;
+background: linear-gradient(90deg,var(--royal),var(--gold));
+border-radius: var(--r-lg) var(--r-lg) 0 0}
+.card-title{font-family: var(--font-display);
+font-size: var(--xl);
+font-weight: 700;
+color: var(--navy);
+margin-bottom: var(--s6)}
+.class-row{display: flex;
+align-items: center;
+gap: var(--s4);
+padding: var(--s4);
+background: var(--bg);
+border-radius: var(--r-md);
+border: 1.5px solid var(--border);
+margin-bottom: var(--s3);
+transition: border-color var(--ease),box-shadow var(--ease)}
+.class-row:hover{border-color: var(--royal);
+box-shadow: var(--sh-sm)}
+.class-icon{width: 42px;
+height: 42px;
+border-radius: var(--r-sm);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.1rem;
+flex-shrink: 0}
+.class-icon i{color: var(--royal)}
+.class-info{flex: 1}
+.class-name{font-weight: 700;
+font-size: var(--sm);
+color: var(--navy)}
+.class-grade{font-size: var(--xs);
+color: var(--text-muted);
+margin-top: 2px}
+.class-badge{font-size: var(--xs);
+font-weight: 700;
+padding: 3px 9px;
+border-radius: var(--r-pill)}
+.badge-open{background: #E6F4EC;
+color: #166534}
+.badge-filling{background: #FDF3E0;
+color: #92400E}
+.badge-full{background: #FEE2E2;
+color: #991B1B}
+#hero-float{position: absolute;
+bottom: -20px;
+right: -20px;
+background: var(--navy);
+border-radius: var(--r-md);
+padding: var(--s4) var(--s5);
+color: #fff;
+box-shadow: var(--sh-md);
+min-width: 150px}
+.float-num{font-family: var(--font-display);
+font-size: var(--3xl);
+font-weight: 700;
+color: var(--gold);
+line-height: 1}
+.float-sub{font-size: var(--xs);
+color: rgba(255,255,255,.6);
+margin-top: 3px}
+
+/* ── SECTIONS COMMON ── */
+.sec{padding: var(--s24) 0}
+.sec-alt{background: var(--surface-alt)}
+.sec-dark{background: var(--navy);
+color: #fff}
+.sec-navy-mid{background: var(--navy-mid);
+color: #fff}
+.eyebrow{font-family: var(--font-mono);
+font-size: var(--xs);
+font-weight: 500;
+letter-spacing: .1em;
+text-transform: uppercase;
+color: var(--gold);
+margin-bottom: var(--s3)}
+.sec-dark .eyebrow,.sec-navy-mid .eyebrow{color: var(--gold)}
+.sec-h2{font-family: var(--font-display);
+font-size: var(--4xl);
+font-weight: 900;
+line-height: 1.1;
+letter-spacing: -.02em;
+margin-bottom: var(--s4)}
+.sec-sub{font-size: var(--lg);
+color: var(--text-muted);
+max-width: 560px;
+line-height: 1.75}
+.sec-dark .sec-sub,.sec-navy-mid .sec-sub{color: rgba(255,255,255,.62)}
+.sec-head{margin-bottom: var(--s12)}
+.sec-head.c{text-align: center}
+.sec-head.c .sec-sub{margin: 0 auto}
+
+/* ── PILLARS ── */
+#pillars-grid{display: grid;
+grid-template-columns: repeat(3,1fr);
+gap: var(--s6)}
+.pillar{background: var(--surface);
+border: 1.5px solid var(--border);
+border-radius: var(--r-lg);
+padding: var(--s8);
+transition: all var(--ease)}
+.pillar:hover{border-color: var(--royal);
+box-shadow: var(--sh-md);
+transform: translateY(-3px)}
+.pillar-icon{width: 54px;
+height: 54px;
+background: var(--royal-light);
+border-radius: var(--r-md);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.5rem;
+margin-bottom: var(--s5);
+color: var(--royal)}
+.pillar h3{font-family: var(--font-display);
+font-size: var(--xl);
+font-weight: 700;
+margin-bottom: var(--s2)}
+.pillar p{font-size: var(--sm);
+color: var(--text-muted);
+line-height: 1.7}
+
+/* ── EDUCATORS ── */
+#edu-grid{display: grid;
+grid-template-columns: repeat(3,1fr);
+gap: var(--s6)}
+.edu-card{background: rgba(255,255,255,.05);
+border: 1.5px solid rgba(255,255,255,.1);
+border-radius: var(--r-lg);
+padding: var(--s8);
+transition: all var(--ease)}
+.edu-card:hover{background: rgba(255,255,255,.09);
+border-color: rgba(232,160,32,.4);
+transform: translateY(-2px)}
+.edu-avatar{width: 64px;
+height: 64px;
+border-radius: 50%;
+background: linear-gradient(135deg,var(--royal),var(--navy-mid));
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.6rem;
+margin-bottom: var(--s5);
+border: 2px solid rgba(232,160,32,.3);
+color: #fff}
+.edu-role{font-family: var(--font-mono);
+font-size: var(--xs);
+letter-spacing: .08em;
+text-transform: uppercase;
+color: var(--gold);
+margin-bottom: var(--s2)}
+.edu-desc{font-size: var(--sm);
+color: rgba(255,255,255,.68);
+line-height: 1.75;
+margin-bottom: var(--s5)}
+.edu-qualities{display: flex;
+flex-wrap: wrap;
+gap: var(--s2)}
+.quality-tag{font-size: var(--xs);
+font-weight: 600;
+padding: 3px 10px;
+border-radius: var(--r-pill);
+background: rgba(34,85,196,.25);
+color: rgba(255,255,255,.8);
+border: 1px solid rgba(34,85,196,.4)}
+
+/* ── SUBJECTS ── */
+#subjects-grid{display: grid;
+grid-template-columns: repeat(4,1fr);
+gap: var(--s5)}
+.subj-card{background: var(--surface);
+border: 1.5px solid var(--border);
+border-radius: var(--r-lg);
+padding: var(--s6) var(--s5);
+text-align: center;
+transition: all var(--ease);
+cursor: default}
+.subj-card:hover{border-color: var(--royal);
+box-shadow: var(--sh-md);
+transform: translateY(-3px)}
+.subj-icon{width: 58px;
+height: 58px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.5rem;
+margin: 0 auto var(--s4)}
+.subj-icon i{color: var(--royal)}
+.subj-name{font-family: var(--font-display);
+font-size: var(--lg);
+font-weight: 700;
+margin-bottom: var(--s2)}
+.subj-desc{font-size: var(--xs);
+color: var(--text-muted);
+line-height: 1.65}
+.subj-levels{display: flex;
+justify-content: center;
+gap: var(--s2);
+margin-top: var(--s4);
+flex-wrap: wrap}
+.level-chip{font-size: var(--xs);
+font-weight: 600;
+padding: 2px 8px;
+border-radius: var(--r-pill);
+background: var(--royal-light);
+color: var(--royal)}
+
+/* ── LIFE GRID ── */
+#life-grid{display: grid;
+grid-template-columns: 2fr 1fr 1fr;
+grid-template-rows: auto auto;
+gap: var(--s4)}
+.life-cell{border-radius: var(--r-lg);
+overflow: hidden;
+position: relative;
+min-height: 180px;
+display: flex;
+align-items: flex-end;
+padding: var(--s5)}
+.life-cell.span-col{grid-column: 1;
+grid-row: 1/3}
+.life-bg{position: absolute;
+inset: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 3.5rem;
+color: rgba(255,255,255,.25)}
+.life-overlay{position: absolute;
+inset: 0;
+background: linear-gradient(to top,rgba(15,32,68,.75) 0%,transparent 60%)}
+.life-label{position: relative;
+z-index: 1;
+font-weight: 700;
+color: #fff;
+font-size: var(--sm)}
+.life-sub{font-size: var(--xs);
+color: rgba(255,255,255,.7);
+margin-top: 2px}
+
+/* ── ADMISSIONS ── */
+#admission-wrap{display: grid;
+grid-template-columns: 1fr 420px;
+gap: var(--s16);
+align-items: start}
+.adm-intro .sec-h2{color: #fff}
+.adm-intro p{color: rgba(255,255,255,.65);
+line-height: 1.75;
+margin-bottom: var(--s8)}
+.adm-steps{display: flex;
+flex-direction: column;
+gap: var(--s5)}
+.adm-step{display: flex;
+gap: var(--s5);
+align-items: flex-start}
+.adm-num{width: 40px;
+height: 40px;
+flex-shrink: 0;
+border-radius: 50%;
+background: var(--gold);
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: var(--font-display);
+font-size: var(--lg);
+font-weight: 700;
+color: var(--navy)}
+.adm-step-body h4{font-weight: 700;
+color: #fff;
+margin-bottom: 4px;
+font-size: var(--base)}
+.adm-step-body p{font-size: var(--sm);
+color: rgba(255,255,255,.58);
+line-height: 1.65}
+#adm-form-card{background: var(--surface);
+border-radius: var(--r-lg);
+padding: var(--s8);
+box-shadow: var(--sh-lg);
+border-top: 4px solid var(--gold)}
+.form-title{font-family: var(--font-display);
+font-size: var(--2xl);
+font-weight: 700;
+color: var(--navy);
+margin-bottom: var(--s6)}
+.fg{margin-bottom: var(--s4)}
+.fg-row{display: grid;
+grid-template-columns: 1fr 1fr;
+gap: var(--s4)}
+label{display: block;
+font-size: var(--sm);
+font-weight: 600;
+color: var(--text);
+margin-bottom: var(--s2)}
+input,select,textarea{width: 100%;
+padding: .65rem 1rem;
+background: var(--bg);
+border: 1.5px solid var(--border);
+border-radius: var(--r-sm);
+font-family: var(--font-body);
+font-size: var(--sm);
+color: var(--text);
+outline: none;
+transition: border-color var(--ease),box-shadow var(--ease)}
+input:focus,select:focus,textarea:focus{border-color: var(--royal);
+box-shadow: 0 0 0 3px rgba(34,85,196,.1)}
+textarea{resize: vertical;
+min-height: 90px}
+.form-submit{width: 100%;
+margin-top: var(--s2)}
+
+/* ── TESTIMONIALS ── */
+#testi-grid{display: grid;
+grid-template-columns: repeat(3,1fr);
+gap: var(--s5)}
+.testi-card{background: var(--surface);
+border: 1.5px solid var(--border);
+border-radius: var(--r-lg);
+padding: var(--s8);
+transition: all var(--ease)}
+.testi-card:hover{box-shadow: var(--sh-md);
+transform: translateY(-2px)}
+.testi-stars{color: var(--gold);
+letter-spacing: 3px;
+margin-bottom: var(--s4)}
+.testi-quote{font-family: var(--font-display);
+font-style: italic;
+font-size: var(--lg);
+line-height: 1.6;
+color: var(--navy);
+margin-bottom: var(--s5)}
+.testi-who{display: flex;
+align-items: center;
+gap: var(--s3)}
+.testi-ava{width: 44px;
+height: 44px;
+border-radius: 50%;
+background: var(--royal-light);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.1rem;
+flex-shrink: 0;
+color: var(--royal)}
+.testi-name{font-weight: 700;
+font-size: var(--sm)}
+.testi-role{font-size: var(--xs);
+color: var(--text-muted)}
+
+/* ── CTA STRIP ── */
+#cta-strip{background: linear-gradient(135deg,var(--royal) 0%,var(--navy) 100%);
+border-radius: var(--r-lg);
+padding: var(--s16) var(--s12);
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: var(--s8);
+overflow: hidden;
+position: relative}
+#cta-strip::after{content: '';
+position: absolute;
+right: 340px;
+top: -10px;
+font-size: 7rem;
+opacity: .06;
+transform: rotate(-10deg);
+pointer-events: none}
+.cta-text .sec-h2{color: #fff;
+font-size: var(--3xl);
+margin-bottom: var(--s2)}
+.cta-text p{color: rgba(255,255,255,.68);
+font-size: var(--lg)}
+#cta-btns{display: flex;
+gap: var(--s4);
+flex-shrink: 0}
+
+/* ── FOOTER ── */
+#footer{background: #080F1F;
+padding: var(--s16) 0 var(--s8)}
+#footer-grid{display: grid;
+grid-template-columns: 2fr 1fr 1fr 1fr;
+gap: var(--s10);
+padding-bottom: var(--s12);
+border-bottom: 1.5px solid rgba(255,255,255,.08);
+margin-bottom: var(--s8)}
+#footer-brand .brand-name{font-family: var(--font-display);
+font-size: var(--xl);
+color: #fff;
+font-weight: 700;
+margin-bottom: var(--s4);
+display: flex;
+align-items: center;
+gap: var(--s3)}
+#footer-brand p{font-size: var(--sm);
+color: rgba(255,255,255,.45);
+line-height: 1.7;
+margin-bottom: var(--s6)}
+.f-socials{display: flex;
+gap: var(--s3)}
+.f-soc{width: 38px;
+height: 38px;
+border-radius: var(--r-sm);
+background: rgba(255,255,255,.07);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1rem;
+transition: background var(--ease);
+color: rgba(255,255,255,.7)}
+.f-soc:hover{background: var(--royal)}
+.f-col h4{font-size: var(--sm);
+font-weight: 700;
+color: #fff;
+margin-bottom: var(--s4);
+letter-spacing: .03em}
+.f-col ul{display: flex;
+flex-direction: column;
+gap: var(--s3)}
+.f-col ul li a{font-size: var(--sm);
+color: rgba(255,255,255,.45);
+transition: color var(--ease)}
+.f-col ul li a:hover{color: #fff}
+.f-col ul li a i{margin-right: var(--s2);
+width: 14px;
+text-align: center}
+#footer-bottom{display: flex;
+align-items: center;
+justify-content: space-between;
+flex-wrap: wrap;
+gap: var(--s4)}
+#footer-bottom p{font-size: var(--sm);
+color: rgba(255,255,255,.3)}
+.f-badges{display: flex;
+gap: var(--s3);
+flex-wrap: wrap}
+.f-badge{padding: .28rem .75rem;
+background: rgba(255,255,255,.05);
+border: 1px solid rgba(255,255,255,.1);
+border-radius: var(--r-pill);
+font-size: var(--xs);
+color: rgba(255,255,255,.35)}
+
+/* ── MOBILE TOGGLE ── */
+#mob-btn{display: none}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+#subjects-grid{grid-template-columns: repeat(2,1fr)}
+#hero .container{grid-template-columns: 1fr}
+#hero-card{display: none}
+}
+@media(max-width:768px){
+:root{--5xl: 2.5rem;
+--4xl: 2rem;
+--3xl: 1.6rem}
+#nav-links,#nav-actions{display: none}
+#mob-btn{display: flex}
+#mob-nav{display: flex}
+#pillars-grid,#edu-grid,#testi-grid{grid-template-columns: 1fr}
+#subjects-grid{grid-template-columns: 1fr 1fr}
+#life-grid{grid-template-columns: 1fr 1fr;
+grid-template-rows: auto}
+.life-cell.span-col{grid-column: 1/3;
+grid-row: auto}
+#admission-wrap{grid-template-columns: 1fr}
+#footer-grid{grid-template-columns: 1fr 1fr}
+#cta-strip{flex-direction: column;
+text-align: center}
+#cta-btns{justify-content: center;
+flex-wrap: wrap}
+#footer-bottom{flex-direction: column;
+text-align: center}
+.fg-row{grid-template-columns: 1fr}
+#hero-stats{gap: var(--s5)}
+}
+@media(max-width:480px){
+#subjects-grid{grid-template-columns: 1fr}
+#life-grid{grid-template-columns: 1fr}
+.life-cell.span-col{grid-column: auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ NAVBAR ══════════════ -->
+<header id="navbar">
+<div class="container">
+<a href="#" id="nav-logo">
+<div class="logo-shield">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2C9 6 7 8 8 12c.5 2 2 3.5 4 4 2-.5 3.5-2 4-4 1-4-1-6-4-10z" />
+<path d="M12 16v6M9 22h6" stroke="#E8A020" stroke-width="1.5" stroke-linecap="round" fill="none" />
+</svg>
+</div>
+Yomyom Academy
+</a>
+
+<nav id="nav-links">
+<a class="nav-link" href="#about">About</a>
+<a class="nav-link" href="#educators">Our Educators</a>
+<a class="nav-link" href="#subjects">Subjects</a>
+<a class="nav-link" href="#life">School Life</a>
+<a class="nav-link" href="#admissions">Admissions</a>
+<a class="nav-link" href="#contact">Contact</a>
+</nav>
+
+<div id="nav-actions">
+<button class="btn btn-outline">Parent Portal</button>
+<button class="btn btn-gold">Apply Now</button>
+</div>
+
+<button id="mob-btn" aria-label="Open menu" aria-expanded="false">
+<svg id="icon-cap" viewBox="0 0 24 24">
+<polygon points="12,3 22,8 12,13 2,8" />
+<path d="M6 10.5v5.5c0 0 2 2 6 2s6-2 6-2V10.5" />
+<line x1="22" y1="8" x2="22" y2="14" />
+</svg>
+<svg id="icon-book" viewBox="0 0 24 24">
+<path d="M2 4h8a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H2z" />
+<path d="M22 4h-8a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h8z" />
+<line x1="12" y1="6" x2="12" y2="20" />
+</svg>
+</button>
+</div>
+</header>
+
+<!-- Mobile dropdown -->
+<nav id="mob-nav" aria-hidden="true">
+<a class="nav-link" href="#about">About</a>
+<a class="nav-link" href="#educators">Our Educators</a>
+<a class="nav-link" href="#subjects">Subjects</a>
+<a class="nav-link" href="#life">School Life</a>
+<a class="nav-link" href="#admissions">Admissions</a>
+<a class="nav-link" href="#contact">Contact</a>
+<div id="mob-nav-footer">
+<button class="btn btn-outline" style="width:100%;justify-content:center;">Parent Portal</button>
+<button class="btn btn-gold" style="width:100%;justify-content:center;">Apply Now</button>
+</div>
+</nav>
+
+
+<!-- ══════════════ HERO ══════════════ -->
+<section id="hero">
+<div class="container">
+<div id="hero-left">
+<div class="hero-tag">
+<span class="dot"></span> Est. 1998 · Accredited · Award-Winning
+</div>
+<h1 id="hero-h1">
+Where <em>curious</em> minds<br />become <span class="gold-word">bright</span> futures.
+</h1>
+<p id="hero-sub">
+Yomyom Academy is a nurturing K–12 school built on academic excellence, character development, and the belief that every child deserves a teacher who truly sees them.
+</p>
+<div id="hero-btns">
+<button class="btn btn-primary btn-lg">Explore Admissions</button>
+<button class="btn btn-outline btn-lg">Take a Virtual Tour</button>
+</div>
+<div id="hero-stats">
+<div>
+<div class="hero-stat-val">
+98<span>%</span>
+</div>
+<div class="hero-stat-label">
+University placement rate
+</div>
+</div>
+<div>
+<div class="hero-stat-val">
+1<span>:</span>14
+</div>
+<div class="hero-stat-label">
+Teacher-to-student ratio
+</div>
+</div>
+<div>
+<div class="hero-stat-val">
+26<span>+</span>
+</div>
+<div class="hero-stat-label">
+Years of excellence
+</div>
+</div>
+</div>
+</div>
+
+<div id="hero-card">
+<p class="card-title">
+2024–25 Enrolment
+</p>
+<div class="class-row">
+<div class="class-icon" style="background:#EBF0FB;">
+<i class="fa-solid fa-book-open"></i>
+</div>
+<div class="class-info">
+<div class="class-name">
+Primary School (K–5)
+</div>
+<div class="class-grade">
+Ages 5 – 11 · 18 classes
+</div>
+</div>
+<span class="class-badge badge-open">Open</span>
+</div>
+<div class="class-row">
+<div class="class-icon" style="background:#FDF3E0;">
+<i class="fa-solid fa-flask"></i>
+</div>
+<div class="class-info">
+<div class="class-name">
+Middle School (6–8)
+</div>
+<div class="class-grade">
+Ages 11 – 14 · 12 classes
+</div>
+</div>
+<span class="class-badge badge-filling">Filling Fast</span>
+</div>
+<div class="class-row">
+<div class="class-icon" style="background:#EBF0FB;">
+<i class="fa-solid fa-graduation-cap"></i>
+</div>
+<div class="class-info">
+<div class="class-name">
+High School (9–12)
+</div>
+<div class="class-grade">
+Ages 14 – 18 · 16 classes
+</div>
+</div>
+<span class="class-badge badge-open">Open</span>
+</div>
+<div class="class-row">
+<div class="class-icon" style="background:#FEE2E2;">
+<i class="fa-solid fa-palette"></i>
+</div>
+<div class="class-info">
+<div class="class-name">
+Arts &amp; Enrichment
+</div>
+<div class="class-grade">
+All ages · Elective
+</div>
+</div>
+<span class="class-badge badge-full">Full</span>
+</div>
+<div id="hero-float">
+<div class="float-num">
+<i class="fa-solid fa-star" style="font-size:1.4rem;color:var(--gold)"></i> 4.9
+</div>
+<div class="float-sub">
+Parent satisfaction score
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- ══════════════ WHY YOMYO. ══════════════ -->
+<section id="about" class="sec">
+<div class="container">
+<div class="sec-head c">
+<p class="eyebrow">
+Why Yomyom Academy
+</p>
+<h2 class="sec-h2">A school built differently.</h2>
+<p class="sec-sub">
+We don't measure success only in grades. We measure it in confident, curious, kind young people who are ready for whatever comes next.
+</p>
+</div>
+<div id="pillars-grid">
+<div class="pillar fade-in">
+<div class="pillar-icon">
+<i class="fa-solid fa-trophy"></i>
+</div>
+<h3>Academic Excellence</h3>
+<p>
+Our curriculum is rigorous, internationally benchmarked, and designed to challenge every student at their own level — from foundational literacy to advanced placement.
+</p>
+</div>
+<div class="pillar fade-in">
+<div class="pillar-icon">
+<i class="fa-solid fa-handshake"></i>
+</div>
+<h3>Small Class Sizes</h3>
+<p>
+With a 1:14 teacher-to-student ratio, no child gets lost. Every student is known by name, supported personally, and encouraged to reach further than they thought possible.
+</p>
+</div>
+<div class="pillar fade-in">
+<div class="pillar-icon">
+<i class="fa-solid fa-seedling"></i>
+</div>
+<h3>Character First</h3>
+<p>
+Kindness, resilience, and integrity are taught alongside algebra and grammar. We prepare students for life, not just exams.
+</p>
+</div>
+<div class="pillar fade-in">
+<div class="pillar-icon">
+<i class="fa-solid fa-earth-africa"></i>
+</div>
+<h3>Global Perspective</h3>
+<p>
+From Model UN to language exchange programmes, students graduate with a broad view of the world and the empathy to navigate it.
+</p>
+</div>
+<div class="pillar fade-in">
+<div class="pillar-icon">
+<i class="fa-solid fa-paintbrush"></i>
+</div>
+<h3>Arts &amp; Creativity</h3>
+<p>
+Music, visual arts, drama, and design thinking are woven into every year group — because creativity sharpens every other kind of thinking.
+</p>
+</div>
+<div class="pillar fade-in">
+<div class="pillar-icon">
+<i class="fa-solid fa-medal"></i>
+</div>
+<h3>Sport &amp; Wellbeing</h3>
+<p>
+Physical education, mindfulness, and team sports develop healthy habits and emotional regulation alongside athletic confidence.
+</p>
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- ══════════════ OUR EDUCATORS ══════════════ -->
+<section id="educators" class="sec sec-dark">
+<div class="container">
+<div class="sec-head">
+<p class="eyebrow">
+The People Behind the Progress
+</p>
+<h2 class="sec-h2" style="color:#fff;">Educators who genuinely care.</h2>
+<p class="sec-sub">
+Our teachers are degree-qualified specialists in their subjects — but what truly sets them apart is how they show up every day for the students in their care.
+</p>
+</div>
+<div id="edu-grid">
+<div class="edu-card fade-in">
+<div class="edu-avatar">
+<i class="fa-solid fa-chalkboard-user"></i>
+</div>
+<p class="edu-role">
+Primary School Lead
+</p>
+<p class="edu-desc">
+With over 15 years in early childhood education, our Primary lead has a gift for meeting every child exactly where they are. No student feels behind — just on their own unique path forward. Parents consistently say their children arrive at school excited, not anxious.
+</p>
+<div class="edu-qualities">
+<span class="quality-tag">Patient</span>
+<span class="quality-tag">Encouraging</span>
+<span class="quality-tag">Observant</span>
+<span class="quality-tag">Warm</span>
+</div>
+</div>
+<div class="edu-card fade-in">
+<div class="edu-avatar">
+<i class="fa-solid fa-microscope"></i>
+</div>
+<p class="edu-role">
+STEM Department Head
+</p>
+<p class="edu-desc">
+A former research scientist who turned to teaching to "make science exciting before university makes it stressful." Renowned for making abstract concepts feel tangible — students say they finally understand maths here when they never did before.
+</p>
+<div class="edu-qualities">
+<span class="quality-tag">Methodical</span>
+<span class="quality-tag">Passionate</span>
+<span class="quality-tag">Clear</span>
+<span class="quality-tag">Inspiring</span>
+</div>
+</div>
+<div class="edu-card fade-in">
+<div class="edu-avatar">
+<i class="fa-solid fa-pen-nib"></i>
+</div>
+<p class="edu-role">
+Arts &amp; Humanities Lead
+</p>
+<p class="edu-desc">
+A multilingual educator who has taught across four countries, bringing a richness of cultural perspective to every lesson. Never rushes a student who needs more time — and never lets a gifted student coast on talent alone.
+</p>
+<div class="edu-qualities">
+<span class="quality-tag">Empathetic</span>
+<span class="quality-tag">Rigorous</span>
+<span class="quality-tag">Creative</span>
+<span class="quality-tag">Fair</span>
+</div>
+</div>
+<div class="edu-card fade-in">
+<div class="edu-avatar">
+<i class="fa-solid fa-laptop-code"></i>
+</div>
+<p class="edu-role">
+Digital Literacy &amp; Tech
+</p>
+<p class="edu-desc">
+Brings real-world industry experience to the classroom. Teaches coding, critical media skills, and digital citizenship with practical projects students are proud to show off. Known for staying after class to help whoever needs it — without anyone asking.
+</p>
+<div class="edu-qualities">
+<span class="quality-tag">Approachable</span>
+<span class="quality-tag">Dedicated</span>
+<span class="quality-tag">Practical</span>
+</div>
+</div>
+<div class="edu-card fade-in">
+<div class="edu-avatar">
+<i class="fa-solid fa-heart-pulse"></i>
+</div>
+<p class="edu-role">
+Wellbeing &amp; Counselling
+</p>
+<p class="edu-desc">
+A certified school counsellor and mindfulness practitioner. Creates a safe, confidential space for students navigating everything from exam stress to social challenges. Known across the school as someone students trust completely.
+</p>
+<div class="edu-qualities">
+<span class="quality-tag">Compassionate</span>
+<span class="quality-tag">Discreet</span>
+<span class="quality-tag">Steady</span>
+</div>
+</div>
+<div class="edu-card fade-in">
+<div class="edu-avatar">
+<i class="fa-solid fa-person-running"></i>
+</div>
+<p class="edu-role">
+Physical Education &amp; Sport
+</p>
+<p class="edu-desc">
+Coached regional athletics teams before joining
+Yomyom Academy Believes PE is as important as any core subject — and proves it
+through the confidence students build on the field. Never singles a
+student out negatively; always finds what someone does well.
+</p>
+<div class="edu-qualities">
+<span class="quality-tag">Motivating</span>
+<span class="quality-tag">Positive</span>
+<span class="quality-tag">Inclusive</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- ══════════════ SUBJECTS ══════════════ -->
+<section id="subjects" class="sec sec-alt">
+<div class="container">
+<div class="sec-head c">
+<p class="eyebrow">
+Curriculum
+</p>
+<h2 class="sec-h2">Subjects we offer</h2>
+<p class="sec-sub">
+A broad, balanced curriculum from Grade K through 12 — with specialist teaching from Grade 6 onwards.
+</p>
+</div>
+<div id="subjects-grid">
+<div class="subj-card fade-in">
+<div class="subj-icon" style="background:#EBF0FB;">
+<i class="fa-solid fa-square-root-variable"></i>
+</div>
+<div class="subj-name">
+Mathematics
+</div>
+<p class="subj-desc">
+Number, algebra, geometry, statistics and calculus. From counting to complex analysis — taught with real-world context at every level.
+</p>
+<div class="subj-levels">
+<span class="level-chip">Foundation</span><span class="level-chip">Core</span><span class="level-chip">Advanced</span>
+</div>
+</div>
+<div class="subj-card fade-in">
+<div class="subj-icon" style="background:#E6F4EC;">
+<i class="fa-solid fa-book-open-reader"></i>
+</div>
+<div class="subj-name">
+English Language
+</div>
+<p class="subj-desc">
+Reading, writing, grammar, literature and public speaking. Students graduate as confident, eloquent communicators.
+</p>
+<div class="subj-levels">
+<span class="level-chip">All Grades</span><span class="level-chip">AP Literature</span>
+</div>
+</div>
+<div class="subj-card fade-in">
+<div class="subj-icon" style="background:#FDF3E0;">
+<i class="fa-solid fa-atom"></i>
+</div>
+<div class="subj-name">
+Sciences
+</div>
+<p class="subj-desc">
+Biology, Chemistry, Physics and Environmental Science. Lab-based learning from Grade 4 with full laboratory facilities.
+</p>
+<div class="subj-levels">
+<span class="level-chip">Integrated</span><span class="level-chip">Specialist</span><span class="level-chip">AP</span>
+</div>
+</div>
+<div class="subj-card fade-in">
+<div class="subj-icon" style="background:#F3F0FB;">
+<i class="fa-solid fa-language"></i>
+</div>
+<div class="subj-name">
+Modern Languages
+</div>
+<p class="subj-desc">
+French, Spanish and Mandarin from Grade 1. Conversational fluency, cultural immersion, and exchange programmes.
+</p>
+<div class="subj-levels">
+<span class="level-chip">Beginner</span><span class="level-chip">Intermediate</span><span class="level-chip">Fluent</span>
+</div>
+</div>
+<div class="subj-card fade-in">
+<div class="subj-icon" style="background:#FEF2F2;">
+<i class="fa-solid fa-landmark"></i>
+</div>
+<div class="subj-name">
+Social Studies &amp; History
+</div>
+<p class="subj-desc">
+World history, civics, geography and economics. Critical thinking about the past to make sense of the present.
+</p>
+<div class="subj-levels">
+<span class="level-chip">All Grades</span><span class="level-chip">AP History</span>
+</div>
+</div>
+<div class="subj-card fade-in">
+<div class="subj-icon" style="background:#EBF0FB;">
+<i class="fa-solid fa-code"></i>
+</div>
+<div class="subj-name">
+Computer Science
+</div>
+<p class="subj-desc">
+Coding (Python, JavaScript), data literacy, AI ethics, and digital design. Prepares students for a technology-first world.
+</p>
+<div class="subj-levels">
+<span class="level-chip">Foundations</span><span class="level-chip">Programming</span><span class="level-chip">AP CS</span>
+</div>
+</div>
+<div class="subj-card fade-in">
+<div class="subj-icon" style="background:#FDF3E0;">
+<i class="fa-solid fa-music"></i>
+</div>
+<div class="subj-name">
+Music &amp; Performing Arts
+</div>
+<p class="subj-desc">
+Instrumental tuition, choral singing, music theory, drama and dance. Annual productions and concert performances.
+</p>
+<div class="subj-levels">
+<span class="level-chip">All Grades</span><span class="level-chip">Elective</span>
+</div>
+</div>
+<div class="subj-card fade-in">
+<div class="subj-icon" style="background:#E6F4EC;">
+<i class="fa-solid fa-palette"></i>
+</div>
+<div class="subj-name">
+Visual Arts &amp; Design
+</div>
+<p class="subj-desc">
+Drawing, painting, sculpture, graphic design and photography. Portfolio development for students pursuing creative careers.
+</p>
+<div class="subj-levels">
+<span class="level-chip">Core</span><span class="level-chip">Advanced</span><span class="level-chip">Portfolio</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- ══════════════ SCHOOL LIFE ══════════════ -->
+<section id="life" class="sec">
+<div class="container">
+<div class="sec-head">
+<p class="eyebrow">
+Campus &amp; Culture
+</p>
+<h2 class="sec-h2">Life at Yomyom Academy</h2>
+<p class="sec-sub">
+Learning doesn't stop at the classroom door. Our campus buzzes with clubs, sport, art, community events, and everyday moments of connection.
+</p>
+</div>
+<div id="life-grid">
+<div class="life-cell span-col" style="background:linear-gradient(135deg,#1A3560,#0F2044);">
+<div class="life-bg">
+<i class="fa-solid fa-school"></i>
+</div>
+<div class="life-overlay"></div>
+<div style="position:relative;z-index:1">
+<div class="life-label">
+Main Campus
+</div>
+<div class="life-sub">
+12 acres · Science block · Arts centre · Library · Sports hall
+</div>
+</div>
+</div>
+<div class="life-cell" style="background:linear-gradient(135deg,#1B4332,#2D6A4F);">
+<div class="life-bg">
+<i class="fa-solid fa-futbol"></i>
+</div>
+<div class="life-overlay"></div>
+<div style="position:relative;z-index:1">
+<div class="life-label">
+Sport &amp; Athletics
+</div>
+<div class="life-sub">
+25+ teams &amp; clubs
+</div>
+</div>
+</div>
+<div class="life-cell" style="background:linear-gradient(135deg,#7C3AED,#4C1D95);">
+<div class="life-bg">
+<i class="fa-solid fa-masks-theater"></i>
+</div>
+<div class="life-overlay"></div>
+<div style="position:relative;z-index:1">
+<div class="life-label">
+Drama &amp; Theatre
+</div>
+<div class="life-sub">
+3 productions a year
+</div>
+</div>
+</div>
+<div class="life-cell" style="background:linear-gradient(135deg,#B45309,#78350F);">
+<div class="life-bg">
+<i class="fa-solid fa-flask-vial"></i>
+</div>
+<div class="life-overlay"></div>
+<div style="position:relative;z-index:1">
+<div class="life-label">
+Science Fairs
+</div>
+<div class="life-sub">
+National competitors since 2005
+</div>
+</div>
+</div>
+<div class="life-cell" style="background:linear-gradient(135deg,#0369A1,#0C4A6E);">
+<div class="life-bg">
+<i class="fa-solid fa-earth-europe"></i>
+</div>
+<div class="life-overlay"></div>
+<div style="position:relative;z-index:1">
+<div class="life-label">
+Global Exchange
+</div>
+<div class="life-sub">
+Partner schools in 8 countries
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- ══════════════ ADMISSIONS ══════════════ -->
+<section id="admissions" class="sec sec-navy-mid">
+<div class="container">
+<div id="admission-wrap">
+<div class="adm-intro">
+<p class="eyebrow">
+Admissions
+</p>
+<h2 class="sec-h2" style="color:#fff;">Joining Yomyom Academy is straightforward.</h2>
+<p>
+We welcome applications year-round for available places. Our admissions team reviews every application personally — no child is just a number.
+</p>
+<div class="adm-steps">
+<div class="adm-step">
+<div class="adm-num">
+1
+</div>
+<div class="adm-step-body">
+<h4>Submit an Application</h4>
+<p>
+Fill in the online enquiry form or drop in to our office. Bring previous school reports if available.
+</p>
+</div>
+</div>
+<div class="adm-step">
+<div class="adm-num">
+2
+</div>
+<div class="adm-step-body">
+<h4>Informal Assessment</h4>
+<p>
+A friendly, low-pressure session with our team so we can understand your child's strengths, learning style, and any support needs.
+</p>
+</div>
+</div>
+<div class="adm-step">
+<div class="adm-num">
+3
+</div>
+<div class="adm-step-body">
+<h4>Campus Visit</h4>
+<p>
+We invite families for a guided tour so your child can see the school, meet students, and ask their own questions.
+</p>
+</div>
+</div>
+<div class="adm-step">
+<div class="adm-num">
+4
+</div>
+<div class="adm-step-body">
+<h4>Offer &amp; Enrolment</h4>
+<p>
+Once a place is confirmed, we send a welcome pack and assign a buddy — so your child has a friend waiting on day one.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="adm-form-card">
+<p class="form-title">
+Enquire About a Place
+</p>
+<div class="fg-row">
+<div class="fg">
+<label for="p-fname">Parent First Name</label><input type="text" id="p-fname" placeholder="Jane" />
+</div>
+<div class="fg">
+<label for="p-lname">Last Name</label><input type="text" id="p-lname" placeholder="Smith" />
+</div>
+</div>
+<div class="fg">
+<label for="p-email">Email Address</label><input type="email" id="p-email" placeholder="jane@example.com" />
+</div>
+<div class="fg">
+<label for="p-phone">Phone Number</label><input type="tel" id="p-phone" placeholder="+1 (555) 000-0000" />
+</div>
+<div class="fg-row">
+<div class="fg">
+<label for="c-name">Child's Name</label><input type="text" id="c-name" placeholder="Alex Smith" />
+</div>
+<div class="fg">
+<label for="c-age">Child's Age</label><input type="number" id="c-age" placeholder="9" min="4" max="18" />
+</div>
+</div>
+<div class="fg">
+<label for="grade-pref">Grade Applying For</label>
+<select id="grade-pref">
+<option value="">Select a grade…</option>
+<option>Kindergarten</option>
+<option>Grade 1</option><option>Grade 2</option><option>Grade 3</option>
+<option>Grade 4</option><option>Grade 5</option><option>Grade 6</option>
+<option>Grade 7</option><option>Grade 8</option><option>Grade 9</option>
+<option>Grade 10</option><option>Grade 11</option><option>Grade 12</option>
+</select>
+</div>
+<div class="fg">
+<label for="adm-note">Anything you'd like us to know?</label><textarea id="adm-note" placeholder="Learning needs, interests, questions…"></textarea>
+</div>
+<button class="btn btn-gold btn-lg form-submit" id="adm-submit">Send Enquiry</button>
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- ══════════════ TESTIMONIALS ══════════════ -->
+<section id="contact" class="sec sec-alt">
+<div class="container">
+<div class="sec-head c">
+<p class="eyebrow">
+Parent &amp; Student Voices
+</p>
+<h2 class="sec-h2">What families say.</h2>
+<p class="sec-sub">
+The real measure of a school is what the people inside it feel.
+</p>
+</div>
+<div id="testi-grid">
+<div class="testi-card fade-in">
+<div class="testi-stars">
+★★★★★
+</div>
+<p class="testi-quote">
+"My son struggled with confidence at his previous
+school. Within one term at Yomyom Academy, he was volunteering answers in class. The
+patience the teachers showed him was extraordinary."
+</p>
+<div class="testi-who">
+<div class="testi-ava">
+<i class="fa-solid fa-user"></i>
+</div>
+<div>
+<div class="testi-name">
+Parent of a Grade 4 student
+</div>
+<div class="testi-role">
+Yomyom Academy family since 2021
+</div>
+</div>
+</div>
+</div>
+<div class="testi-card fade-in">
+<div class="testi-stars">
+★★★★★
+</div>
+<p class="testi-quote">
+"I used to think I hated science. My teacher here made me actually look forward to it. Now I want to study environmental biology at university."
+</p>
+<div class="testi-who">
+<div class="testi-ava">
+<i class="fa-solid fa-user-graduate"></i>
+</div>
+<div>
+<div class="testi-name">
+Grade 11 student
+</div>
+<div class="testi-role">
+Enrolled since Grade 6
+</div>
+</div>
+</div>
+</iv>
+<div class="testi-card fade-in">
+<div class="testi-stars">
+★★★★★
+</div>
+<p class="testi-quote">
+"The admissions team was honest, warm, and never pushy. They put our daughter's needs first — not the school's. That told us everything we needed to know."
+</p>
+<div class="testi-who">
+<div class="testi-ava">
+<i class="fa-solid fa-user"></i>
+</div>
+<div>
+<div class="testi-name">
+Parent of a Grade 7 student
+</div>
+<div class="testi-role">
+Yomyom Academy family since 2023
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- ══════════════ CTA STRIP ══════════════ -->
+<section class="sec">
+<div class="container">
+<div id="cta-strip">
+<div class="cta-text">
+<h2 class="sec-h2">Ready to find your child's place?</h2>
+<p>
+Applications are open for the 2025–26 school year. Places fill quickly in all year groups.
+</p>
+</div>
+<div id="cta-btns">
+<button class="btn btn-gold btn-lg">Apply for a Place</button>
+<button class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,.3);color:#fff;">Book a Tour</button>
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer id="footer">
+<div class="container">
+<div id="footer-grid">
+<div id="footer-brand">
+<div class="brand-name">
+<div class="logo-shield" style="width:34px;height:34px;">
+<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:var(--gold)">
+<path d="M12 2C9 6 7 8 8 12c.5 2 2 3.5 4 4 2-.5 3.5-2 4-4 1-4-1-6-4-10z" />
+</svg>
+</div>
+Yomyom Academy
+</div>
+<p>
+Nurturing curious minds and building bright futures since 1998. A K–12 independent school committed to excellence, character, and community.
+</p>
+<div class="f-socials">
+<a class="f-soc" href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+<a class="f-soc" href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+<a class="f-soc" href="#" title="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+<a class="f-soc" href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+</div>
+</div>
+<div class="f-col">
+<h4>School</h4>
+<ul>
+<li><a href="#about">About Us</a></li>
+<li><a href="#educators">Our Educators</a></li>
+<li><a href="#subjects">Subjects</a></li>
+<li><a href="#life">School Life</a></li>
+<li><a href="#">News &amp; Events</a></li>
+</ul>
+</div>
+<div class="f-col">
+<h4>Admissions</h4>
+<ul>
+<li><a href="#admissions">How to Apply</a></li>
+<li><a href="#">Fees &amp; Bursaries</a></li>
+<li><a href="#">Open Days</a></li>
+<li><a href="#">Virtual Tour</a></li>
+<li><a href="#">FAQs</a></li>
+</ul>
+</div>
+<div class="f-col">
+<h4>Contact</h4>
+<ul>
+<li><a href="#"><i class="fa-solid fa-location-dot"></i> 14 Academy Road, Springfield</a></li>
+<li><a href="#"><i class="fa-solid fa-phone"></i> (800) 555-0181</a></li>
+<li><a href="#"><i class="fa-solid fa-envelope"></i> @yomyom.edu</a></li>
+<li><a href="#"><i class="fa-regular fa-clock"></i> Mon–Fri 7:30am – 5pm</a></li>
+</ul>
+</div>
+</div>
+<div id="footer-bottom">
+<p>
+© 2026 Yomyom Academy. All rights reserved.
+</p>
+<div class="f-badges">
+<span class="f-badge">Nationally Accredited</span>
+<span class="f-badge">ISAS Member</span>
+<span class="f-badge">Safeguarding Certified</span>
+<span class="f-badge">Inclusive School Award</span>
+</div>
+</div>
+</div>
+</footer>
+
+
+<!-- ══════════════ JAVASCRIPT ══════════════ -->
+<script>
+const mobBtn = document.getElementById('mob-btn');
+const mobNav = document.getElementById('mob-nav');
+let open = false;
+function toggleMenu(force) {
+open = force !== undefined ? force: !open;
+mobBtn.classList.toggle('open', open);
+mobNav.classList.toggle('open', open);
+mobBtn.setAttribute('aria-expanded', open);
+mobNav.setAttribute('aria-hidden', !open);
+}
+mobBtn.addEventListener('click', () => toggleMenu());
+mobNav.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => toggleMenu(false)));
+document.addEventListener('click', e => {
+if (open && !mobBtn.contains(e.target) && !mobNav.contains(e.target)) toggleMenu(false);
+});
+
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+navbar.classList.toggle('scrolled', window.scrollY > 16);
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+a.addEventListener('click', e => {
+const t = document.querySelector(a.getAttribute('href'));
+if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+});
+});
+
+const io = new IntersectionObserver(entries => {
+entries.forEach(en => {
+if (en.isIntersecting) {
+en.target.style.opacity = '1';
+en.target.style.transform = 'translateY(0)';
+}
+});
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => {
+el.style.opacity = '0';
+el.style.transform = 'translateY(22px)';
+el.style.transition = 'opacity .5s ease, transform .5s ease';
+io.observe(el);
+});
+
+document.getElementById('adm-submit').addEventListener('click', () => {
+const required = ['p-fname', 'p-lname', 'p-email', 'c-name', 'c-age'];
+const missing = required.filter(id => !document.getElementById(id).value.trim());
+if (missing.length) {
+alert('Please fill in all required fields before submitting.');
+} else {
+document.getElementById('adm-submit').textContent = '✅ Enquiry Sent — We\'ll be in touch soon!';
+document.getElementById('adm-submit').disabled = true;
+}
+});
+
+window.setVar = (k, v) => { document.documentElement.style.setProperty(k, v); console.log(`✅ ${k} → ${v}`); };
+window.setText = (id, t) => { const el = document.getElementById(id); if (el) el.textContent = t; };
+window.setHTML = (id, h) => { const el = document.getElementById(id); if (el) el.innerHTML = h; };
+const themes = {
+navy: { '--navy': '#0F2044', '--royal': '#2255C4', '--gold': '#E8A020' },
+forest: { '--navy': '#0D2B1F', '--royal': '#1A6B42', '--gold': '#F4A020' },
+maroon: { '--navy': '#2A0A1A', '--royal': '#8B1A3A', '--gold': '#D4A020' },
+};
+window.applyTheme = name => {
+const t = themes[name];
+if (!t) { console.warn('Unknown theme. Try: navy, forest, maroon'); return; }
+Object.entries(t).forEach(([k,v]) => window.setVar(k, v));
+console.log(`🎨 Theme "${name}" applied`);
+};
+</script>
+</body>
+</html>

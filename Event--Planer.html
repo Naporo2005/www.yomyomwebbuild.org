@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title id="page-title">EventCraft — Luxury Event Planning</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+/* ══════════════════════════════════════════════
+       TOKENS
+    ══════════════════════════════════════════════ */
+:root {
+--plum: #3B1F3A;
+--plum-dark: #2A1429;
+--plum-mid: #4E2B4D;
+--rose: #C4748A;
+--rose-lt: #D9A0B0;
+--blush: #F2E4E8;
+--cream: #FBF7F4;
+--white: #FFFFFF;
+--text-body: #4A3648;
+--text-dim: #9B8598;
+--border: rgba(196,116,138,0.18);
+
+--ff-display: 'Cormorant Garamond', Georgia, serif;
+--ff-body: 'DM Sans', system-ui, sans-serif;
+
+--shadow-card: 0 4px 24px rgba(59,31,58,0.08);
+--shadow-hover: 0 8px 40px rgba(59,31,58,0.14);
+}
+
+/* ══════════════════════════════════════════════
+       RESET
+    ══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+html { scroll-behavior: smooth;
+}
+body {
+background: var(--cream);
+color: var(--text-body);
+font-family: var(--ff-body);
+font-size: 16px;
+line-height: 1.7;
+overflow-x: hidden;
+}
+img { display: block;
+max-width: 100%;
+height: auto;
+}
+a { text-decoration: none;
+color: inherit;
+}
+ul { list-style: none;
+}
+
+/* ══════════════════════════════════════════════
+       UTILITIES
+    ══════════════════════════════════════════════ */
+.accent-line {
+width: 44px;
+height: 3px;
+background: var(--rose);
+border-radius: 2px;
+margin-bottom: 1rem;
+}
+.eyebrow {
+font-family: var(--ff-body);
+font-size: 0.68rem;
+font-weight: 600;
+letter-spacing: 0.22em;
+text-transform: uppercase;
+color: var(--rose);
+display: block;
+margin-bottom: 0.5rem;
+}
+.section-title {
+font-family: var(--ff-display);
+font-size: clamp(1.9rem, 4vw, 2.8rem);
+font-weight: 700;
+line-height: 1.15;
+color: var(--plum-dark);
+}
+.section-wrap {
+padding: 5rem 1.5rem;
+max-width: 1160px;
+margin: 0 auto;
+}
+.section-center { text-align: center;
+}
+.section-center .accent-line { margin-left: auto;
+margin-right: auto;
+}
+
+/* ══════════════════════════════════════════════
+       NAVBAR
+    ══════════════════════════════════════════════ */
+#header {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+z-index: 1000;
+}
+#navbar {
+background: rgba(251,247,244,0.96);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid var(--border);
+padding: 0 1.5rem;
+display: flex;
+align-items: center;
+justify-content: space-between;
+height: 64px;
+}
+#navbar-logo {
+font-family: var(--ff-display);
+font-size: 1.55rem;
+font-weight: 700;
+color: var(--plum);
+letter-spacing: 0.02em;
+flex-shrink: 0;
+}
+#nav-links {
+display: flex;
+gap: 0.25rem;
+align-items: center;
+}
+#nav-links a {
+font-size: 0.8rem;
+font-weight: 500;
+letter-spacing: 0.08em;
+color: var(--text-dim);
+padding: 0.4rem 0.75rem;
+border-radius: 4px;
+transition: color 0.2s, background 0.2s;
+}
+#nav-links a:hover { color: var(--plum);
+background: var(--blush);
+}
+#nav-cta {
+background: var(--plum);
+color: var(--white);
+font-family: var(--ff-body);
+font-size: 0.78rem;
+font-weight: 600;
+letter-spacing: 0.08em;
+padding: 0.55rem 1.35rem;
+border-radius: 4px;
+border: none;
+cursor: pointer;
+transition: background 0.2s;
+white-space: nowrap;
+}
+#nav-cta:hover { background: var(--plum-mid);
+}
+#menu-btn {
+display: none;
+background: none;
+border: none;
+color: var(--plum);
+font-size: 1.25rem;
+cursor: pointer;
+padding: 0.4rem;
+}
+#mobile-menu {
+display: none;
+flex-direction: column;
+background: var(--white);
+border-bottom: 1px solid var(--border);
+padding: 1rem 1.5rem 1.5rem;
+gap: 0.75rem;
+}
+#mobile-menu a {
+font-size: 0.9rem;
+font-weight: 500;
+color: var(--text-body);
+padding: 0.5rem 0;
+border-bottom: 1px solid var(--border);
+}
+#mobile-menu a:last-child { border-bottom: none;
+}
+#mobile-menu.open { display: flex;
+}
+
+/* ══════════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════════ */
+#hero {
+padding-top: 64px;
+min-height: 100vh;
+background: var(--plum-dark);
+display: flex;
+align-items: center;
+position: relative;
+overflow: hidden;
+}
+#hero-bg-img {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+opacity: 0.22;
+}
+#hero-overlay {
+position: absolute;
+inset: 0;
+background: linear-gradient(160deg, var(--plum-dark) 40%, rgba(78,43,77,0.7) 100%);
+}
+#hero-content {
+position: relative;
+z-index: 1;
+max-width: 720px;
+padding: 4rem 2rem 4rem 2rem;
+margin: 0 auto;
+text-align: center;
+}
+#hero-eyebrow {
+display: inline-flex;
+align-items: center;
+gap: 0.65rem;
+margin-bottom: 1.75rem;
+}
+#hero-eyebrow-line-l,
+#hero-eyebrow-line-r {
+width: 28px;
+height: 1px;
+background: var(--rose-lt);
+display: inline-block;
+}
+#hero-eyebrow-text {
+font-size: 0.68rem;
+font-weight: 600;
+letter-spacing: 0.24em;
+text-transform: uppercase;
+color: var(--rose-lt);
+}
+#hero-headline {
+font-family: var(--ff-display);
+font-size: clamp(2.8rem, 6vw, 5rem);
+font-weight: 700;
+line-height: 1.08;
+color: var(--white);
+margin-bottom: 1.5rem;
+}
+#hero-headline em {
+font-style: italic;
+color: var(--rose-lt);
+}
+#hero-sub {
+font-size: 1.05rem;
+color: rgba(255,255,255,0.65);
+line-height: 1.8;
+max-width: 520px;
+margin: 0 auto 2.5rem;
+}
+#hero-buttons {
+display: flex;
+gap: 0.9rem;
+justify-content: center;
+flex-wrap: wrap;
+}
+#hero-btn-primary {
+background: var(--rose);
+color: var(--white);
+font-size: 0.8rem;
+font-weight: 600;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+padding: 0.9rem 2.2rem;
+border-radius: 4px;
+border: 2px solid var(--rose);
+transition: all 0.25s;
+}
+#hero-btn-primary:hover {
+background: transparent;
+color: var(--rose-lt);
+border-color: var(--rose-lt);
+}
+#hero-btn-secondary {
+background: transparent;
+color: rgba(255,255,255,0.85);
+font-size: 0.8rem;
+font-weight: 600;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+padding: 0.9rem 2.2rem;
+border-radius: 4px;
+border: 2px solid rgba(255,255,255,0.3);
+transition: all 0.25s;
+}
+#hero-btn-secondary:hover {
+border-color: var(--rose-lt);
+color: var(--rose-lt);
+}
+#hero-stats {
+display: flex;
+justify-content: center;
+gap: 0;
+margin-top: 4rem;
+border-top: 1px solid rgba(255,255,255,0.1);
+padding-top: 2.5rem;
+flex-wrap: wrap;
+}
+.hero-stat {
+padding: 0 2.5rem;
+border-right: 1px solid rgba(255,255,255,0.1);
+}
+.hero-stat:last-child { border-right: none;
+}
+.hero-stat-num {
+font-family: var(--ff-display);
+font-size: 2.4rem;
+font-weight: 700;
+color: var(--rose-lt);
+line-height: 1;
+}
+.hero-stat-label {
+font-size: 0.7rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: rgba(255,255,255,0.45);
+margin-top: 0.3rem;
+}
+
+/* ══════════════════════════════════════════════
+       ABOUT
+    ══════════════════════════════════════════════ */
+#about { background: var(--white);
+}
+#about-inner {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 4rem;
+align-items: center;
+}
+#about-image-wrap {
+position: relative;
+}
+#about-img {
+width: 100%;
+aspect-ratio: 3/4;
+object-fit: cover;
+border-radius: 6px;
+}
+#about-img-badge {
+position: absolute;
+bottom: 1.75rem;
+right: -1.25rem;
+background: var(--plum);
+color: var(--white);
+padding: 1.25rem 1.5rem;
+border-radius: 6px;
+text-align: center;
+box-shadow: var(--shadow-hover);
+}
+#about-badge-num {
+font-family: var(--ff-display);
+font-size: 2rem;
+font-weight: 700;
+color: var(--rose-lt);
+line-height: 1;
+}
+#about-badge-label {
+font-size: 0.68rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: rgba(255,255,255,0.65);
+margin-top: 0.25rem;
+}
+#about-tag { margin-bottom: 0.4rem;
+}
+#about-title { margin-bottom: 1.25rem;
+}
+#about-text {
+color: var(--text-dim);
+line-height: 1.85;
+margin-bottom: 2.25rem;
+font-size: 0.95rem;
+}
+#about-stats {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 0;
+border: 1px solid var(--border);
+border-radius: 6px;
+overflow: hidden;
+}
+.stat-box {
+padding: 1.25rem 1rem;
+text-align: center;
+border-right: 1px solid var(--border);
+background: var(--blush);
+}
+.stat-box:last-child { border-right: none;
+}
+.stat-box h3 {
+font-family: var(--ff-display);
+font-size: 1.9rem;
+font-weight: 700;
+color: var(--plum);
+line-height: 1;
+}
+.stat-box p {
+font-size: 0.68rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(--text-dim);
+margin-top: 0.3rem;
+}
+
+/* ══════════════════════════════════════════════
+       SERVICES
+    ══════════════════════════════════════════════ */
+#services { background: var(--blush);
+}
+#services-heading { margin-bottom: 3rem;
+}
+#services-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1.25rem;
+}
+.service-card {
+background: var(--white);
+border-radius: 8px;
+padding: 2.25rem 1.75rem;
+border: 1px solid var(--border);
+transition: box-shadow 0.3s, transform 0.3s;
+}
+.service-card:hover {
+box-shadow: var(--shadow-hover);
+transform: translateY(-4px);
+}
+.service-icon {
+width: 48px;
+height: 48px;
+background: var(--blush);
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 1.25rem;
+}
+.service-icon i { font-size: 1.2rem;
+color: var(--rose);
+}
+.service-card h3 {
+font-family: var(--ff-display);
+font-size: 1.25rem;
+font-weight: 700;
+color: var(--plum-dark);
+margin-bottom: 0.6rem;
+}
+.service-card p {
+font-size: 0.875rem;
+color: var(--text-dim);
+line-height: 1.7;
+}
+
+/* ══════════════════════════════════════════════
+       WHY US
+    ══════════════════════════════════════════════ */
+#why-us { background: var(--plum-dark);
+}
+#why-us .section-title { color: var(--white);
+}
+#why-us .eyebrow { color: var(--rose-lt);
+}
+#why-us-heading { margin-bottom: 3rem;
+}
+#why-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 1.25rem;
+}
+.why-card {
+background: rgba(255,255,255,0.05);
+border: 1px solid rgba(255,255,255,0.08);
+border-radius: 8px;
+padding: 2rem;
+display: flex;
+gap: 1.25rem;
+align-items: flex-start;
+transition: background 0.3s, border-color 0.3s;
+}
+.why-card:hover {
+background: rgba(255,255,255,0.09);
+border-color: rgba(196,116,138,0.35);
+}
+.why-icon {
+width: 44px;
+height: 44px;
+background: rgba(196,116,138,0.15);
+border-radius: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+}
+.why-icon i { font-size: 1rem;
+color: var(--rose-lt);
+}
+.why-card h3 {
+font-family: var(--ff-display);
+font-size: 1.15rem;
+font-weight: 700;
+color: var(--white);
+margin-bottom: 0.4rem;
+}
+.why-card p { font-size: 0.875rem;
+color: rgba(255,255,255,0.5);
+line-height: 1.7;
+}
+
+/* ══════════════════════════════════════════════
+       GALLERY
+    ══════════════════════════════════════════════ */
+#gallery { background: var(--cream);
+}
+#gallery-heading { margin-bottom: 2.5rem;
+}
+#gallery-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: auto auto;
+gap: 8px;
+border-radius: 8px;
+overflow: hidden;
+}
+#gallery-grid img {
+width: 100%;
+aspect-ratio: 4/3;
+object-fit: cover;
+transition: opacity 0.35s, transform 0.4s;
+}
+#gallery-img-1 {
+grid-column: 1 / 3;
+aspect-ratio: 16/9;
+}
+#gallery-grid img:hover {
+opacity: 0.88;
+transform: scale(1.02);
+}
+
+/* ══════════════════════════════════════════════
+       PROCESS
+    ══════════════════════════════════════════════ */
+#process { background: var(--white);
+}
+#process-heading { margin-bottom: 3.5rem;
+}
+#process-track {
+display: grid;
+grid-template-columns: repeat(5, 1fr);
+gap: 1rem;
+position: relative;
+}
+#process-connector {
+position: absolute;
+top: 28px;
+left: calc(10% + 14px);
+right: calc(10% + 14px);
+height: 2px;
+background: var(--blush);
+z-index: 0;
+}
+.process-card {
+text-align: center;
+padding: 0 0.75rem;
+position: relative;
+z-index: 1;
+}
+.process-step-num {
+width: 56px;
+height: 56px;
+border-radius: 50%;
+background: var(--blush);
+border: 2px solid var(--rose);
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: var(--ff-display);
+font-size: 1.2rem;
+font-weight: 700;
+color: var(--plum);
+margin: 0 auto 1.25rem;
+}
+.process-card h3 {
+font-family: var(--ff-display);
+font-size: 1.05rem;
+font-weight: 700;
+color: var(--plum-dark);
+margin-bottom: 0.4rem;
+}
+.process-card p {
+font-size: 0.8rem;
+color: var(--text-dim);
+line-height: 1.6;
+}
+
+/* ══════════════════════════════════════════════
+       TESTIMONIALS
+    ══════════════════════════════════════════════ */
+#testimonials { background: var(--blush);
+}
+#testimonials-heading { margin-bottom: 3rem;
+}
+#testimonials-wrapper {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1.25rem;
+}
+.testimonial-card {
+background: var(--white);
+border-radius: 8px;
+padding: 2rem;
+border: 1px solid var(--border);
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+box-shadow: var(--shadow-card);
+}
+.quote-glyph {
+font-family: var(--ff-display);
+font-size: 3.5rem;
+color: var(--rose);
+line-height: 0.6;
+margin-bottom: 0.5rem;
+}
+.review {
+font-size: 0.92rem;
+color: var(--text-body);
+line-height: 1.8;
+font-style: italic;
+}
+.client {
+display: flex;
+align-items: center;
+gap: 0.85rem;
+margin-top: auto;
+padding-top: 1.25rem;
+border-top: 1px solid var(--border);
+}
+.client img {
+width: 44px;
+height: 44px;
+border-radius: 50%;
+object-fit: cover;
+border: 2px solid var(--rose-lt);
+}
+.client h3 {
+font-size: 0.9rem;
+font-weight: 600;
+color: var(--plum-dark);
+}
+.client span {
+font-size: 0.7rem;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+color: var(--rose);
+}
+
+/* ══════════════════════════════════════════════
+       CONTACT
+    ══════════════════════════════════════════════ */
+#contact { background: var(--white);
+}
+#contact-inner {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 4rem;
+align-items: start;
+}
+#contact-left h2 {
+font-family: var(--ff-display);
+font-size: clamp(1.9rem,4vw,2.6rem);
+font-weight: 700;
+color: var(--plum-dark);
+margin: 0.5rem 0 1.1rem;
+line-height: 1.2;
+}
+#contact-text {
+font-size: 0.95rem;
+color: var(--text-dim);
+line-height: 1.8;
+}
+#contact-cards {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1rem;
+}
+.contact-card {
+background: var(--blush);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.5rem;
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
+transition: box-shadow 0.3s, border-color 0.3s;
+}
+.contact-card:hover {
+box-shadow: var(--shadow-hover);
+border-color: var(--rose);
+}
+.contact-card i {
+font-size: 1.15rem;
+color: var(--rose);
+margin-bottom: 0.25rem;
+}
+.contact-card h3 {
+font-size: 0.68rem;
+font-weight: 600;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+color: var(--text-dim);
+}
+.contact-card p {
+font-size: 0.9rem;
+color: var(--plum-dark);
+font-weight: 500;
+}
+
+/* ══════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════ */
+#footer {
+background: var(--plum-dark);
+border-top: 1px solid rgba(255,255,255,0.06);
+}
+#footer-inner {
+display: grid;
+grid-template-columns: 2fr 1fr 1fr;
+gap: 3rem;
+padding: 4rem 1.5rem 3rem;
+max-width: 1160px;
+margin: 0 auto;
+}
+#footer-logo {
+font-family: var(--ff-display);
+font-size: 1.6rem;
+font-weight: 700;
+color: var(--rose-lt);
+margin-bottom: 0.75rem;
+}
+#footer-tagline {
+font-size: 0.85rem;
+color: rgba(255,255,255,0.4);
+line-height: 1.75;
+max-width: 280px;
+}
+#footer-links-heading,
+#footer-social-heading {
+font-size: 0.68rem;
+font-weight: 600;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: var(--rose-lt);
+margin-bottom: 1.25rem;
+}
+#footer-links {
+display: flex;
+flex-direction: column;
+gap: 0.65rem;
+}
+#footer-links a {
+font-size: 0.875rem;
+color: rgba(255,255,255,0.45);
+transition: color 0.2s;
+}
+#footer-links a:hover { color: var(--rose-lt);
+}
+#footer-social-icons {
+display: flex;
+gap: 0.6rem;
+flex-wrap: wrap;
+}
+.social-icon {
+width: 38px;
+height: 38px;
+border: 1px solid rgba(255,255,255,0.12);
+border-radius: 6px;
+display: flex;
+align-items: center;
+justify-content: center;
+color: rgba(255,255,255,0.4);
+font-size: 0.85rem;
+transition: all 0.2s;
+}
+.social-icon:hover {
+border-color: var(--rose);
+color: var(--rose-lt);
+}
+#footer-bottom {
+border-top: 1px solid rgba(255,255,255,0.06);
+text-align: center;
+padding: 1.5rem;
+font-size: 0.78rem;
+color: rgba(255,255,255,0.3);
+letter-spacing: 0.06em;
+}
+
+/* ══════════════════════════════════════════════
+       RESPONSIVE — TABLET (≤900px)
+    ══════════════════════════════════════════════ */
+@media (max-width: 900px) {
+#nav-links { display: none;
+}
+#nav-cta { display: none;
+}
+#menu-btn { display: block;
+}
+
+#about-inner { grid-template-columns: 1fr;
+}
+#about-img-badge { right: 1rem;
+}
+
+#services-grid { grid-template-columns: repeat(2, 1fr);
+}
+
+#why-grid { grid-template-columns: 1fr;
+}
+
+#gallery-grid { grid-template-columns: repeat(2, 1fr);
+}
+#gallery-img-1 { grid-column: 1 / 3;
+}
+
+#process-track { grid-template-columns: repeat(3, 1fr);
+}
+#process-connector { display: none;
+}
+.process-card:nth-child(4),
+.process-card:nth-child(5) { grid-column: auto;
+}
+
+#testimonials-wrapper { grid-template-columns: 1fr;
+}
+
+#contact-inner { grid-template-columns: 1fr;
+gap: 2.5rem;
+}
+
+#footer-inner { grid-template-columns: 1fr 1fr;
+}
+}
+
+/* ══════════════════════════════════════════════
+       RESPONSIVE — MOBILE (≤560px)
+    ══════════════════════════════════════════════ */
+@media (max-width: 560px) {
+.section-wrap { padding: 3.5rem 1.25rem;
+}
+
+#hero-content { padding: 3rem 1.25rem;
+}
+#hero-stats { gap: 0;
+}
+.hero-stat { padding: 0 1rem;
+}
+.hero-stat-num { font-size: 1.8rem;
+}
+
+#about-inner { gap: 2.5rem;
+}
+#about-img-badge { position: static;
+margin-top: -1rem;
+margin-left: auto;
+display: inline-block;
+border-radius: 6px;
+}
+
+#services-grid { grid-template-columns: 1fr;
+}
+
+#gallery-grid { grid-template-columns: 1fr;
+}
+#gallery-img-1 { grid-column: 1;
+aspect-ratio: 4/3;
+}
+
+#process-track { grid-template-columns: 1fr 1fr;
+}
+.process-card:nth-child(5) { grid-column: 1 / 3;
+}
+
+#contact-cards { grid-template-columns: 1fr;
+}
+
+#footer-inner { grid-template-columns: 1fr;
+gap: 2rem;
+padding: 3rem 1.25rem 2rem;
+}
+#footer-tagline { max-width: 100%;
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+*, *::before, *::after { animation: none !important;
+transition: none !important;
+}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══════════════════════════════════════════════ -->
+<header id="header">
+<nav id="navbar">
+<a id="navbar-logo" href="#hero">EventCraft</a>
+<ul id="nav-links">
+<li><a id="nav-home" href="#hero">Home</a></li>
+<li><a id="nav-about" href="#about">About</a></li>
+<li><a id="nav-services" href="#services">Services</a></li>
+<li><a id="nav-gallery" href="#gallery">Gallery</a></li>
+<li><a id="nav-testimonials" href="#testimonials">Testimonials</a></li>
+<li><a id="nav-contact" href="#contact">Contact</a></li>
+</ul>
+<a id="nav-cta" href="#contact">Book an Event</a>
+<button id="menu-btn" aria-label="Open menu" onclick="toggleMenu()">
+<i class="fa-solid fa-bars"></i>
+</button>
+</nav>
+<div id="mobile-menu">
+<a href="#hero" onclick="toggleMenu()">Home</a>
+<a href="#about" onclick="toggleMenu()">About</a>
+<a href="#services" onclick="toggleMenu()">Services</a>
+<a href="#gallery" onclick="toggleMenu()">Gallery</a>
+<a href="#testimonials" onclick="toggleMenu()">Testimonials</a>
+<a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+</header>
+
+<!-- ══ HERO ════════════════════════════════════════════════ -->
+<section id="hero">
+<img id="hero-bg-img" src="images/event1.jpg" alt="" aria-hidden="true" />
+<div id="hero-overlay"></div>
+<div id="hero-content">
+<div id="hero-eyebrow">
+<span id="hero-eyebrow-line-l"></span>
+<span id="hero-eyebrow-text">Premium Event Planning · Accra, Ghana</span>
+<span id="hero-eyebrow-line-r"></span>
+</div>
+<h1 id="hero-headline">
+Where Every<br><em>Moment</em><br>Becomes a Memory
+</h1>
+<p id="hero-sub">
+From intimate weddings to grand corporate galas, we design events that feel effortless — because we handle everything behind the scenes.
+</p>
+<div id="hero-buttons">
+<a id="hero-btn-primary" href="#gallery">See Our Work</a>
+<a id="hero-btn-secondary" href="#contact">Get in Touch</a>
+</div>
+<div id="hero-stats">
+<div class="hero-stat" id="hero-stat-1">
+<div class="hero-stat-num" id="hero-stat-1-num">
+250+
+</div>
+<div class="hero-stat-label" id="hero-stat-1-label">
+Events Delivered
+</div>
+</div>
+<div class="hero-stat" id="hero-stat-2">
+<div class="hero-stat-num" id="hero-stat-2-num">
+8+
+</div>
+<div class="hero-stat-label" id="hero-stat-2-label">
+Years Experience
+</div>
+</div>
+<div class="hero-stat" id="hero-stat-3">
+<div class="hero-stat-num" id="hero-stat-3-num">
+100%
+</div>
+<div class="hero-stat-label" id="hero-stat-3-label">
+Client Satisfaction
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ══ ABOUT ════════════════════════════════════════════════ -->
+<section id="about">
+<div class="section-wrap">
+<div id="about-inner">
+<div id="about-image-wrap">
+<img id="about-img" src="images/about.jpg" alt="EventCraft team at work" />
+<div id="about-img-badge">
+<div id="about-badge-num">
+8+
+</div>
+<div id="about-badge-label">
+Years of Excellence
+</div>
+</div>
+</div>
+<div id="about-content">
+<span id="about-tag" class="eyebrow">About Us</span>
+<div class="accent-line" id="about-rule"></div>
+<h2 id="about-title" class="section-title">Bringing Your Dream Events to Life</h2>
+<p id="about-text">
+We are a boutique event planning studio based in Accra, Ghana. Since 2016, we have crafted over 250 unforgettable events — from intimate ceremonies to high-profile corporate summits. Our team combines local expertise with world-class production to deliver experiences that exceed expectations every time.
+</p>
+<div id="about-stats">
+<div class="stat-box" id="stat-box-1">
+<h3 id="stat-1">250+</h3>
+<p id="stat-1-label">
+Events Managed
+</p>
+</div>
+<div class="stat-box" id="stat-box-2">
+<h3 id="stat-2">8+</h3>
+<p id="stat-2-label">
+Years Experience
+</p>
+</div>
+<div class="stat-box" id="stat-box-3">
+<h3 id="stat-3">100%</h3>
+<p id="stat-3-label">
+Client Satisfaction
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ══ SERVICES ═════════════════════════════════════════════ -->
+<section id="services">
+<div class="section-wrap">
+<div id="services-heading" class="section-center">
+<span class="eyebrow" id="services-eyebrow">What We Do</span>
+<div class="accent-line" id="services-rule"></div>
+<h2 class="section-title" id="services-title">Events We Plan</h2>
+</div>
+<div id="services-grid">
+<div class="service-card" id="service-weddings">
+<div class="service-icon">
+<i class="fa-solid fa-ring"></i>
+</div>
+<h3 id="service-weddings-title">Weddings</h3>
+<p id="service-weddings-text">
+Full-service wedding planning, styling, and day-of coordination — so you can say "I do" without stress.
+</p>
+</div>
+<div class="service-card" id="service-birthdays">
+<div class="service-icon">
+<i class="fa-solid fa-cake-candles"></i>
+</div>
+<h3 id="service-birthdays-title">Birthdays</h3>
+<p id="service-birthdays-text">
+Milestone celebrations crafted around your personality, from intimate dinners to grand surprise parties.
+</p>
+</div>
+<div class="service-card" id="service-corporate">
+<div class="service-icon">
+<i class="fa-solid fa-building"></i>
+</div>
+<h3 id="service-corporate-title">Corporate Events</h3>
+<p id="service-corporate-text">
+Conferences, product launches, and retreats planned with professional precision and impeccable detail.
+</p>
+</div>
+<div class="service-card" id="service-engagements">
+<div class="service-icon">
+<i class="fa-solid fa-heart"></i>
+</div>
+<h3 id="service-engagements-title">Engagements</h3>
+<p id="service-engagements-text">
+Romantic proposals and engagement parties that begin your forever story perfectly.
+</p>
+</div>
+<div class="service-card" id="service-concerts">
+<div class="service-icon">
+<i class="fa-solid fa-music"></i>
+</div>
+<h3 id="service-concerts-title">Concerts &amp; Shows</h3>
+<p id="service-concerts-text">
+End-to-end live event production: staging, sound, crowd management, and vendor coordination.
+</p>
+</div>
+<div class="service-card" id="service-private">
+<div class="service-icon">
+<i class="fa-solid fa-champagne-glasses"></i>
+</div>
+<h3 id="service-private-title">Private Parties</h3>
+<p id="service-private-text">
+Bespoke private celebrations with luxury styling and experiences tailored exclusively for your guests.
+</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ══ WHY US ════════════════════════════════════════════════ -->
+<section id="why-us">
+<div class="section-wrap">
+<div id="why-us-heading">
+<span class="eyebrow" id="why-eyebrow">Why EventCraft</span>
+<div class="accent-line" id="why-rule"></div>
+<h2 class="section-title" id="why-title">We Make Every Event Special</h2>
+</div>
+<div id="why-grid">
+<div class="why-card" id="why-team">
+<div class="why-icon">
+<i class="fa-solid fa-star"></i>
+</div>
+<div>
+<h3 id="why-team-title">Expert Team</h3>
+<p id="why-team-text">
+Skilled planners with years of hands-on experience across every scale and occasion.
+</p>
+</div>
+</div>
+<div class="why-card" id="why-ideas">
+<div class="why-icon">
+<i class="fa-solid fa-lightbulb"></i>
+</div>
+<div>
+<h3 id="why-ideas-title">Creative Ideas</h3>
+<p id="why-ideas-text">
+Unique concepts developed around your vision — never a template, always original.
+</p>
+</div>
+</div>
+<div class="why-card" id="why-time">
+<div class="why-icon">
+<i class="fa-solid fa-clock"></i>
+</div>
+<div>
+<h3 id="why-time-title">On-Time Delivery</h3>
+<p id="why-time-text">
+We take punctuality seriously. Everything runs to schedule so you enjoy every moment.
+</p>
+</div>
+</div>
+<div class="why-card" id="why-budget">
+<div class="why-icon">
+<i class="fa-solid fa-sack-dollar"></i>
+</div>
+<div>
+<h3 id="why-budget-title">Budget Friendly</h3>
+<p id="why-budget-text">
+Premium planning at every price point — we stretch your budget without cutting what matters.
+</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ══ GALLERY ═══════════════════════════════════════════════ -->
+<section id="gallery">
+<div class="section-wrap">
+<div id="gallery-heading" class="section-center">
+<span class="eyebrow" id="gallery-eyebrow">Our Work</span>
+<div class="accent-line" id="gallery-rule"></div>
+<h2 class="section-title" id="gallery-title">Event Gallery</h2>
+</div>
+<div id="gallery-grid">
+<img id="gallery-img-1" src="images/event1.jpg" alt="Wedding reception setup" />
+<img id="gallery-img-2" src="images/event2.jpg" alt="Corporate gala dinner" />
+<img id="gallery-img-3" src="images/event3.jpg" alt="Birthday celebration" />
+<img id="gallery-img-4" src="images/event4.jpg" alt="Engagement ceremony" />
+<img id="gallery-img-5" src="images/event5.jpg" alt="Concert stage setup" />
+<img id="gallery-img-6" src="images/event6.jpg" alt="Private party décor" />
+</div>
+</div>
+</section>
+
+<!-- ══ PROCESS ═══════════════════════════════════════════════ -->
+<section id="process">
+<div class="section-wrap">
+<div id="process-heading" class="section-center">
+<span class="eyebrow" id="process-eyebrow">How We Work</span>
+<div class="accent-line" id="process-rule"></div>
+<h2 class="section-title" id="process-title">A Simple 5-Step Process</h2>
+</div>
+<div id="process-track">
+<div id="process-connector"></div>
+<div class="process-card" id="process-step-1">
+<div class="process-step-num" id="process-num-1">
+1
+</div>
+<h3 id="process-title-1">Consultation</h3>
+<p id="process-text-1">
+We listen to your ideas and understand your event goals in full.
+</p>
+</div>
+<div class="process-card" id="process-step-2">
+<div class="process-step-num" id="process-num-2">
+2
+</div>
+<h3 id="process-title-2">Planning</h3>
+<p id="process-text-2">
+A detailed plan — timeline, vendors, and budget — built around you.
+</p>
+</div>
+<div class="process-card" id="process-step-3">
+<div class="process-step-num" id="process-num-3">
+3
+</div>
+<h3 id="process-title-3">Design</h3>
+<p id="process-text-3">
+Theme, décor, and visual flow crafted to create a cohesive look.
+</p>
+</div>
+<div class="process-card" id="process-step-4">
+<div class="process-step-num" id="process-num-4">
+4
+</div>
+<h3 id="process-title-4">Execution</h3>
+<p id="process-text-4">
+Our team handles setup, coordination, and on-the-day management.
+</p>
+</div>
+<div class="process-card" id="process-step-5">
+<div class="process-step-num" id="process-num-5">
+5
+</div>
+<h3 id="process-title-5">Celebration</h3>
+<p id="process-text-5">
+You arrive, enjoy, and make memories — we handle everything else.
+</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ══ TESTIMONIALS ══════════════════════════════════════════ -->
+<section id="testimonials">
+<div class="section-wrap">
+<div id="testimonials-heading" class="section-center">
+<span class="eyebrow" id="testimonials-eyebrow">Client Stories</span>
+<div class="accent-line" id="testimonials-rule"></div>
+<h2 class="section-title" id="testimonials-title">What Our Clients Say</h2>
+</div>
+<div id="testimonials-wrapper">
+<div class="testimonial-card" id="testimonial-1">
+<div>
+<div class="quote-glyph" id="quote-mark-1">
+"
+</div>
+<p class="review" id="review-1">
+They turned my wedding into a dream. Every detail was perfectly organised — I didn't have to worry about a single thing.
+</p>
+</div>
+<div class="client" id="client-1">
+<img id="client-1-img" src="images/client1.jpg" alt="Akosua Mensah" />
+<div>
+<h3 id="client-1-name">Akosua Mensah</h3>
+<span id="client-1-role">Wedding Client</span>
+</div>
+</div>
+</div>
+<div class="testimonial-card" id="testimonial-2">
+<div>
+<div class="quote-glyph" id="quote-mark-2">
+"
+</div>
+<p class="review" id="review-2">
+Our corporate retreat was handled with total professionalism. Logistics, venue, catering — absolutely flawless.
+</p>
+</div>
+<div class="client" id="client-2">
+<img id="client-2-img" src="images/client2.jpg" alt="Kwame Boateng" />
+<div>
+<h3 id="client-2-name">Kwame Boateng</h3>
+<span id="client-2-role">Corporate Client</span>
+</div>
+</div>
+</div>
+<div class="testimonial-card" id="testimonial-3">
+<div>
+<div class="quote-glyph" id="quote-mark-3">
+"
+</div>
+<p class="review" id="review-3">
+My birthday party was beyond anything I imagined. EventCraft understood my vision and delivered something extraordinary.
+</p>
+</div>
+<div class="client" id="client-3">
+<img id="client-3-img" src="images/client3.jpg" alt="Efua Asante" />
+<div>
+<h3 id="client-3-name">Efua Asante</h3>
+<span id="client-3-role">Birthday Client</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ══ CONTACT ═══════════════════════════════════════════════ -->
+<section id="contact">
+<div class="section-wrap">
+<div id="contact-inner">
+<div id="contact-left">
+<span class="eyebrow" id="contact-eyebrow">Get in Touch</span>
+<div class="accent-line" id="contact-rule"></div>
+<h2 id="contact-title">Let's Plan Your Next Event</h2>
+<p id="contact-text">
+Ready to create something unforgettable? Reach out and let's talk about your vision. We typically respond within 24 hours.
+</p>
+</div>
+<div id="contact-cards">
+<div class="contact-card" id="contact-phone">
+<i class="fa-solid fa-phone-volume"></i>
+<h3 id="contact-phone-label">Call Us</h3>
+<p id="contact-phone-num">
++233 55 535 8325
+</p>
+</div>
+<div class="contact-card" id="contact-whatsapp">
+<i class="fa-brands fa-whatsapp"></i>
+<h3 id="contact-whatsapp-label">WhatsApp</h3>
+<p id="contact-whatsapp-num">
++233 55 535 8325
+</p>
+</div>
+<div class="contact-card" id="contact-email">
+<i class="fa-solid fa-envelope"></i>
+<h3 id="contact-email-label">Email</h3>
+<p id="contact-email-addr">
+hello@eventcraft.com
+</p>
+</div>
+<div class="contact-card" id="contact-location">
+<i class="fa-solid fa-location-dot"></i>
+<h3 id="contact-location-label">Location</h3>
+<p id="contact-location-addr">
+Accra, Ghana
+</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════ -->
+<footer id="footer">
+<div id="footer-inner">
+<div id="footer-brand">
+<div id="footer-logo">
+EventCraft
+</div>
+<p id="footer-tagline">
+Creating memorable events with creativity, passion, and attention to detail — since 2016.
+</p>
+</div>
+<div id="footer-nav">
+<div id="footer-links-heading">
+Quick Links
+</div>
+<nav id="footer-links">
+<a id="footer-link-home" href="#hero">Home</a>
+<a id="footer-link-about" href="#about">About</a>
+<a id="footer-link-services" href="#services">Services</a>
+<a id="footer-link-gallery" href="#gallery">Gallery</a>
+<a id="footer-link-testimonials" href="#testimonials">Testimonials</a>
+<a id="footer-link-contact" href="#contact">Contact</a>
+</nav>
+</div>
+<div id="footer-social">
+<div id="footer-social-heading">
+Follow Us
+</div>
+<div id="footer-social-icons">
+<a href="#" class="social-icon" id="social-facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+<a href="#" class="social-icon" id="social-instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+<a href="#" class="social-icon" id="social-twitter" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+<a href="#" class="social-icon" id="social-whatsapp" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+</div>
+</div>
+</div>
+<div id="footer-bottom">
+<p id="footer-copy">
+© 2026 EventCraft. All Rights Reserved.
+</p>
+</div>
+</footer>
+
+<script>
+function toggleMenu() {
+document.getElementById('mobile-menu').classList.toggle('open');
+}
+</script>
+</body>
+</html>

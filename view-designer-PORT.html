@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand Name Portfolio</title>
+  <style>
+    /* ==========================
+   ROOT VARIABLES
+========================== */
+:root{
+    --primary: #2255C4;
+    --primary-hover: #0F2044;
+
+    --bg: #ffffff;
+    --bg-light: #EBF0FB;
+
+    --text: #0F2044;
+    --text-light: #5A6A8A;
+
+    --white: #ffffff;
+    --black: #080F1F;
+
+    --shadow: 0 5px 20px rgba(15,32,68,.10);
+
+    --radius: 16px;
+
+    --container: 1200px;
+    /* Responsive Typography */
+    --img-width: 50%;
+    --fs-h1: clamp(2rem,6vw,4.5rem);
+    --fs-h2: clamp(1.8rem,4vw,2.8rem);
+    --fs-h3: clamp(1.2rem,3vw,1.8rem);
+    --fs-body: clamp(.95rem,1.2vw,1.1rem);
+    --fs-small: clamp(.8rem,1vw,.95rem);
+
+    /* Responsive Spacing */
+    --section-padding: clamp(4rem,8vw,7rem);
+    --container-padding: clamp(1rem,5vw,8%);
+    }
+
+    /* ==========================
+   RESET
+========================== */
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+    html{
+    scroll-behavior: smooth;
+    }
+
+    body{
+    font-family: Arial,sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: var(--fs-body);
+    }
+
+    img{
+    display: block;
+    max-width: 100%;
+    }
+
+    section{
+    scroll-margin-top: 110px;
+    }
+
+    /* ==========================
+   HEADER
+========================== */
+    #header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px var(--container-padding);
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: var(--shadow);
+    }
+
+    #header img{
+    width: 50px;
+    border-radius: 50px;
+    object-fit: cover;
+    }
+
+    #header ul{
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    }
+
+    #header a{
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    transition: .3s;
+    }
+
+    #header a:hover{
+    color: var(--primary);
+    }
+
+    /* ==========================
+   HERO
+========================== */
+    #home{
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px var(--container-padding);
+    background:
+    linear-gradient(
+    146deg,
+    rgba(15,32,68,0.75),
+    rgba(232,160,32,0.55)
+    ),
+    url("hero.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    }
+
+    #hero-text h1{
+    flex-wrap: wrap;
+    line-break: auto;
+    font-size: var(--fs-h1);
+    color: var(--white);
+    }
+
+    /* ==========================
+   ABOUT
+========================== */
+    #about{
+    max-width: var(--container);
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    padding: var(--section-padding) var(--container-padding);
+    }
+
+    .about-text h2{
+    font-size: var(--fs-h2);
+    margin-bottom: 20px;
+    }
+
+    #about-desc{
+    text-align: left;
+    word-spacing: 4px;
+    letter-spacing: 0.2px;
+    font-weight: 500;
+    color: var(--text-light);
+    }
+
+    .about-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    }
+
+    /* ==========================
+   WHAT I DO
+========================== */
+    #what-i-do{
+    background: var(--bg-light);
+    padding: var(--section-padding) var(--container-padding);
+    }
+
+    #what-i-do h2{
+    text-align: center;
+    font-size: var(--fs-h2);
+    margin-bottom: 60px;
+    }
+
+    .category{
+    margin-bottom: 80px;
+    }
+
+    .category h3{
+    text-align: center;
+    font-size: var(--fs-h3);
+    margin-bottom: 25px;
+    }
+
+    .grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 25px;
+    }
+
+    .item{
+    display: flex;
+    flex-direction: column;
+    transition: 0.4s;
+    }
+
+    .item:hover{
+    transform: translateY(-8px);
+    }
+
+    .item img{
+    width: var(--img-width: 50%;;
+    );
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    border-radius: 16px 16px 0px 0px;
+    box-shadow: var(--shadow);
+    }
+
+    .item p{
+    background: var(--primary);
+    width: var(--img-width: 50%;
+    );
+    color: var(--white);
+    text-align: center;
+    padding: 12px;
+    font-size: var(--fs-small);
+    border-radius: 0 0 16px 16px;
+    }
+
+    /* ==========================
+   HIRE ME
+========================== */
+    #hire-me{
+    text-align: center;
+    padding: var(--section-padding) var(--container-padding);
+    }
+
+    #hire-me h2{
+    font-size: var(--fs-h2);
+    margin-bottom: 15px;
+    }
+
+    #hire-me p{
+    margin-bottom: 25px;
+    }
+
+    #hire-btn{
+    display: inline-block;
+    padding: 14px 35px;
+    background: #E8A020;
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 50px;
+    transition: .3s;
+    }
+
+    .hire-btn:hover{
+    background: #C98810;
+    }
+
+    /* ==========================
+   FOOTER
+========================== */
+    #footer{
+    background: var(--black);
+    color: var(--white);
+
+    text-align: center;
+
+    padding: 25px;
+    }
+
+    /* ==========================
+   TABLETS
+========================== */
+    @media (max-width:1024px){
+
+    #about{
+    gap: 40px;
+    }
+
+    .grid{
+    grid-template-columns: repeat(2,1fr);
+    }
+    }
+
+    /* ==========================
+   MOBILE
+========================== */
+    @media (max-width:768px){
+
+    #header{
+    flex-direction: column;
+    gap: 12px;
+    padding: 7px 17px;
+    }
+
+    #header ul{
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    }
+
+    #about{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 30px;
+    }
+
+    .grid{
+    grid-template-columns: 1fr;
+    }
+
+    .about-image img{
+    max-width: 150px;
+    }
+    }
+
+    /* ==========================
+   SMALL PHONES
+========================== */
+    @media (max-width:480px){
+
+    #header a{
+    font-size: 12px;
+    }
+
+    .item img{
+    aspect-ratio: 1/1.2;
+    }
+    }
+  </style>
+
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="header">
+    <a href="#home"><img src="Yomyom.jpg" alt="Brand Logo"></a>
+    <nav>
+      <ul>
+        <li><a href="#home" id="nav-home">Home</a></li>
+        <li><a href="#about" id="nav-about">About</a></li>
+        <li><a href="#what-i-do" id="nav-what">What I Do</a></li>
+        <li><a href="#hire-me" id="nav-hire">Hire Me</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Home / Hero Section -->
+  <section id="home">
+    <div id="hero-text">
+      <h1 id="hero-title">Designing Visual Experiences That Leave a Lasting Impression</h1>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div id="about-image">
+      <img style="object-fit: center
+      max-width: 220px;
+      border-radius: 35px; max-height:500px;" src="trainer1.jpeg" alt="Profile Image">
+    </div>
+    <div id="about-text">
+      <h2 id="about-title">About Us</h2>
+      <p id="about-desc">
+        Welcome to Yomyom Graphics Design
+        Bringing creativity, innovation, and professional design solutions to individuals, businesses, and brands.
+        At Yomyom Graphics Design, we specialize in creating visually stunning designs that help brands stand out and make a lasting impression. From logos and branding to social media graphics, marketing materials, and digital content, we transform ideas into eye-catching visuals.
+        Our goal is to deliver high-quality, creative, and impactful designs that
+        communicate your message effectively and strengthen your brand identity
+      </p>
+    </div>
+  </section>
+
+  <!-- What I Do Section -->
+  <section id="what-i-do">
+    <h2 id="what-i-do-title">What I Do</h2>
+
+    <!-- Wedding Flyers -->
+    <div class="category" id="category-wedding">
+      <h3 id="wedding-title">Category 1 Title</h3>
+      <div class="grid">
+        <div class="item" id="wedding-card-1">
+          <img src="img-placehloder.jpg" alt="Wedding Flyer 1">
+          <p id="wedding-p1" class="card-caption">
+            Image Description
+          </p>
+        </div>
+        <div class="item" id="wedding-card-2">
+          <img src="img-placehloder.jpg" alt="Wedding Flyer 2">
+          <p id="wedding-p2" class="card-caption">
+            Image Description
+          </p>
+        </div>
+        <div class="item" id="wedding-card-3">
+          <img src="img-placehloder.jpg" alt="Wedding Flyer 3">
+          <p id="wedding-p3" class="card-caption">
+            Image Description
+          </p>
+        </div>
+        <div class="item" id="wedding-card-4">
+          <img src="img-placehloder.jpg" alt="Wedding Flyer 4">
+          <p id="wedding-p4" class="card-caption">
+            Image Description
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Naming Ceremony Flyers -->
+    <div class="category" id="category-naming">
+      <h3 id="naming-title">Category 2 Title</h3>
+      <div class="grid">
+        <div class="item" id="naming-card-1">
+          <img src="img-placehloder.jpg" alt="Naming Flyer 1">
+          <p id="naming-p1" class="card-caption">
+            Image Description
+          </p>
+        </div>
+        <div class="item" id="naming-card-2">
+          <img src="img-placehloder.jpg" alt="Naming Flyer 2">
+          <p id="naming-p2" class="card-caption">
+            Image Description
+          </p>
+        </div>
+        <div class="item" id="naming-card-3">
+          <img src="img-placehloder.jpg" alt="Naming Flyer 3">
+          <p id="naming-p3" class="card-caption">
+            Image Description
+          </p>
+        </div>
+        <div class="item" id="naming-card-4">
+          <img src="img-placehloder.jpg" alt="Naming Flyer 4">
+          <p id="naming-p4" class="card-caption">
+            Image Description
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logo Design -->
+    <div class="category" id="category-logo">
+      <h3 id="logo-title">Category 3 Title</</h3>
+    <div class="grid">
+      <div class="item" id="logo-card-1">
+        <img src="img-placehloder.jpg" alt="Logo Design 1">
+        <p id="logo-p1" class="card-caption">
+          Image Description
+        </p>
+      </div>
+      <div class="item" id="logo-card-2">
+        <img src="img-placehloder.jpg" alt="Logo Design 2">
+        <p id="logo-p2" class="card-caption">
+          Image Description
+        </p>
+      </div>
+      <div class="item" id="logo-card-3">
+        <img src="img-placehloder.jpg" alt="Logo Design 3">
+        <p id="logo-p3" class="card-caption">
+          Image Description
+        </p>
+      </div>
+      <div class="item" id="logo-card-4">
+        <img src="img-placehloder.jpg" alt="Logo Design 4">
+        <p id="logo-p4" class="card-caption">
+          Image Description
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Business Flyers -->
+  <div class="category" id="category-business">
+    <h3 id="business-title">Category 4</h3>
+    <div class="grid">
+      <div class="item" id="business-card-1">
+        <img src="img-placehloder.jpg" alt="Business Flyer 1">
+        <p id="business-p1" class="card-caption">
+          Image Description
+        </p>
+      </div>
+      <div class="item" id="business-card-2">
+        <img src="img-placehloder.jpg" alt="Business Flyer 2">
+        <p id="business-p2" class="card-caption">
+          Image Description
+        </p>
+      </div>
+      <div class="item" id="business-card-3">
+        <img src="img-placehloder.jpg" alt="Business Flyer 3">
+        <p id="business-p3" class="card-caption">
+          Image Description
+        </p>
+      </div>
+      <div class="item" id="business-card-4">
+        <img src="img-placehloder.jpg" alt="Business Flyer 4">
+        <p id="business-p4" class="card-caption">
+          Image Description
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Birthday Flyers -->
+  <div class="category" id="category-birthday">
+    <h3 id="birthday-title">Category 5 Title</</h3>
+  <div class="grid">
+    <div class="item" id="birthday-card-1">
+      <img src="img-placehloder.jpg" alt="Birthday Flyer 1">
+      <p id="birthday-p1" class="card-caption">
+        Image Description
+      </p>
+    </div>
+    <div class="item" id="birthday-card-2">
+      <img src="img-placehloder.jpg" alt="Birthday Flyer 2">
+      <p id="birthday-p2" class="card-caption">
+        Image Description
+      </p>
+    </div>
+    <div class="item" id="birthday-card-3">
+      <img src="img-placehloder.jpg" alt="Birthday Flyer 3">
+      <p id="birthday-p3" class="card-caption">
+        Image Description
+      </p>
+    </div>
+    <div class="item" id="birthday-card-4">
+      <img src="img-placehloder.jpg" alt="Birthday Flyer 4">
+      <p id="birthday-p4" class="card-caption">
+        Image Description
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Citation Flyers -->
+<div class="category" id="category-citation">
+  <h3 id="citation-title">Category 6 Title</</h3>
+<div class="grid">
+  <div class="item" id="citation-card-1">
+    <img src="img-placehloder.jpg" alt="Citation Flyer 1">
+    <p id="citation-p1" class="card-caption">
+      Image Description
+    </p>
+  </div>
+  <div class="item" id="citation-card-2">
+    <img src="img-placehloder.jpg" alt="Citation Flyer 2">
+    <p id="citation-p2" class="card-caption">
+      Image Description
+    </p>
+  </div>
+  <div class="item" id="citation-card-3">
+    <img src="img-placehloder.jpg" alt="Citation Flyer 3">
+    <p id="citation-p3" class="card-caption">
+      Image Description
+    </p>
+  </div>
+  <div class="item" id="citation-card-4">
+    <img src="img-placehloder.jpg" alt="Citation Flyer 4">
+    <p id="citation-p4" class="card-caption">
+      Image Description
+    </p>
+  </div>
+</div>
+</div>
+
+<!-- Campaign Flyers -->
+<div class="category" id="category-campaign">
+<h3 id="campaign-title">Category 7 Title</</h3>
+<div class="grid">
+<div class="item" id="campaign-card-1">
+<img src="img-placehloder.jpg" alt="Campaign Flyer 1">
+<p id="campaign-p1" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="campaign-card-2">
+<img src="img-placehloder.jpg" alt="Campaign Flyer 2">
+<p id="campaign-p2" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="campaign-card-3">
+<img src="img-placehloder.jpg" alt="Campaign Flyer 3">
+<p id="campaign-p3" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="campaign-card-4">
+<img src="img-placehloder.jpg" alt="Campaign Flyer 4">
+<p id="campaign-p4" class="card-caption">
+Image Description
+</p>
+</div>
+</div>
+</div>
+
+<!-- T-shirt Designs -->
+<div class="category" id="category-tshirt">
+<h3 id="tshirt-title">Category 8 Title</</h3>
+<div class="grid">
+<div class="item" id="tshirt-card-1">
+<img src="img-placehloder.jpg" alt="T-shirt Design 1">
+<p id="tshirt-p1" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="tshirt-card-2">
+<img src="img-placehloder.jpg" alt="T-shirt Design 2">
+<p id="tshirt-p2" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="tshirt-card-3">
+<img src="img-placehloder.jpg" alt="T-shirt Design 3">
+<p id="tshirt-p3" class="card-caption">
+Image Description
+</p>
+</div>
+<div class="item" id="tshirt-card-4">
+<img src="img-placehloder.jpg" alt="T-shirt Design 4">
+<p id="tshirt-p4" class="card-caption">
+Image Description
+</p>
+</div>
+</div>
+</div>
+
+</section>
+
+<!-- Hire Me Section -->
+<section id="hire-me">
+<h2 id="hire-me-title">Ready to bring your ideas to life?</h2>
+<p id="hire-me-desc">
+Hire me today!
+</p>
+<a href="https://wa.me/233555358325" target="_blank" id="hire-btn">WhatsApp Me</a>
+</section>
+
+<!-- Footer -->
+<footer id="footer">
+<div id="footer-bottom">
+&copy; 2026 Brand Name. All rights reserved.
+</div>
+</footer>
+
+</body>
+</html>
