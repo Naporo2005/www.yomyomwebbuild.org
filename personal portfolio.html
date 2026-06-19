@@ -144,18 +144,18 @@ display: none !important;
                                  ========================= */
 .editor-toggle-btn {
 position: fixed;
-bottom: 20px;
+bottom: 18px;
 left: 20px;
 z-index: 10001;
-color: #111;
-background: #fff;
+color: #fff;
+background: #0053c54a;
 border: none;
 padding: 7px 10px;
 transition: 0.5s;
 border-radius: 12px;
 cursor: pointer;
 font-size: 14px;
-font-weight: 600;
+font-weight: 900;
 }
 .editor-toggle-btn:hover {
 background: rgb(86, 112, 124);
@@ -785,7 +785,7 @@ color: var(--nav-link-hover);
 display: flex;
 align-items: center;
 justify-content: space-between;
-min-height: 70vh;
+min-height: 100vh;
 padding: 60px 40px;
 background: var(--hero-bg);
 }
@@ -1530,8 +1530,6 @@ their work.
 
 <!-- ==================== EDITOR PANEL==================== -->
 <div class="editor-panel" id="editorPanel">
-<br /><br />
-
 <!-- STATUS + ACTION BUTTONS -->
 <span id="saveStatus"></span>
 <div class="team">
@@ -1631,7 +1629,14 @@ Hero Description
 Hero Button
 </p>
 <input type="text" placeholder="Button text" oninput="heroButton.textContent = this.value" />
-<input type="text" placeholder="Button link URL" oninput="heroButton.href = this.value" />
+<select style="width:200px; height:30px; border-radius:7px;" onchange="heroButton.href = this.value">
+<option value="#">Select  Page</option>
+<option value="#aboutSection">About</option>
+<option value="#servicesSection">Services</option>
+<option value="#workSection">Portfolio</option>
+<option value="#contactSection">Contact</option>
+</select>
+
 <label>Background</label>
 <input id="heroBtnBg" />
 <label>Text Color</label>
@@ -2025,4 +2030,4 @@ box.classList.toggle("active");
 <script src="personal portfolio--EDIT.js"></script>
 <script src="personal portfolio---Supabase.js"></script>
 </body>
-</html>
+  </html>
