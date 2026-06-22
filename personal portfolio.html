@@ -384,7 +384,6 @@ position: sticky;
 bottom: 0;
 z-index: 999;
 width: 100%;
-margin-bottom: 15px;
 }
 .team hr {
 width: 1px;
@@ -498,12 +497,11 @@ transform: scale(0.96);
                         SAVE STATUS TEXT
                         ============================================================ */
 #saveStatus {
-padding: 45px;
-font-size: 11px;
+padding: 4px 4px;
+font-size: 14px;
 font-family: "Montserrat", sans-serif;
 font-weight: 600;
 flex: 1;
-min-width: 80px;
 }
 
 /* ============================================================
@@ -520,7 +518,7 @@ padding: 8px 10px;
 }
 
 .saveBtn {
-padding: 7px 12px;
+padding: 4px 4px;
 font-size: 10px;
 }
 
@@ -1530,8 +1528,10 @@ their work.
 
 <!-- ==================== EDITOR PANEL==================== -->
 <div class="editor-panel" id="editorPanel">
-<!-- STATUS + ACTION BUTTONS -->
+  <div class="box" style="text-align:center; margin:8px;">
 <span id="saveStatus"></span>
+</div>
+<!-- STATUS + ACTION BUTTONS -->
 <div class="team">
 <button id="saveBtn" class="saveBtn save">Save</button>
 <hr />
