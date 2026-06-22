@@ -102,8 +102,6 @@ border-top: 1px solid #2e2e2e;
 position: sticky;
 bottom: 0;
 z-index: 999;
-width: 100%;
-margin-top: 8px;
 }
 .team hr { width: 1px;
 height: 20px;
@@ -172,13 +170,13 @@ transition: background 0.2s, transform 0.1s;
 }
 .wa-btn:active { transform: scale(0.96);
 }
-#saveStatus { font-size: 11px;
+#saveStatus {
+font-size: 13px;
 font-weight: 600;
 color: #888;
 flex: 1;
-min-width: 50px;
 text-align: center;
-padding: 6px 4px;
+padding: 4px 4px;
 }
 
 /* ── Editor Boxes ── */
@@ -2674,8 +2672,9 @@ if (e.key === 'Escape' && isOpen()) closeMenu();
 
 <!-- ==================== EDITOR PANEL ==================== -->
 <div class="editor-panel" id="editorPanel">
+<div class="box" style="text-align:center; margin:8px;">
 <span id="saveStatus"></span>
-
+</div>
 <!-- Toolbar -->
 <div class="team">
 <button id="saveBtn" class="saveBtn save">Save</button>
@@ -2688,7 +2687,6 @@ if (e.key === 'Escape' && isOpen()) closeMenu();
 <hr />
 <button id="waContactBtn" class="wa-btn">WhatsApp</button>
 </div>
-
 
 <!-- ══════════════════════════════════════════════════════════
        1. NAVBAR
@@ -4317,4 +4315,4 @@ src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.1/spectrum.min.js"></sc
 <script src="Hotel---Supabase.js"></script>
 
 </body>
-</html>
+  </html>
