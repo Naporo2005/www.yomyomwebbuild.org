@@ -41,10 +41,6 @@ font-family: "Montserrat", sans-serif;
 line-height: 1.6;
 -webkit-font-smoothing: antialiased;
 }
-img { max-width: 100%;
-height: auto;
-display: block;
-}
 button { cursor: pointer;
 font-family: inherit;
 -webkit-tap-highlight-color: transparent;
@@ -135,7 +131,6 @@ position: sticky;
 bottom: 0;
 z-index: 999;
 width: 100%;
-margin-top: 8px;
 }
 .team hr {
 width: 1px;
@@ -208,13 +203,12 @@ transition: background 0.2s, transform 0.1s;
 }
 
 #saveStatus {
-font-size: 11px;
+font-size: 14px;
 font-weight: 600;
 color: #888;
 flex: 1;
-min-width: 50px;
 text-align: center;
-padding: 6px 4px;
+padding: 4px 4px;
 }
 
 /* ── Editor Boxes (Accordion wrappers) ─────────────────────── */
@@ -2776,9 +2770,9 @@ class="floating-btn call-float">
 
 <!-- ==================== EDITOR PANEL ==================== -->
 <div class="editor-panel" id="editorPanel">
-
-<br /><br />
+<div class="box" style="text-align:center; margin:8px;">
 <span id="saveStatus"></span>
+</div>
 <div class="team">
 <button id="saveBtn" class="saveBtn save">Save</button>
 <hr />
@@ -3715,4 +3709,4 @@ src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.1/spectrum.min.js"></sc
 <script src="Restaurant---EDIT.js"></script>
 <script src="Restaurant---Supabase.js"></script>
 </body>
-</html>
+  </html>
