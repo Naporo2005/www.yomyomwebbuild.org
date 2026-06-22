@@ -718,6 +718,47 @@ animation: spin 0.7s linear infinite;
 to { transform: rotate(360deg);
 }
 }
+
+/* ── QUICK JUMP LINKS (How It Works bottom) ── */
+.quick-jump {
+max-width: 1000px;
+margin: 0 auto 60px;
+padding: 0 24px;
+text-align: center;
+}
+.quick-jump h4 {
+font-family: "Unbounded", sans-serif;
+font-size: 0.78rem;
+font-weight: 700;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+color: var(--muted);
+margin-bottom: 16px;
+}
+.quick-jump-links {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 12px;
+}
+.quick-jump-links button {
+background: var(--surface);
+border: 1px solid var(--border);
+border-radius: 24px;
+padding: 10px 20px;
+font-family: "Poppins", sans-serif;
+font-size: 0.9rem;
+font-weight: 500;
+color: var(--text);
+cursor: pointer;
+box-shadow: 0 2px 8px var(--shadow);
+transition: transform 0.2s, border-color 0.2s, color 0.2s;
+}
+.quick-jump-links button:hover {
+transform: translateY(-3px);
+border-color: var(--accent);
+color: var(--accent);
+}
 </style>
 </head>
 <body>
@@ -815,6 +856,17 @@ Select your one-time purchase option. WhatsApp Yomyom WebBuild directly, and we
 will customize the template exclusively for you. Once finalized, we’ll confirm
 your purchase and proceed with delivery.
 </p>
+</div>
+</div>
+
+<!-- Quick jump links — added so people don't have to look for the top nav -->
+<div class="quick-jump">
+<h4>Quick Navigation</h4>
+<div class="quick-jump-links">
+<button onclick="show('templates')">Customizable Templates</button>
+<button onclick="show('one-time')">One Time Purchase</button>
+<button onclick="show('terms')">Terms &amp; Conditions</button>
+<button onclick="show('support')">Support</button>
 </div>
 </div>
 </div>
@@ -1085,7 +1137,7 @@ GH₵750</span>
 </p>
 
 <div class="template-actions">
-<a href="school.html" class="btn-outline nav-out-link">Preview</a>
+<a href="School.html" class="btn-outline nav-out-link">Preview</a>
 <a href="https://wa.me/233555358325" target="_blank" class="btn-primary1 nav-out-link">
 <sub><i style="font-size:21px;" class="ph-fill ph-whatsapp-logo"></i></sub> WhatsApp
 </a>
@@ -1187,7 +1239,7 @@ With A Clean Reading Experience For Engaged Audiences.
 </div>
 </div>
 <div class="template-info">
-<h3>Blog Pages</h3>
+<h3>Blog/ Landing pages</h3>
 <p>
 <span class="tag"><br><span class="price">
 GH₵870</span>
@@ -1294,7 +1346,7 @@ Chat with our team directly for fast order confirmations and project support.
 <p>
 Send us a detailed message and we'll respond within 24 hours on business days.
 </p>
-<a href="mailto:support@yomyomwebbuild.com" class="support-link">Send Email</a>
+<a href="mailto:0555358325a@gmail.com" class="support-link">Send Email</a>
 </div>
 <div class="support-card">
 <div class="support-icon">
@@ -1315,7 +1367,13 @@ Browse our guides on templates, customization, payment, and delivery process.
 <div class="faq-item">
 <summary>How do I get started with Yomyom WebBuild?</summary>
 <p>
-Go to the Templates section, pick a design you like, and click "Use this template." Follow the steps from there — our team will guide you through customization, confirmation, and delivery.
+Navigate to the <strong>Customizable Templates</strong> section and preview the available designs to find one that matches your brand or project. Once you've made your choice, click <strong>"Customize Template"</strong> to begin personalizing it to your needs.
+</p>
+<p>
+Or, you can check the <strong>One-Time Purchase Templates</strong> section to see if there is a ready-made design that fits your project.
+</p>
+<p>
+If you don’t find what you need, you can also send us your project or brand details and how you want it built, and our team will create it for you.
 </p>
 </div>
 </details>
@@ -1324,7 +1382,18 @@ Go to the Templates section, pick a design you like, and click "Use this templat
 <div class="faq-item">
 <summary>How long does delivery take?</summary>
 <p>
-After payment is confirmed, most websites are delivered within 2–5 business days depending on complexity and requested customizations.
+After we receive your information, we integrate your content into the template, optimize and compress images for faster loading speeds, and make the necessary adjustments to match your requirements. This process typically takes 1–2 business days, depending on the amount of content provided.
+</p>
+</div>
+</details>
+<details>
+<div class="faq-item">
+<summary>Do You Offer One-Time Purchase Templates?</summary>
+<p>
+Yes. All templates on Yomyom WebBuild are sold as one-time purchases. You pay once and gain full ownership of your website design with no recurring fees.
+</p>
+<p>
+We also provide <strong>One-Time purchase templates</strong> that are ready for immediate use. Once purchased, the template is permanently assigned to you and removed from our marketplace to ensure exclusivity.
 </p>
 </div>
 </details>
@@ -1342,7 +1411,7 @@ Yes! You can either receive the website files to self-host, or request our team 
 <div class="faq-item">
 <summary>What payment methods do you accept?</summary>
 <p>
-Payment options are confirmed during the WhatsApp order confirmation step. We'll walk you through accepted methods based on your region.
+Our payment method is simple. We accept Mobile Money (MoMo) from all major network service providers. We aim to make the payment process easy, fast, and convenient for everyone.
 </p>
 </div>
 </details>
