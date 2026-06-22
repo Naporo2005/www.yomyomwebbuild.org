@@ -202,11 +202,9 @@ transition: background 0.2s, transform 0.1s;
 #saveStatus {
 font-size: 11px;
 font-weight: 600;
-color: #888;
 flex: 1;
-min-width: 50px;
 text-align: center;
-padding: 6px 4px;
+padding: 4px 4px;
 }
 
 /* ── Editor Boxes (Accordion wrappers) ─────────────────────── */
@@ -245,7 +243,7 @@ text-transform: uppercase;
 text-align: left;
 border-radius: 14px;
 }
-/* If a <p> tag is inside editor-btn, keep it white */
+
 .editor-btn p {
 color: #fff;
 margin: 0;
@@ -1281,8 +1279,9 @@ Hire me today!
 
 <!-- ==================== EDITOR PANEL ==================== -->
 <div class="editor-panel" id="editorPanel">
-<br>
+<div class="box" style="text-align:center; margin:8px;">
 <span id="saveStatus"></span>
+</div>
 <div class="team">
 <button id="saveBtn" class="saveBtn save">Save</button>
 <hr />
@@ -1295,7 +1294,7 @@ Hire me today!
 <hr />
 <button id="waContactBtn" class="wa-btn" disabled style="opacity:0.4;cursor:not-allowed" title="Submit first to unlock">WhatsApp</button>
 </div>
-
+  
 <!-- ====== HEADER / NAV ====== -->
 <div class="editor-box">
 <button class="editor-btn">
@@ -1931,4 +1930,4 @@ src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.1/spectrum.min.js"></sc
 <script src="DESIGNER PORTFOLIO----Supabase.js"></script>
 
 </body>
-</html>
+  </html>
